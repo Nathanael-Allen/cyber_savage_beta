@@ -6,13 +6,37 @@ interface IUnitListProps {
   handleAddUnit: (unit: IUnit) => void;
 }
 
-type TLevelProp = { level: number };
+type TUnitBlockProps = {
+  unitList: IUnit[];
+  level: number;
+  handleAddUnit: (unit: IUnit) => void;
+};
 
-function ComLevelHeading({ level }: TLevelProp) {
+function returnLevelList(units: IUnit[], level: number) {
+  return units.filter((unit) => {
+    return unit.level === level;
+  });
+}
+
+function ComAvailableUnitBlock({
+  unitList,
+  level,
+  handleAddUnit,
+}: TUnitBlockProps) {
+  const newUnitList = returnLevelList(unitList, level);
   return (
-    <h4 className="font-semibold text-xl p-2 text-center border-b border-black">
-      Level {level}
-    </h4>
+    <div className="w-11/12 m-auto p-2 mt-2 mb-2 bg-gray-100 border border-black rounded-md">
+      <h4 className="font-semibold text-xl p-2 text-center">Level {level}</h4>
+      {newUnitList.map((unit) => {
+        return (
+          <ComAvailableUnit
+            key={unit.type}
+            unit={unit}
+            handleAddUnit={handleAddUnit}
+          />
+        );
+      })}
+    </div>
   );
 }
 
@@ -20,61 +44,28 @@ export default function ComAvailableUnits({
   unitList,
   handleAddUnit,
 }: IUnitListProps) {
-  const levelOneUnits = unitList.map((unit, index) => {
-    if (unit.level == 1) {
-      return (
-        <ComAvailableUnit
-          key={"lvl001" + index}
-          unit={unit}
-          handleAddUnit={handleAddUnit}
-        />
-      );
-    }
-  });
-  const levelTwoUnits = unitList.map((unit, index) => {
-    if (unit.level == 2) {
-      return (
-        <ComAvailableUnit
-          key={"lvl002" + index}
-          unit={unit}
-          handleAddUnit={handleAddUnit}
-        />
-      );
-    }
-  });
-  const levelThreeUnits = unitList.map((unit, index) => {
-    if (unit.level == 3) {
-      return (
-        <ComAvailableUnit
-          key={"lvl003" + index}
-          unit={unit}
-          handleAddUnit={handleAddUnit}
-        />
-      );
-    }
-  });
-  const levelFourUnits = unitList.map((unit, index) => {
-    if (unit.level == 4) {
-      return (
-        <ComAvailableUnit
-          key={"lvl004" + index}
-          unit={unit}
-          handleAddUnit={handleAddUnit}
-        />
-      );
-    }
-  });
-
   return (
-    <div>      
-      <ComLevelHeading level={1} />
-      {levelOneUnits}
-      <ComLevelHeading level={2} />
-      {levelTwoUnits}
-      <ComLevelHeading level={3} />
-      {levelThreeUnits}
-      <ComLevelHeading level={4} />
-      {levelFourUnits}
+    <div className="">
+      <ComAvailableUnitBlock
+        unitList={unitList}
+        level={1}
+        handleAddUnit={handleAddUnit}
+      />
+      <ComAvailableUnitBlock
+        unitList={unitList}
+        level={2}
+        handleAddUnit={handleAddUnit}
+      />
+      <ComAvailableUnitBlock
+        unitList={unitList}
+        level={3}
+        handleAddUnit={handleAddUnit}
+      />
+      <ComAvailableUnitBlock
+        unitList={unitList}
+        level={4}
+        handleAddUnit={handleAddUnit}
+      />
     </div>
   );
 }

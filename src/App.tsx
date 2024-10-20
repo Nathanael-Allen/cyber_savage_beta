@@ -1,6 +1,6 @@
 import ComAvailableUnits from "./components/ComAvailableUnitList";
 import availableUnits from "./constants/unitListConstants";
-import { useState } from "react";
+import { useId, useState } from "react";
 import IUnit from "./interfaces/IUnit";
 import ComUnit from "./components/ComUnit";
 import ComAlertBox from "./components/ComAlertBox";
@@ -31,7 +31,7 @@ function App() {
       <div>
         <h4 className="mt-4">Unit List</h4>
         {unitList.map((unit) => {
-          return <ComUnit unit={unit} />;
+          return <ComUnit key={unit.type + useId()} unit={unit} />;
         })}
       </div>
     );

@@ -7,18 +7,48 @@ interface IUnitProps {
 }
 
 type TDropdown = "availableTraits" | "flaws";
+type TAvailableTraitProps = {
+  trait: string;
+  selected: boolean;
+  clickHandler: (trait: string) => void;
+};
 
 let initialAvailableTraits = traitListConstants.sort();
+
+function ComAvailableTrait({
+  trait,
+  selected,
+  clickHandler,
+}: TAvailableTraitProps) {
+  const baseCSS = "p-1 w-2/4 cursor-pointer";
+  const classUnselected =
+    baseCSS + " border border-transparent hover:border hover:border-blue-300";
+  const classSelected = baseCSS + " border border-blue-300";
+  return (
+    <p
+      onClick={() => {
+        clickHandler(trait);
+      }}
+      className={selected ? classSelected : classUnselected}
+    >
+      <button
+        onClick={() => {
+          clickHandler(trait);
+        }}
+      >
+        {trait}
+      </button>
+    </p>
+  );
+}
 
 export default function ComUnit({ unit }: IUnitProps) {
   unit.id = unit.type + useId();
   const availableWeapons = unit.availableWeapons.map((weapon) => {
-    return <p>{weapon}</p>;
+    return <p key={weapon}>{weapon}</p>;
   });
   const [equippedTraits, setEquippedTraits] = useState<string[]>([]);
-  const [availableTraits, setAvailableTraits] = useState<string[]>(
-    initialAvailableTraits
-  );
+  const [availableTraits] = useState<string[]>(initialAvailableTraits);
   const [openDropdown, setOpenDropdowns] = useState<TDropdown[]>([]);
 
   function toggleDropdown(dropdown: TDropdown) {
@@ -33,35 +63,17 @@ export default function ComUnit({ unit }: IUnitProps) {
     }
   }
 
-  function removeTraitHandler(trait: string) {
-    const newEquippedTraits = equippedTraits.filter((traitInList) => {
-      return traitInList !== trait;
-    });
-    if (!newEquippedTraits) {
-      setEquippedTraits([]);
+  function traitClickHandler(trait: string, selected: boolean) {
+    if (!selected) {
+      const equipped = [...equippedTraits, trait];
+      setEquippedTraits(equipped);
     } else {
-      setEquippedTraits(newEquippedTraits);
+      setEquippedTraits(
+        equippedTraits.filter((listItem) => {
+          return listItem !== trait;
+        })
+      );
     }
-    setAvailableTraits([...availableTraits, trait].sort());
-  }
-
-  function equipTraitHandler(trait: string) {
-    const newEquippedTraits = [...equippedTraits, trait];
-    setEquippedTraits(newEquippedTraits);
-    setAvailableTraits(() => {
-      const newAvailableTraits = availableTraits.filter((trait) => {
-        return !newEquippedTraits.includes(trait);
-      });
-      return newAvailableTraits;
-    });
-  }
-
-  if (unit.equippedTraits) {
-    setEquippedTraits([...unit.equippedTraits]);
-    const newAvailableTraits = availableTraits.filter((trait) => {
-      return !equippedTraits.includes(trait);
-    });
-    setAvailableTraits(newAvailableTraits);
   }
 
   return (
@@ -82,23 +94,18 @@ export default function ComUnit({ unit }: IUnitProps) {
             Traits {equippedTraits.length}/{unit.numTraits}
           </p>
           {equippedTraits.map((trait) => {
-            return (
-              <p>
-                <button
-                  onClick={() => {
-                    removeTraitHandler(trait);
-                  }}
-                >
-                  {trait}
-                </button>
-              </p>
-            );
+            return <p key={trait+"equippedTrait"}>{trait}</p>;
           })}
         </div>
       </div>
       <div className="col-start-2 col-span-2">
         <div className="bg-gray-100">
-          <span className="flex gap-2 cursor-pointer hover:bg-gray-200">
+          <span
+            className="flex gap-2 cursor-pointer hover:bg-gray-200"
+            onClick={() => {
+              toggleDropdown("availableTraits");
+            }}
+          >
             <h4
               className="font-semibold text-lg"
               onClick={() => {
@@ -108,6 +115,7 @@ export default function ComUnit({ unit }: IUnitProps) {
               Available Traits
             </h4>
             <button
+              className=""
               onClick={() => {
                 toggleDropdown("availableTraits");
               }}
@@ -118,16 +126,16 @@ export default function ComUnit({ unit }: IUnitProps) {
           <div>
             {openDropdown.includes("availableTraits") &&
               availableTraits.map((trait) => {
+                const selected = equippedTraits.includes(trait);
                 return (
-                  <p>
-                    <button
-                      onClick={() => {
-                        equipTraitHandler(trait);
-                      }}
-                    >
-                      {trait}
-                    </button>
-                  </p>
+                  <ComAvailableTrait
+                    key={trait+"availableTrait"}
+                    selected={selected}
+                    trait={trait}
+                    clickHandler={() => {
+                      traitClickHandler(trait, selected);
+                    }}
+                  />
                 );
               })}
           </div>
