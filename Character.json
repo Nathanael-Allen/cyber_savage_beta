@@ -1,0 +1,26 @@
+{
+  "Character": {
+    "name": "Death Guard Chaos Lord",
+    "warlord": true,
+    "enhancementList": [
+      {"enhancement": "Deadly Pathogeon", "pointCost": 15},
+      {"enhancement": "Living Plauge", "pointCost": 20},
+      {"enhancement": "Shamblerot", "pointCost": 25},
+      {"enhancement": "The Droning (Aura)", "pointCost": 10}
+    ],
+    "primaryGearList": [
+      "astartes chainsword",
+      "plauge fist",
+      "plauge-encrusted exalted weapon"
+    ],
+    "secondaryGearList": [
+      "combi-weapon",
+      "plauge bolt pistol",
+      "plauge combi-bolter",
+      "plauge fist",
+      "plauge-encrusted weapon",
+      "plasma pistol",
+      "twin lightning claws"
+    ]
+  }
+}
