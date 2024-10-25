@@ -3,6 +3,7 @@ export default interface IUnit {
   type: string;
   availableWeapons: string[];
   numTraits: number;
+  numSpells?: number;
   equippedTraits?: string[];
   id?: string | number
 }
