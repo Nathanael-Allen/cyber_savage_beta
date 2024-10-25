@@ -2,6 +2,7 @@ import { useId, useState } from "react";
 import IUnit from "../interfaces/IUnit";
 import traitListConstants from "../constants/traitListConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
+import ComAttributeDropdown from "./ComAttributeDropdown";
 
 interface IUnitProps {
   unit: IUnit;
@@ -41,7 +42,7 @@ function ComAvailableTrait({
       </button>
     </p>
   );
-} 
+}
 
 export default function ComUnit({ unit }: IUnitProps) {
   unit.id = unit.type + useId();
@@ -87,53 +88,31 @@ export default function ComUnit({ unit }: IUnitProps) {
       <div className="col-start-1">
         {availableWeapons}
         <div className="">
-          <ComEquippedAttributes unit={unit} equippedList={equippedTraits} attributeType="traits" />
-          {unit.numSpells && <ComEquippedAttributes unit={unit} equippedList={equippedSpells} attributeType="spells" />}
-          <ComEquippedAttributes unit={unit} equippedList={equippedFlaw} attributeType="flaw" />
+          <ComEquippedAttributes
+            unit={unit}
+            equippedList={equippedTraits}
+            attributeType="traits"
+          />
+          {unit.numSpells && (
+            <ComEquippedAttributes
+              unit={unit}
+              equippedList={equippedSpells}
+              attributeType="spells"
+            />
+          )}
+          <ComEquippedAttributes
+            unit={unit}
+            equippedList={equippedFlaw}
+            attributeType="flaw"
+          />
         </div>
       </div>
       <div className="col-start-2 col-span-2">
-        <div className="bg-gray-100">
-          <span
-            className="flex gap-2 cursor-pointer hover:bg-gray-200"
-            onClick={() => {
-              toggleDropdown("availableTraits");
-            }}
-          >
-            <h4
-              className="font-semibold text-lg"
-              onClick={() => {
-                toggleDropdown("availableTraits");
-              }}
-            >
-              Available Traits
-            </h4>
-            <button
-              className=""
-              onClick={() => {
-                toggleDropdown("availableTraits");
-              }}
-            >
-              show
-            </button>
-          </span>
-          <div className="max-h-36 overflow-scroll">
-            {openDropdown.includes("availableTraits") &&
-              availableTraits.map((trait) => {
-                const selected = equippedTraits.includes(trait);
-                return (
-                  <ComAvailableTrait
-                    key={trait+"availableTrait"}
-                    selected={selected}
-                    trait={trait}
-                    clickHandler={() => {
-                      traitClickHandler(trait, selected);
-                    }}
-                  />
-                );
-              })}
-          </div>
-        </div>
+        <ComAttributeDropdown
+          availableAttributes={availableTraits}
+          equippedAttributes={equippedTraits}
+          attributeClickHandler={traitClickHandler}
+        />
       </div>
     </div>
   );
