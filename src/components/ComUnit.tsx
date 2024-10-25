@@ -41,7 +41,7 @@ function ComAvailableTrait({
       </button>
     </p>
   );
-}
+} 
 
 export default function ComUnit({ unit }: IUnitProps) {
   unit.id = unit.type + useId();
@@ -49,6 +49,8 @@ export default function ComUnit({ unit }: IUnitProps) {
     return <p key={weapon}>{weapon}</p>;
   });
   const [equippedTraits, setEquippedTraits] = useState<string[]>([]);
+  const [equippedSpells, setEquippedSpells] = useState<string[]>([]);
+  const [equippedFlaw, setEquippedFlaw] = useState<string[]>([]);
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
   const [openDropdown, setOpenDropdowns] = useState<TDropdown[]>([]);
 
@@ -84,8 +86,10 @@ export default function ComUnit({ unit }: IUnitProps) {
       </h4>
       <div className="col-start-1">
         {availableWeapons}
-        <div className="bg-gray-100 rounded-md">
-          <ComEquippedAttributes unit={unit} equippedList={equippedTraits} />
+        <div className="">
+          <ComEquippedAttributes unit={unit} equippedList={equippedTraits} attributeType="traits" />
+          {unit.numSpells && <ComEquippedAttributes unit={unit} equippedList={equippedSpells} attributeType="spells" />}
+          <ComEquippedAttributes unit={unit} equippedList={equippedFlaw} attributeType="flaw" />
         </div>
       </div>
       <div className="col-start-2 col-span-2">
@@ -113,7 +117,7 @@ export default function ComUnit({ unit }: IUnitProps) {
               show
             </button>
           </span>
-          <div>
+          <div className="max-h-36 overflow-scroll">
             {openDropdown.includes("availableTraits") &&
               availableTraits.map((trait) => {
                 const selected = equippedTraits.includes(trait);
