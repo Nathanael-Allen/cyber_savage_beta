@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import IUnit from "../interfaces/IUnit";
 import traitListConstants from "../constants/traitListConstants";
+import ComEquippedAttributes from "./ComEquippedAttributes";
 
 interface IUnitProps {
   unit: IUnit;
@@ -84,18 +85,7 @@ export default function ComUnit({ unit }: IUnitProps) {
       <div className="col-start-1">
         {availableWeapons}
         <div className="bg-gray-100 rounded-md">
-          <p
-            className={
-              equippedTraits.length > unit.numTraits
-                ? "text-red-500"
-                : "text-black"
-            }
-          >
-            Traits {equippedTraits.length}/{unit.numTraits}
-          </p>
-          {equippedTraits.map((trait) => {
-            return <p key={trait+"equippedTrait"}>{trait}</p>;
-          })}
+          <ComEquippedAttributes unit={unit} equippedList={equippedTraits} />
         </div>
       </div>
       <div className="col-start-2 col-span-2">
