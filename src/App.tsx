@@ -1,8 +1,8 @@
 import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import availableUnits from "./constants/unitListConstants";
-import { useId, useState } from "react";
+import { useState } from "react";
 import IUnit from "./interfaces/IUnit";
-import ComUnit from "./components/ComUnit";
+import ComEquippedUnits from "./components/ComEquippedUnits";
 import ComAlertBox from "./components/ComAlertBox";
 
 type TView = "available" | "equipped";
@@ -24,17 +24,6 @@ function App() {
     setUnitList([...unitList, unit]);
     const message = `${unit.type} added!`;
     handleAlert(message);
-  }
-
-  function ComEquippedUnits() {
-    return (
-      <div className="">
-        <h4 className="mt-4">Unit List</h4>
-        {unitList.map((unit) => {
-          return <ComUnit key={unit.type + useId()} unit={unit} />;
-        })}
-      </div>
-    );
   }
 
   return (
@@ -62,7 +51,7 @@ function App() {
         />
       </div>
       <div className={view === "equipped" ? "" : "hidden"}>
-        <ComEquippedUnits />
+        <ComEquippedUnits unitList={unitList} />
       </div>
       {alerts && <ComAlertBox message={alerts} />}
     </>
