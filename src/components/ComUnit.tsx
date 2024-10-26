@@ -26,7 +26,7 @@ export default function ComUnit({ unit }: IUnitProps) {
   const [availableSpells] = useState<string[]>(initialAvailableSpells);
   
   const availableWeapons = unit.availableWeapons.map((weapon) => {
-    return <p key={weapon}>{weapon}</p>;
+    return <p key={weapon.techLevel + weapon.type}>{weapon.techLevel + ' ' + weapon.type}</p>;
   });
   useEffect(() => {
     if (equippedFlaw.length >= 1) {
@@ -108,8 +108,10 @@ export default function ComUnit({ unit }: IUnitProps) {
       <h4 className="font-semibold text-lg col-span-3 border-b border-black mb-1">
         {unit.type}
       </h4>
-      <div className="col-start-1">
+      <div className="col-start-1 col-span-3 border-b border-black flex">
         {availableWeapons}
+      </div>
+      <div className="col-start-1">
         <div className="">
           <ComEquippedAttributes
             unit={unit}

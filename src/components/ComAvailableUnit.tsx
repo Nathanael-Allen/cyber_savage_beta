@@ -9,7 +9,7 @@ export default function ComAvailableUnit({ unit, handleAddUnit }: UnitProps) {
   let equipList;
   if (unit.availableWeapons) {
     const items = unit.availableWeapons.map((item, index) => {
-      return <p key={index}>{item}</p>;
+      return <p key={index}>{item.techLevel + ' ' + item.type}</p>;
     });
     equipList = <>{items}</>;
   }
