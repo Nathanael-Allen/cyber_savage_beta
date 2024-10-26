@@ -52,20 +52,20 @@ export default function ComAttributeDropdown({
   function openHandler() {
     setOpen(!open);
   }
-
+  
 
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 mb-2 ">
       <span
-        className="flex gap-2 cursor-pointer hover:bg-gray-200"
+        className="flex gap-2 cursor-pointer rounded-md pl-2 hover:bg-gray-200"
         onClick={openHandler}
       >
         <h4 className="font-semibold text-lg" onClick={openHandler}>
-          Available {attributeType.toUpperCase()}
+          {attributeType.toUpperCase() + 'S'}
         </h4>
         <button className="" onClick={openHandler}>
-          show
+          {open ? "hide" : "show"}
         </button>
       </span>
       <div className="max-h-36 overflow-scroll">
