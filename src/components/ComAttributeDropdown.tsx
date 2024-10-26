@@ -1,9 +1,12 @@
 import { useState } from "react";
 
+type TAttributeType =  "trait" | "flaw" | "spell";
+
 type TDropdownProps = {
   availableAttributes: string[];
   equippedAttributes: string[];
-  attributeClickHandler: (attribute: string, selected: boolean) => void;
+  attributeType: TAttributeType
+  attributeClickHandler: (attribute: string, selected: boolean, attributeType: TAttributeType) => void;
 };
 
 type TAvailableAttributeProps = {
@@ -42,12 +45,15 @@ function ComAvailableAttribute({
 export default function ComAttributeDropdown({
   availableAttributes,
   equippedAttributes,
+  attributeType,
   attributeClickHandler,
 }: TDropdownProps) {
   const [open, setOpen] = useState<boolean>(false);
   function openHandler() {
     setOpen(!open);
   }
+
+
 
   return (
     <div className="bg-gray-100">
@@ -56,7 +62,7 @@ export default function ComAttributeDropdown({
         onClick={openHandler}
       >
         <h4 className="font-semibold text-lg" onClick={openHandler}>
-          Available Traits
+          Available {attributeType.toUpperCase()}
         </h4>
         <button className="" onClick={openHandler}>
           show
@@ -72,7 +78,7 @@ export default function ComAttributeDropdown({
                 selected={selected}
                 attribute={attribute}
                 clickHandler={() => {
-                  attributeClickHandler(attribute, selected);
+                  attributeClickHandler(attribute, selected, attributeType);
                 }}
               />
             );

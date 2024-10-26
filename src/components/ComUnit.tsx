@@ -3,49 +3,21 @@ import IUnit from "../interfaces/IUnit";
 import traitListConstants from "../constants/traitListConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
 import ComAttributeDropdown from "./ComAttributeDropdown";
+import flawListConstants from "../constants/flawListConstants";
 
 interface IUnitProps {
   unit: IUnit;
 }
 
-type TDropdown = "availableTraits" | "flaws";
-type TAvailableTraitProps = {
-  trait: string;
-  selected: boolean;
-  clickHandler: (trait: string) => void;
-};
+type TSetterFunction = (list: string[]) => void;
 
 let initialAvailableTraits = traitListConstants.sort();
+let initialAvailableFlaws = flawListConstants.sort();
 
-function ComAvailableTrait({
-  trait,
-  selected,
-  clickHandler,
-}: TAvailableTraitProps) {
-  const baseCSS = "p-1 w-2/4 cursor-pointer";
-  const classUnselected =
-    baseCSS + " border border-transparent hover:border hover:border-blue-300";
-  const classSelected = baseCSS + " border border-blue-300";
-  return (
-    <p
-      onClick={() => {
-        clickHandler(trait);
-      }}
-      className={selected ? classSelected : classUnselected}
-    >
-      <button
-        onClick={() => {
-          clickHandler(trait);
-        }}
-      >
-        {trait}
-      </button>
-    </p>
-  );
-}
 
 export default function ComUnit({ unit }: IUnitProps) {
   unit.id = unit.type + useId();
+
   const availableWeapons = unit.availableWeapons.map((weapon) => {
     return <p key={weapon}>{weapon}</p>;
   });
@@ -53,30 +25,38 @@ export default function ComUnit({ unit }: IUnitProps) {
   const [equippedSpells, setEquippedSpells] = useState<string[]>([]);
   const [equippedFlaw, setEquippedFlaw] = useState<string[]>([]);
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
-  const [openDropdown, setOpenDropdowns] = useState<TDropdown[]>([]);
+  const [availableFlaws] = useState<string[]>(initialAvailableFlaws);
 
-  function toggleDropdown(dropdown: TDropdown) {
-    if (openDropdown.includes(dropdown)) {
-      setOpenDropdowns(
-        openDropdown.filter((listItem) => {
-          return listItem != dropdown;
-        })
-      );
+  function addAttribute(equippedList: string[], attribute: string, setter: TSetterFunction) {
+    const equipped = [...equippedList, attribute];
+    setter(equipped)
+  }
+
+  function removeAttribute(equippedList: string[], attribute: string, setter: TSetterFunction) {
+    const newEquipped =  equippedList.filter((attr) => {
+      return attr !== attribute
+    })
+    setter(newEquipped)
+  }
+
+  function attributeToggleHandler(attributeList: string[], attribute: string, selected: boolean, setter: TSetterFunction) {
+    if (!selected) {
+      addAttribute(attributeList, attribute, setter)
     } else {
-      setOpenDropdowns([...openDropdown, dropdown]);
+      removeAttribute(attributeList, attribute, setter)
     }
   }
 
-  function traitClickHandler(trait: string, selected: boolean) {
-    if (!selected) {
-      const equipped = [...equippedTraits, trait];
-      setEquippedTraits(equipped);
-    } else {
-      setEquippedTraits(
-        equippedTraits.filter((listItem) => {
-          return listItem !== trait;
-        })
-      );
+  function attributeClickHandler(attribute: string, selected: boolean, attributeType: "trait" | "flaw" | "spell") {
+    switch (attributeType) {
+      case "trait":
+        attributeToggleHandler(equippedTraits, attribute, selected, setEquippedTraits)
+        break
+      case "flaw":
+        attributeToggleHandler(equippedFlaw, attribute, selected, setEquippedFlaw)
+        break
+      case "spell": 
+        attributeToggleHandler(equippedSpells, attribute, selected, setEquippedSpells)
     }
   }
 
@@ -111,7 +91,14 @@ export default function ComUnit({ unit }: IUnitProps) {
         <ComAttributeDropdown
           availableAttributes={availableTraits}
           equippedAttributes={equippedTraits}
-          attributeClickHandler={traitClickHandler}
+          attributeType="trait"
+          attributeClickHandler={attributeClickHandler}
+        />
+        <ComAttributeDropdown
+          availableAttributes={availableFlaws}
+          equippedAttributes={equippedFlaw}
+          attributeType="flaw"
+          attributeClickHandler={attributeClickHandler}
         />
       </div>
     </div>
