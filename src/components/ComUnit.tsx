@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import IUnit from "../interfaces/IUnit";
 import traitListConstants from "../constants/traitListConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
@@ -15,12 +15,8 @@ const initialAvailableTraits = traitListConstants.sort();
 const initialAvailableFlaws = flawListConstants.sort();
 const initialAvailableSpells = spellListConstants.sort();
 
-export default function ComUnit({ unit }: IUnitProps) {
-  unit.id = unit.type + useId();
 
-  const availableWeapons = unit.availableWeapons.map((weapon) => {
-    return <p key={weapon}>{weapon}</p>;
-  });
+export default function ComUnit({ unit }: IUnitProps) {
   const [equippedTraits, setEquippedTraits] = useState<string[]>([]);
   const [equippedSpells, setEquippedSpells] = useState<string[]>([]);
   const [equippedFlaw, setEquippedFlaw] = useState<string[]>([]);
@@ -28,6 +24,10 @@ export default function ComUnit({ unit }: IUnitProps) {
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
   const [availableFlaws] = useState<string[]>(initialAvailableFlaws);
   const [availableSpells] = useState<string[]>(initialAvailableSpells);
+  
+  const availableWeapons = unit.availableWeapons.map((weapon) => {
+    return <p key={weapon}>{weapon}</p>;
+  });
   useEffect(() => {
     if (equippedFlaw.length >= 1) {
       setNumTraits(unit.numTraits + 1)

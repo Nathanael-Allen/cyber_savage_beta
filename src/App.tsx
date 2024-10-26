@@ -1,4 +1,4 @@
-import ComAvailableUnits from "./components/ComAvailableUnitList";
+import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import availableUnits from "./constants/unitListConstants";
 import { useId, useState } from "react";
 import IUnit from "./interfaces/IUnit";
@@ -28,7 +28,7 @@ function App() {
 
   function ComEquippedUnits() {
     return (
-      <div>
+      <div className="">
         <h4 className="mt-4">Unit List</h4>
         {unitList.map((unit) => {
           return <ComUnit key={unit.type + useId()} unit={unit} />;
@@ -55,13 +55,15 @@ function App() {
           Equipped Units
         </button>
       </header>
-      {view === "available" && (
-        <ComAvailableUnits
+      <div className={view === "available" ? "" : "hidden"}>
+        <ComAvailableUnitList
           unitList={availableUnits}
           handleAddUnit={handleAddUnit}
         />
-      )}
-      {view === "equipped" && <ComEquippedUnits />}
+      </div>
+      <div className={view === "equipped" ? "" : "hidden"}>
+        <ComEquippedUnits />
+      </div>
       {alerts && <ComAlertBox message={alerts} />}
     </>
   );

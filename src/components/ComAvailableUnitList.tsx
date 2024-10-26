@@ -40,7 +40,7 @@ function ComAvailableUnitBlock({
   );
 }
 
-export default function ComAvailableUnits({
+export default function ComAvailableUnitList({
   unitList,
   handleAddUnit,
 }: IUnitListProps) {
