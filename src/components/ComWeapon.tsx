@@ -46,25 +46,10 @@ export default function ComWeapon({ weapon }: TProps) {
 
 
   return (
-    <div className="">
-      <h2>Weapon</h2>
-      <h4>{weaponName}</h4>
-      <p>{weaponSubtype}</p>
-      <div>
-        <h4>
-          Traits {weaponTraits.length}/{numTraits}
-        </h4>
-        {weaponTraits.map((trait) => {
-          return <p>{trait}</p>;
-        })}
-      </div> 
-      <ComAttributeDropdown
-        availableAttributes={availableTraits}
-        equippedAttributes={weaponTraits}
-        attributeType="weapon trait"
-        attributeClickHandler={traitClickHandler}
-      />
-       <div>
+    <div className="grid grid-cols-4">
+      <h2 className="col-start-1 col-span-4">Weapon</h2>
+      <h4 className="col-start-1 col-span-4">{weaponName} ({weaponSubtype})</h4>
+      <div className="col-start-1 col-span-4 flex gap-3">
         {subtypeOptions.map((type) => {
           return (
             <p>
@@ -78,6 +63,22 @@ export default function ComWeapon({ weapon }: TProps) {
             </p>
           );
         })}
+      </div>
+      <div>
+        <h4>
+          Traits {weaponTraits.length}/{numTraits}
+        </h4>
+        {weaponTraits.map((trait) => {
+          return <p>{trait}</p>;
+        })}
+      </div> 
+      <div className="col-start-2 col-span-3">
+        <ComAttributeDropdown
+          availableAttributes={availableTraits}
+          equippedAttributes={weaponTraits}
+          attributeType="trait"
+          attributeClickHandler={traitClickHandler}
+        />
       </div>
     </div>
   );

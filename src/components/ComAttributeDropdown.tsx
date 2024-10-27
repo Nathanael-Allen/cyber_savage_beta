@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-type TAttributeType =  "trait" | "flaw" | "spell" | "weapon trait";
+type TAttributeType =  "trait" | "flaw" | "spell";
 
 type TDropdownProps = {
   availableAttributes: string[];
   equippedAttributes: string[];
   attributeType: TAttributeType
-  attributeClickHandler: (attribute: string, selected: boolean, attributeType?: TAttributeType) => void;
+  attributeClickHandler: (attribute: string, selected: boolean, attributeType: TAttributeType) => void;
 };
 
 type TAvailableAttributeProps = {
