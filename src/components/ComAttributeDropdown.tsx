@@ -20,10 +20,10 @@ function ComAvailableAttribute({
   selected,
   clickHandler,
 }: TAvailableAttributeProps) {
-  const baseCSS = "p-1 w-2/4 cursor-pointer";
+  const baseCSS = "p-1 w-full cursor-pointer border-b border-gray-700";
   const classUnselected =
-    baseCSS + " border border-transparent hover:border hover:border-blue-300";
-  const classSelected = baseCSS + " border border-blue-300";
+    baseCSS + " " + "hover:bg-gray-300";
+  const classSelected = baseCSS + " " + "bg-gray-400";
   return (
     <p
       onClick={() => {
@@ -56,7 +56,7 @@ export default function ComAttributeDropdown({
 
 
   return (
-    <div className="bg-gray-100 mb-2 ">
+    <div className="bg-gray-100 mb-2 rounded-md">
       <span
         className="flex gap-2 cursor-pointer rounded-md pl-2 hover:bg-gray-200"
         onClick={openHandler}

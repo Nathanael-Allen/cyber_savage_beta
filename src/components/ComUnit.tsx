@@ -5,6 +5,7 @@ import ComEquippedAttributes from "./ComEquippedAttributes";
 import ComAttributeDropdown from "./ComAttributeDropdown";
 import flawListConstants from "../constants/flawListConstants";
 import spellListConstants from "../constants/spellListConstants";
+import ComWeapon from "./ComWeapon";
 
 interface IUnitProps {
   unit: IUnit;
@@ -26,7 +27,7 @@ export default function ComUnit({ unit }: IUnitProps) {
   const [availableSpells] = useState<string[]>(initialAvailableSpells);
   
   const availableWeapons = unit.availableWeapons.map((weapon) => {
-    return <p key={weapon.techLevel + weapon.type}>{weapon.techLevel + ' ' + weapon.type}</p>;
+    return <ComWeapon weapon={weapon} />;
   });
   useEffect(() => {
     if (equippedFlaw.length >= 1) {
@@ -114,20 +115,18 @@ export default function ComUnit({ unit }: IUnitProps) {
       <div className="col-start-1">
         <div className="">
           <ComEquippedAttributes
-            unit={unit}
             equippedList={equippedTraits}
             attributeType="traits"
             numTraits={numTraits}
           />
           {unit.numSpells && (
             <ComEquippedAttributes
-              unit={unit}
+              numSpells={unit.numSpells}
               equippedList={equippedSpells}
               attributeType="spells"
             />
           )}
           <ComEquippedAttributes
-            unit={unit}
             equippedList={equippedFlaw}
             attributeType="flaw"
           />

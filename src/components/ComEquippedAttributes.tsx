@@ -2,9 +2,9 @@ import IUnit from "../interfaces/IUnit";
 
 
 type TAttributeType = "traits" | "spells" | "flaw"
-type TProps = { unit: IUnit; equippedList: string[]; attributeType: TAttributeType; numTraits?: number; };
+type TProps = { numSpells?: number; equippedList: string[]; attributeType: TAttributeType; numTraits?: number; };
 
-export default function ComEquippedAttributes({ unit, equippedList, attributeType, numTraits }: TProps) {
+export default function ComEquippedAttributes({ numSpells, equippedList, attributeType, numTraits }: TProps) {
   let attribute;
   let title;
   switch (attributeType) {
@@ -13,7 +13,7 @@ export default function ComEquippedAttributes({ unit, equippedList, attributeTyp
       title = "Traits"
       break
     case "spells":
-      attribute = unit.numSpells
+      attribute = numSpells
       title = "Spells"
       break
     case "flaw":

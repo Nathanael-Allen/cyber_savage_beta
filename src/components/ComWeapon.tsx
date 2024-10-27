@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import IWeapon from "../interfaces/IWeapon";
 import ComAttributeDropdown from "./ComAttributeDropdown";
 import weaponTraitConstants from "../constants/weaponTraitConstants";
+import ComEquippedAttributes from "./ComEquippedAttributes";
 
 type TProps = { weapon: IWeapon };
 type TSubtype = "light" | "medium" | "heavy";
@@ -47,13 +48,18 @@ export default function ComWeapon({ weapon }: TProps) {
 
   return (
     <div className="grid grid-cols-4">
-      <h2 className="col-start-1 col-span-4">Weapon</h2>
-      <h4 className="col-start-1 col-span-4">{weaponName} ({weaponSubtype})</h4>
-      <div className="col-start-1 col-span-4 flex gap-3">
+      <h4 className="col-start-1 col-span-4 font-semibold text-lg border-b border-gray-300">{weaponName} ({weaponSubtype})</h4>
+      <div className="col-start-1 col-span-4 flex gap-3 items-center">
+        <p className="font-semibold">Weapon Subtype: </p>
         {subtypeOptions.map((type) => {
+          let cssName = "w-full p-1 m-1 rounded-md hover:bg-gray-300"
+          if (weaponSubtype === type) {
+            cssName = "w-full p-1 m-1 rounded-md bg-gray-400"
+          }
           return (
             <p>
               <button
+                className={cssName}
                 onClick={() => {
                   setWeaponSubtype(type);
                 }}
@@ -65,12 +71,7 @@ export default function ComWeapon({ weapon }: TProps) {
         })}
       </div>
       <div>
-        <h4>
-          Traits {weaponTraits.length}/{numTraits}
-        </h4>
-        {weaponTraits.map((trait) => {
-          return <p>{trait}</p>;
-        })}
+        <ComEquippedAttributes attributeType="traits" equippedList={weaponTraits} numTraits={numTraits} /> 
       </div> 
       <div className="col-start-2 col-span-3">
         <ComAttributeDropdown
