@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import IUnit from "../interfaces/IUnit";
 import traitListConstants from "../constants/traitListConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
@@ -9,6 +9,7 @@ import ComWeapon from "./ComWeapon";
 
 interface IUnitProps {
   unit: IUnit;
+  deleteHandler(id: string | number): void;
 }
 type TSetterFunction = (list: string[]) => void;
 
@@ -16,27 +17,26 @@ const initialAvailableTraits = traitListConstants.sort();
 const initialAvailableFlaws = flawListConstants.sort();
 const initialAvailableSpells = spellListConstants.sort();
 
-
-export default function ComUnit({ unit }: IUnitProps) {
+export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
   const [equippedTraits, setEquippedTraits] = useState<string[]>([]);
   const [equippedSpells, setEquippedSpells] = useState<string[]>([]);
   const [equippedFlaw, setEquippedFlaw] = useState<string[]>([]);
-  const [numTraits, setNumTraits] = useState<number>(unit.numTraits)
+  const [numTraits, setNumTraits] = useState<number>(unit.numTraits);
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
   const [availableFlaws] = useState<string[]>(initialAvailableFlaws);
   const [availableSpells] = useState<string[]>(initialAvailableSpells);
-  
-  const availableWeapons = unit.availableWeapons.map((weapon) => {
-    return <ComWeapon weapon={weapon} />;
+  unit.id = useId()
+
+  const availableWeapons = unit.availableWeapons.map((weapon, index) => {
+    return <ComWeapon key={weapon.type + index} weapon={weapon} />;
   });
   useEffect(() => {
     if (equippedFlaw.length >= 1) {
-      setNumTraits(unit.numTraits + 1)
+      setNumTraits(unit.numTraits + 1);
     } else {
-      setNumTraits(unit.numTraits)
+      setNumTraits(unit.numTraits);
     }
-  }, [equippedFlaw])
-  
+  }, [equippedFlaw]);
 
   function addAttribute(
     equippedList: string[],
@@ -103,12 +103,18 @@ export default function ComUnit({ unit }: IUnitProps) {
     }
   }
 
-
   return (
-    <div className="border border-black rounded-sm grid grid-cols-3 gap-2 m-2 p-2">
+    <div className="relative border border-black rounded-sm grid grid-cols-3 gap-2 m-2 p-2">
+      <h1>{unit.id}</h1>
       <h4 className="font-semibold text-lg col-span-3 border-b border-black mb-1">
         {unit.type}
       </h4>
+      <button
+        className="absolute top-0 right-2 text-red-500 hover:text-red-700"
+        onClick={() => deleteHandler(unit.id!)}
+      >
+        DELETE
+      </button>
       <div className="col-start-1 col-span-3 border-b border-black flex">
         {availableWeapons}
       </div>

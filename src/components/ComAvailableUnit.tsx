@@ -6,6 +6,7 @@ interface UnitProps {
 }
 
 export default function ComAvailableUnit({ unit, handleAddUnit }: UnitProps) {
+
   let equipList;
   if (unit.availableWeapons) {
     const items = unit.availableWeapons.map((item, index) => {

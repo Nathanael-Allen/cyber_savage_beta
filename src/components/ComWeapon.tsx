@@ -53,11 +53,11 @@ export default function ComWeapon({ weapon }: TProps) {
         <p className="font-semibold">Weapon Subtype: </p>
         {subtypeOptions.map((type) => {
           let cssName = "w-full p-1 m-1 rounded-md hover:bg-gray-300"
-          if (weaponSubtype === type) {
+        if (weaponSubtype === type) {
             cssName = "w-full p-1 m-1 rounded-md bg-gray-400"
           }
           return (
-            <p>
+            <p key={type}>
               <button
                 className={cssName}
                 onClick={() => {
@@ -71,15 +71,15 @@ export default function ComWeapon({ weapon }: TProps) {
         })}
       </div>
       <div>
-        <ComEquippedAttributes attributeType="traits" equippedList={weaponTraits} numTraits={numTraits} /> 
+        {numTraits! > 0 && <ComEquippedAttributes attributeType="traits" equippedList={weaponTraits} numTraits={numTraits} />}
       </div> 
       <div className="col-start-2 col-span-3">
-        <ComAttributeDropdown
+      {numTraits! > 0 && <ComAttributeDropdown
           availableAttributes={availableTraits}
           equippedAttributes={weaponTraits}
           attributeType="trait"
           attributeClickHandler={traitClickHandler}
-        />
+        />}
       </div>
     </div>
   );

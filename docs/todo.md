@@ -1,7 +1,7 @@
 # TODO
 
-- [ ] Add weapon modification to Unit component. Need to be able to select melee/range and traits.
-- [ ] Create weapon trait list.
+- [x] Add weapon modification to Unit component. Need to be able to select melee/range and traits.
+- [x] Create weapon trait list.
 - [ ] Finalize trait and spell lists
 - [ ] Add delete button on equipped unit
 
