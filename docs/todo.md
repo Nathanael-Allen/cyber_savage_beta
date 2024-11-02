@@ -23,3 +23,8 @@ ___
 ___
 
 - [ ] Replace more complex state functions with a reducer function
+
+## Known Bugs
+___
+
+- [ ] Deleting a unit from equipped units, clears the traits from other equipped units. Not sure why.

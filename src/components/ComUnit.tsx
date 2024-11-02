@@ -104,7 +104,7 @@ export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
   }
 
   return (
-    <div className="relative border border-black rounded-sm grid grid-cols-3 gap-2 m-2 p-2">
+    <div className="relative border border-black rounded-sm grid grid-cols-3 gap-2 mx-2 my-6 p-2">
       <h4 className="font-semibold text-lg col-span-3 border-b border-black mb-1">
         {unit.type}
       </h4>
@@ -123,17 +123,17 @@ export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
               attributeType="traits"
               numTraits={numTraits}
             />
-            {unit.numSpells && (
-              <ComEquippedAttributes
-                numSpells={unit.numSpells}
-                equippedList={equippedSpells}
-                attributeType="spells"
-              />
-            )}
             <ComEquippedAttributes
               equippedList={equippedFlaw}
               attributeType="flaw"
-            />
+              />
+              {unit.numSpells && (
+                <ComEquippedAttributes
+                  numSpells={unit.numSpells}
+                  equippedList={equippedSpells}
+                  attributeType="spells"
+                />
+              )}
           </div>
         </div>
         <div className="col-start-2 col-span-2 ml-2">

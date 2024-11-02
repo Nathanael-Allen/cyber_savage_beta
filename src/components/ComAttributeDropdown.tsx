@@ -55,8 +55,8 @@ export default function ComAttributeDropdown({
     setOpen(!open);
   }
   
-  const cssClosed = "flex gap-2 cursor-pointer rounded  pl-2 hover:bg-gray-600 hover:text-white"
-  const cssOpen = "flex gap-2 cursor-pointer rounded-t-md  pl-2 bg-gray-600 text-white"
+  const cssClosed = "flex gap-2 cursor-pointer rounded p-2 hover:bg-gray-600 hover:text-white "
+  const cssOpen = "flex gap-2 cursor-pointer rounded-t-md p-2 bg-gray-600 text-white "
 
 
   return (
