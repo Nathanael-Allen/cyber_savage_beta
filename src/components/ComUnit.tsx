@@ -109,55 +109,62 @@ export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
         {unit.type}
       </h4>
       <button
-        className="absolute top-0 right-2 text-red-500 hover:text-red-700"
+        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
         onClick={() => deleteHandler(unit.id!)}
       >
         DELETE
       </button>
-      <div className="col-start-1 col-span-3 border-b border-black">
-        {availableWeapons}
-      </div>
-      <div className="col-start-1">
-        <div className="">
-          <ComEquippedAttributes
-            equippedList={equippedTraits}
-            attributeType="traits"
-            numTraits={numTraits}
-          />
-          {unit.numSpells && (
+      <div className="col-start-1 col-span-3 p-2 border border-black rounded-md grid grid-cols-3 ">
+      <h4 className="col-span-3 text-center font-semibold mb-4 border-b border-black">Attributes</h4>
+        <div className="col-start-1 mr-2">
+          <div className="">
             <ComEquippedAttributes
-              numSpells={unit.numSpells}
-              equippedList={equippedSpells}
-              attributeType="spells"
+              equippedList={equippedTraits}
+              attributeType="traits"
+              numTraits={numTraits}
             />
-          )}
-          <ComEquippedAttributes
-            equippedList={equippedFlaw}
-            attributeType="flaw"
-          />
+            {unit.numSpells && (
+              <ComEquippedAttributes
+                numSpells={unit.numSpells}
+                equippedList={equippedSpells}
+                attributeType="spells"
+              />
+            )}
+            <ComEquippedAttributes
+              equippedList={equippedFlaw}
+              attributeType="flaw"
+            />
+          </div>
         </div>
-      </div>
-      <div className="col-start-2 col-span-2">
-        <ComAttributeDropdown
-          availableAttributes={availableTraits}
-          equippedAttributes={equippedTraits}
-          attributeType="trait"
-          attributeClickHandler={attributeClickHandler}
-        />
-        <ComAttributeDropdown
-          availableAttributes={availableFlaws}
-          equippedAttributes={equippedFlaw}
-          attributeType="flaw"
-          attributeClickHandler={attributeClickHandler}
-        />
-        {unit.numSpells && (
+        <div className="col-start-2 col-span-2 ml-2">
           <ComAttributeDropdown
-            availableAttributes={availableSpells}
-            equippedAttributes={equippedSpells}
-            attributeType="spell"
+            availableAttributes={availableTraits}
+            equippedAttributes={equippedTraits}
+            attributeType="trait"
+            title="Available Traits"
             attributeClickHandler={attributeClickHandler}
           />
-        )}
+          <ComAttributeDropdown
+            availableAttributes={availableFlaws}
+            equippedAttributes={equippedFlaw}
+            attributeType="flaw"
+            title="Available Flaws"
+            attributeClickHandler={attributeClickHandler}
+          />
+          {unit.numSpells && (
+            <ComAttributeDropdown
+              availableAttributes={availableSpells}
+              equippedAttributes={equippedSpells}
+              attributeType="spell"
+              title="Available Spells"
+              attributeClickHandler={attributeClickHandler}
+            />
+          )}
+        </div>
+      </div>
+      <div className="col-start-1 col-span-3 p-2 border border-black rounded-md">
+      <h4 className="col-span-3 text-center font-semibold border-b border-black">Weapons</h4>
+        {availableWeapons}
       </div>
     </div>
   );

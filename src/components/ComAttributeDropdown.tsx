@@ -6,6 +6,7 @@ type TDropdownProps = {
   availableAttributes: string[];
   equippedAttributes: string[];
   attributeType: TAttributeType
+  title: string;
   attributeClickHandler: (attribute: string, selected: boolean, attributeType: TAttributeType) => void;
 };
 
@@ -46,6 +47,7 @@ export default function ComAttributeDropdown({
   availableAttributes,
   equippedAttributes,
   attributeType,
+  title,
   attributeClickHandler,
 }: TDropdownProps) {
   const [open, setOpen] = useState<boolean>(false);
@@ -53,16 +55,18 @@ export default function ComAttributeDropdown({
     setOpen(!open);
   }
   
+  const cssClosed = "flex gap-2 cursor-pointer rounded  pl-2 hover:bg-gray-600 hover:text-white"
+  const cssOpen = "flex gap-2 cursor-pointer rounded-t-md  pl-2 bg-gray-600 text-white"
 
 
   return (
-    <div className="bg-gray-100 mb-2 rounded-md">
+    <div className="bg-slate-200 mb-2 rounded-md">
       <span
-        className="flex gap-2 cursor-pointer rounded-md pl-2 hover:bg-gray-200"
+        className={open ? cssOpen : cssClosed}
         onClick={openHandler}
       >
-        <h4 className="font-semibold text-lg" onClick={openHandler}>
-          {attributeType.toUpperCase() + 'S'}
+        <h4 className="font-semibold" onClick={openHandler}>
+          {title}
         </h4>
         <button className="" onClick={openHandler}>
           {open ? "hide" : "show"}

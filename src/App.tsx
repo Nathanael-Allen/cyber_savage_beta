@@ -1,6 +1,6 @@
 import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import availableUnits from "./constants/unitListConstants";
-import { useEffect, useId, useState } from "react";
+import { useState } from "react";
 import IUnit from "./interfaces/IUnit";
 import ComEquippedUnits from "./components/ComEquippedUnits";
 import ComAlertBox from "./components/ComAlertBox";
@@ -57,7 +57,7 @@ function App() {
             setView("equipped");
           }}
         >
-          Equipped Units
+          Equipped
         </button>
       </header>
       <div className={view === "available" ? "" : "hidden"}>
