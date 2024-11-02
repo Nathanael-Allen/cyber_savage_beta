@@ -105,7 +105,6 @@ export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
 
   return (
     <div className="relative border border-black rounded-sm grid grid-cols-3 gap-2 m-2 p-2">
-      <h1>{unit.id}</h1>
       <h4 className="font-semibold text-lg col-span-3 border-b border-black mb-1">
         {unit.type}
       </h4>
@@ -115,7 +114,7 @@ export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
       >
         DELETE
       </button>
-      <div className="col-start-1 col-span-3 border-b border-black flex">
+      <div className="col-start-1 col-span-3 border-b border-black">
         {availableWeapons}
       </div>
       <div className="col-start-1">
