@@ -18,9 +18,9 @@ const initialAvailableFlaws = flawListConstants.sort();
 const initialAvailableSpells = spellListConstants.sort();
 
 export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
-  const [equippedTraits, setEquippedTraits] = useState<string[]>([]);
-  const [equippedSpells, setEquippedSpells] = useState<string[]>([]);
-  const [equippedFlaw, setEquippedFlaw] = useState<string[]>([]);
+  const [equippedTraits, setEquippedTraits] = useState<string[]>(unit.equippedTraits ? unit.equippedTraits : []);
+  const [equippedSpells, setEquippedSpells] = useState<string[]>(unit.equippedSpells ? unit.equippedSpells : []);
+  const [equippedFlaw, setEquippedFlaw] = useState<string[]>(unit.equippedFlaw ? unit.equippedFlaw : []);
   const [numTraits, setNumTraits] = useState<number>(unit.numTraits);
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
   const [availableFlaws] = useState<string[]>(initialAvailableFlaws);

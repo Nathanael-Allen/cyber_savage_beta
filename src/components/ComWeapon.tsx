@@ -10,11 +10,11 @@ type TSubtype = "light" | "medium" | "heavy";
 const initialAvailableTraits = weaponTraitConstants;
 
 export default function ComWeapon({ weapon }: TProps) {
-  const [weaponTraits, setWeaponTraits] = useState<string[]>([]);
-  const [availableTraits, setAvailableTraits] = useState<string[]>(
+  const [weaponTraits, setWeaponTraits] = useState<string[]>(weapon.equippedTraits ? weapon.equippedTraits : []);
+  const [availableTraits] = useState<string[]>(
     initialAvailableTraits
   );
-  const [weaponSubtype, setWeaponSubtype] = useState<TSubtype>();
+  const [weaponSubtype, setWeaponSubtype] = useState<TSubtype | null>(weapon.subtype ? weapon.subtype : null);
   const [numTraits, setNumTraits] = useState<number>();
   const subtypeOptions: TSubtype[] = ["light", "medium", "heavy"];
   const weaponName = weapon.techLevel + " " + weapon.type;

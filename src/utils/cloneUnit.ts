@@ -10,6 +10,7 @@ function cloneUnit(unit: IUnit, unitList: IUnit[]) {
   };
   unit.numSpells ? (newUnit.numSpells = unit.numSpells) : null;
   unit.equippedTraits ? (newUnit.equippedTraits = unit.equippedTraits) : null;
+  unit.equippedFlaw ? (newUnit.equippedFlaw = unit.equippedFlaw) : null;
   return newUnit;
 }
 

@@ -1,10 +1,11 @@
 import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import availableUnits from "./constants/unitListConstants";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import IUnit from "./interfaces/IUnit";
 import ComEquippedUnits from "./components/ComEquippedUnits";
 import ComAlertBox from "./components/ComAlertBox";
 import cloneUnit from "./utils/cloneUnit";
+import testArmyList from "./utils/testArmyList";
 
 type TView = "available" | "equipped";
 type TAlert = string | null;
@@ -13,6 +14,10 @@ function App() {
   const [unitList, setUnitList] = useState<IUnit[]>([]);
   const [view, setView] = useState<TView>("available");
   const [alerts, setAlert] = useState<TAlert>();
+
+  function loadArmy(armyList: IUnit[]) {
+    setUnitList(armyList);
+  }
 
   function handleAlert(message: string) {
     setAlert(message);
@@ -51,6 +56,11 @@ function App() {
           }}
         >
           Equipped
+        </button>
+        <button onClick={() => {
+          loadArmy(testArmyList)
+        }}>
+          Load Army
         </button>
       </header>
       <div className={view === "available" ? "" : "hidden"}>
