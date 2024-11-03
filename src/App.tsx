@@ -1,9 +1,10 @@
 import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import availableUnits from "./constants/unitListConstants";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import IUnit from "./interfaces/IUnit";
 import ComEquippedUnits from "./components/ComEquippedUnits";
 import ComAlertBox from "./components/ComAlertBox";
+import cloneUnit from "./utils/cloneUnit";
 
 type TView = "available" | "equipped";
 type TAlert = string | null;
@@ -28,15 +29,7 @@ function App() {
   }
 
   function handleAddUnit(unit: IUnit) {
-    const newUnit: IUnit = {
-      type: unit.type,
-      level: unit.level,
-      availableWeapons: unit.availableWeapons,
-      numTraits: unit.numTraits,
-      id: unit.type + unitList.length,
-    };
-    unit.numSpells ? (newUnit.numSpells = unit.numSpells) : null;
-    unit.equippedTraits ? (newUnit.equippedTraits = unit.equippedTraits) : null;
+    const newUnit = cloneUnit(unit, unitList)
     setUnitList([...unitList, newUnit]);
     const message = `${newUnit.type} added!`;
     handleAlert(message);

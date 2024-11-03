@@ -25,7 +25,6 @@ export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
   const [availableFlaws] = useState<string[]>(initialAvailableFlaws);
   const [availableSpells] = useState<string[]>(initialAvailableSpells);
-  unit.id = useId()
 
   const availableWeapons = unit.availableWeapons.map((weapon, index) => {
     return <ComWeapon key={weapon.type + index} weapon={weapon} />;

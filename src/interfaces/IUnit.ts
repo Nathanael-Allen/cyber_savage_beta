@@ -7,5 +7,7 @@ export default interface IUnit {
   numTraits: number;
   numSpells?: number;
   equippedTraits?: string[];
+  equippedFlaw?: string[];
+  equippedSpells?: string[];
   id?: string | number
 }
