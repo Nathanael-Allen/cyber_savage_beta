@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import IUnit from "../interfaces/IUnit";
 import traitListConstants from "../constants/traitListConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
@@ -25,6 +25,7 @@ export default function ComUnit({ unit, deleteHandler }: IUnitProps) {
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
   const [availableFlaws] = useState<string[]>(initialAvailableFlaws);
   const [availableSpells] = useState<string[]>(initialAvailableSpells);
+  
 
   const availableWeapons = unit.availableWeapons.map((weapon, index) => {
     return <ComWeapon key={weapon.type + index} weapon={weapon} />;

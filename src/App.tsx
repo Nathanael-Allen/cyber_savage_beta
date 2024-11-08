@@ -5,7 +5,6 @@ import IUnit from "./interfaces/IUnit";
 import ComEquippedUnits from "./components/ComEquippedUnits";
 import ComAlertBox from "./components/ComAlertBox";
 import cloneUnit from "./utils/cloneUnit";
-import testArmyList from "./utils/testArmyList";
 
 type TView = "available" | "equipped";
 type TAlert = string | null;
@@ -14,6 +13,7 @@ function App() {
   const [unitList, setUnitList] = useState<IUnit[]>([]);
   const [view, setView] = useState<TView>("available");
   const [alerts, setAlert] = useState<TAlert>();
+
 
   function loadArmy(armyList: IUnit[]) {
     setUnitList(armyList);
@@ -58,7 +58,7 @@ function App() {
           Equipped
         </button>
         <button onClick={() => {
-          loadArmy(testArmyList)
+          loadArmy(JSON.parse(localStorage.getItem('army')!))
         }}>
           Load Army
         </button>

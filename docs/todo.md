@@ -2,12 +2,14 @@
 
 ## High Priority/Functionality
 ___
-- [x] Add weapon modification to Unit component. Need to be able to select melee/range and traits.
-- [x] Create weapon trait list.
-- [x] Add delete button on equipped unit
 - [ ] Finalize trait and spell lists. Should include descriptions
 - [ ] Extra Weapon trait needs to add another weapon
 - [ ] Save and load a list. Idea right now is to save and load from a json file.
+- [ ] Save and load list from local storage.'
+- [x] Add weapon modification to Unit component. Need to be able to select melee/range and traits.
+- [x] Create weapon trait list.
+- [x] Add delete button on equipped unit
+
 
 ## Low Priority/UI Stuff
 ___
@@ -19,12 +21,14 @@ ___
 - [ ] Update Unit and Weapon Component styling
 - [ ] Group equipped units by level
 
+
 ## Code Refactoring
 ___
 
 - [ ] Replace more complex state functions with a reducer function
 
+
 ## Known Bugs
 ___
 
-- [ ] Deleting a unit from equipped units, clears the traits from other equipped units. Not sure why.
+- [x] Deleting a unit from equipped units, clears the traits from other equipped units. Not sure why.
