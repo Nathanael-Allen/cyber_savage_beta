@@ -1,4 +1,4 @@
-import IUnit from "../interfaces/IUnit"
+import { IUnit } from "../interfaces/IUnit"
 
 const testArmyList: IUnit[] = [
   {

@@ -1,4 +1,4 @@
-import IUnit from "../interfaces/IUnit";
+import { IUnit } from "../interfaces/IUnit";
 
 function cloneUnit(unit: IUnit, unitList: IUnit[]) {
   const newUnit: IUnit = {

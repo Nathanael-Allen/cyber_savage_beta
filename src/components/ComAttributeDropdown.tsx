@@ -1,40 +1,63 @@
 import { useState } from "react";
-
-type TAttributeType =  "trait" | "flaw" | "spell";
+import { TAttributeType } from "../interfaces/TAttributeType";
+import { TAttributeClickHandler } from "./ComUnit";
 
 type TDropdownProps = {
   availableAttributes: string[];
   equippedAttributes: string[];
-  attributeType: TAttributeType
+  attributeType: TAttributeType;
   title: string;
-  attributeClickHandler: (attribute: string, selected: boolean, attributeType: TAttributeType) => void;
+  clickHandler(
+    attribute: string,
+    type: TAttributeType,
+    selected: boolean
+  ): void;
 };
 
-type TAvailableAttributeProps = {
+type TAttributeProps = {
   attribute: string;
-  selected: boolean;
-  clickHandler: (attribute: string) => void;
+  attributeType: TAttributeType;
+  handler: TAttributeClickHandler;
 };
 
-function ComAvailableAttribute({
+function ComSelectedAttribute({
   attribute,
-  selected,
-  clickHandler,
-}: TAvailableAttributeProps) {
-  const baseCSS = "p-1 w-full cursor-pointer border-b border-gray-700";
-  const classUnselected =
-    baseCSS + " " + "hover:bg-gray-300";
-  const classSelected = baseCSS + " " + "bg-gray-400";
+  attributeType,
+  handler,
+}: TAttributeProps) {
   return (
     <p
+      className="p-1 w-full cursor-pointer border-b border-gray-700 bg-gray-400"
       onClick={() => {
-        clickHandler(attribute);
+        handler(attribute, attributeType, true);
       }}
-      className={selected ? classSelected : classUnselected}
     >
       <button
         onClick={() => {
-          clickHandler(attribute);
+          handler(attribute, attributeType, true);
+        }}
+      >
+        {attribute}
+      </button>
+    </p>
+  );
+}
+
+function ComAvailableAttribute({
+  attribute,
+  attributeType,
+  handler,
+}: TAttributeProps) {
+  return (
+    <p
+      className="p-1 w-full cursor-pointer border-b border-gray-700 hover:bg-gray-300"
+      onClick={() => {
+        handler(attribute, attributeType, false);
+      }}
+    >
+      <button
+        onClick={() => {
+          handler(attribute, attributeType, false);
         }}
       >
         {attribute}
@@ -48,23 +71,21 @@ export default function ComAttributeDropdown({
   equippedAttributes,
   attributeType,
   title,
-  attributeClickHandler,
+  clickHandler,
 }: TDropdownProps) {
   const [open, setOpen] = useState<boolean>(false);
   function openHandler() {
     setOpen(!open);
   }
-  
-  const cssClosed = "flex gap-2 cursor-pointer rounded p-2 hover:bg-gray-600 hover:text-white "
-  const cssOpen = "flex gap-2 cursor-pointer rounded-t-md p-2 bg-gray-600 text-white "
 
+  const cssClosed =
+    "flex gap-2 cursor-pointer rounded p-2 hover:bg-gray-600 hover:text-white ";
+  const cssOpen =
+    "flex gap-2 cursor-pointer rounded-t-md p-2 bg-gray-600 text-white ";
 
   return (
     <div className="bg-slate-200 mb-2 rounded-md">
-      <span
-        className={open ? cssOpen : cssClosed}
-        onClick={openHandler}
-      >
+      <span className={open ? cssOpen : cssClosed} onClick={openHandler}>
         <h4 className="font-semibold" onClick={openHandler}>
           {title}
         </h4>
@@ -76,16 +97,25 @@ export default function ComAttributeDropdown({
         {open &&
           availableAttributes.map((attribute) => {
             const selected = equippedAttributes.includes(attribute);
-            return (
-              <ComAvailableAttribute
-                key={attribute + "availableattribute"}
-                selected={selected}
-                attribute={attribute}
-                clickHandler={() => {
-                  attributeClickHandler(attribute, selected, attributeType);
-                }}
-              />
-            );
+            if (selected) {
+              return (
+                <ComSelectedAttribute
+                  key={attribute}
+                  attribute={attribute}
+                  attributeType={attributeType}
+                  handler={clickHandler}
+                />
+              );
+            } else {
+              return (
+                <ComAvailableAttribute
+                  key={attribute}
+                  attribute={attribute}
+                  attributeType={attributeType}
+                  handler={clickHandler}
+                />
+              );
+            }
           })}
       </div>
     </div>

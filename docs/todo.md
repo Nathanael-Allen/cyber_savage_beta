@@ -32,3 +32,4 @@ ___
 ___
 
 - [x] Deleting a unit from equipped units, clears the traits from other equipped units. Not sure why.
+- [ ] Flaws need to properly update number of unit traits.

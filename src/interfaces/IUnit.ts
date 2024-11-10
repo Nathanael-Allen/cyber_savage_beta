@@ -1,6 +1,8 @@
 import IWeapon from "./IWeapon";
 
-export default interface IUnit {
+type TUnitID = string | number;
+
+interface IUnit {
   readonly level: 1 | 2 | 3 | 4;
   readonly type: string;
   availableWeapons: IWeapon[];
@@ -9,5 +11,7 @@ export default interface IUnit {
   equippedTraits?: string[];
   equippedFlaw?: string[];
   equippedSpells?: string[];
-  id?: string | number
+  id?: TUnitID;
 }
+
+export type {TUnitID, IUnit}

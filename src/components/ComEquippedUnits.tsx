@@ -1,27 +1,26 @@
-import IUnit from "../interfaces/IUnit";
+import { IUnit } from "../interfaces/IUnit";
 import ComUnit from "./ComUnit";
+import { TEquippedUnitsProps } from "../App";
 
-type TProps = {unitList: IUnit[]; deleteHandler(id: string | number): void}
+type TListProps = {
+  unitList: IUnit[];
+  unitProps: TEquippedUnitsProps;
+}
 
-export default function ComEquippedUnits({unitList, deleteHandler}: TProps) {
-
-  function saveList() {
-    const army = JSON.stringify(unitList);
-    localStorage.setItem('army', army);
-    console.log('SAVED!')
-  }
-
+export default function ComEquippedUnits({unitList ,unitProps}: TListProps ) {
+  
   const unitListComponents = unitList.map((unit) => {
-    return <ComUnit key={unit.id!} unit={unit} deleteHandler={deleteHandler} />;
+    return <ComUnit key={unit.id!} unit={unit} equippedUnitProps={unitProps}  />;
   })
 
   
   return (
     <div className="">
-      <button className="text-lg font-bold" onClick={saveList}>Save List</button>
       <button></button>
       <h4 className="mt-4 text-lg font-bold text-center border-b border-black">Units</h4>
       {unitListComponents}
     </div>
   );
 }
+
+
