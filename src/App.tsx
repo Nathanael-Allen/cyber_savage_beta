@@ -10,8 +10,8 @@ import { TAttributeType } from "./interfaces/TAttributeType";
 type TView = "available" | "equipped";
 type TAlert = string | null;
 type  TEquippedUnitsProps = {
-  handleAddAttribute(unitID: TUnitID, trait: string, type: TAttributeType): void;
-  handleRemoveAttribute(UnitID: TUnitID, trait: string, type: TAttributeType): void 
+  handleAddAttribute(unitID: TUnitID, trait: string, type: TAttributeType, weaponIndex?: number): void;
+  handleRemoveAttribute(UnitID: TUnitID, trait: string, type: TAttributeType, weaponIndex?: number): void 
   handleDeleteUnit(UnitID: TUnitID): void
 }
 
@@ -25,7 +25,7 @@ function App() {
     handleDeleteUnit: handleDeleteUnit,
   }
 
-  function handleAddAttribute(unitID: TUnitID, attribute: string, type: TAttributeType) {
+  function handleAddAttribute(unitID: TUnitID, attribute: string, type: TAttributeType, weaponIndex?: number) {
     setUnitList(unitList.map((unit) => {
       if (unit.id === unitID) {
         switch (type) {
@@ -44,6 +44,11 @@ function App() {
               ...unit,
               equippedSpells: unit.equippedSpells ? [...unit.equippedSpells, attribute] : [attribute]
             }
+          case "weaponTrait":
+            return {
+              ...unit,
+              
+            }
         }
       } else {
         return {...unit}
@@ -51,7 +56,7 @@ function App() {
     }))
   }
 
-  function handleRemoveAttribute(unitID: TUnitID, attribute: string, type: TAttributeType) {
+  function handleRemoveAttribute(unitID: TUnitID, attribute: string, type: TAttributeType, weaponIndex?: number) {
     setUnitList(unitList.map((unit) => {
       if (unit.id === unitID) {
         switch (type) {
@@ -69,6 +74,10 @@ function App() {
             return {
               ...unit,
               equippedTraits: unit.equippedTraits!.filter((eAttribute) => eAttribute != attribute )       
+            }
+          case "weaponTrait":
+            return {
+              ...unit
             }
           }
       } else {
