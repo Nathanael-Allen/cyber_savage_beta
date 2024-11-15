@@ -35,13 +35,9 @@ export default function ComWeapon({ weapon }: TProps) {
 
   function traitClickHandler(trait: string, selected: boolean) {
     if (!selected) {
-      setWeaponTraits([...weaponTraits, trait]);
+
     } else {
-      setWeaponTraits(
-        weaponTraits.filter((item) => {
-          return item !== trait;
-        })
-      );
+      
     }
   }
 
@@ -79,7 +75,7 @@ export default function ComWeapon({ weapon }: TProps) {
           equippedAttributes={weaponTraits}
           attributeType="trait"
           title="Available Weapon Traits"
-          attributeClickHandler={traitClickHandler}
+          clickHandler={traitClickHandler}
         />}
       </div>
     </div>

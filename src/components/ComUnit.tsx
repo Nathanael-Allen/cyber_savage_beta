@@ -26,7 +26,7 @@ const initialAvailableFlaws = flawListConstants.sort();
 const initialAvailableSpells = spellListConstants.sort();
 
 export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
-  const { handleDeleteUnit, handleAddAttribute, handleRemoveAttribute } =
+  const { handleDeleteUnit, handleAddAttribute, handleRemoveAttribute, handleAddWeaponTrait, handleRemoveWeaponTrait } =
     equippedUnitProps;
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
   const [availableFlaws] = useState<string[]>(initialAvailableFlaws);
