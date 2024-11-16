@@ -39,13 +39,13 @@ function App() {
   };
 
 
-  function handleRemoveWeaponTrait(unitID: TUnitID, trait: string, weaponIndex: number) {
+  function handleRemoveWeaponTrait(unitID: TUnitID, trait: string, id: number) {
     setUnitList(
       unitList.map((unit) => {
         if (unit.id === unitID) {
           const updatedWeapons: IWeapon[] = unit.availableWeapons.map(
-            (weapon, index) => {
-              if (index === weaponIndex) {
+            (weapon) => {
+              if (weapon.id === id) {
                 const newTraits = weapon.equippedTraits!.filter((equippedTrait) => {
                   return equippedTrait != trait;
                 })
@@ -74,14 +74,14 @@ function App() {
   function handleAddWeaponTrait(
     unitID: TUnitID,
     trait: string,
-    weaponIndex: number
+    id: number
   ) {
     setUnitList(
       unitList.map((unit) => {
         if (unit.id === unitID) {
           const updatedWeapons: IWeapon[] = unit.availableWeapons.map(
-            (weapon, index) => {
-              if (index === weaponIndex) {
+            (weapon) => {
+              if (weapon.id === id) {
                 return {
                   ...weapon,
                   equippedTraits: weapon.equippedTraits
@@ -203,9 +203,33 @@ function App() {
   }
 
   function handleAddUnit(unit: IUnit) {
-    const newUnit = cloneUnit(unit, unitList);
-    setUnitList([...unitList, newUnit]);
-    const message = `${newUnit.type} added!`;
+    const weapons = unit.availableWeapons.map((weapon, index) => {
+      let numTraits;
+      switch (weapon.techLevel) {
+        case "simple":
+          numTraits = 0;
+          break;
+        case "standard":
+          numTraits = 1;
+          break;
+        case "advanced":
+          numTraits = 2;
+          break;
+      }      return {
+        ...weapon,
+        equippedTraits: weapon.equippedTraits ? weapon.equippedTraits : [],
+        id: index,
+        numTraits: numTraits,
+      }
+    })
+    setUnitList([...unitList, 
+      {
+        ...unit,
+        availableWeapons: weapons,
+        id: unit.type + (unitList.length + 1), 
+      }
+    ]);
+    const message = `${unit.type} added!`;
     handleAlert(message);
   }
 

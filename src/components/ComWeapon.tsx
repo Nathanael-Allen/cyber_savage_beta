@@ -1,46 +1,26 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import IWeapon from "../interfaces/IWeapon";
 import ComAttributeDropdown from "./ComAttributeDropdown";
 import weaponTraitConstants from "../constants/weaponTraitConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
+import { TAttributeType } from "../interfaces/TAttributeType";
 
-type TProps = { weapon: IWeapon };
+type TProps = { weapon: IWeapon, clickHandler(trait: string, id: number | string, selected: boolean): void };
 type TSubtype = "light" | "medium" | "heavy";
 
 const initialAvailableTraits = weaponTraitConstants;
 
-export default function ComWeapon({ weapon }: TProps) {
-  const [weaponTraits, setWeaponTraits] = useState<string[]>(weapon.equippedTraits ? weapon.equippedTraits : []);
+export default function ComWeapon({ weapon, clickHandler }: TProps) {
   const [availableTraits] = useState<string[]>(
     initialAvailableTraits
   );
   const [weaponSubtype, setWeaponSubtype] = useState<TSubtype | null>(weapon.subtype ? weapon.subtype : null);
-  const [numTraits, setNumTraits] = useState<number>();
   const subtypeOptions: TSubtype[] = ["light", "medium", "heavy"];
   const weaponName = weapon.techLevel + " " + weapon.type;
-
-  useEffect(() => {
-    switch (weapon.techLevel) {
-      case "simple":
-        setNumTraits(0);
-        break;
-      case "standard":
-        setNumTraits(1);
-        break;
-      case "advanced":
-        setNumTraits(2);
-        break;
-    }
-  }, [])
-
-  function traitClickHandler(trait: string, selected: boolean) {
-    if (!selected) {
-
-    } else {
-      
-    }
+  
+  function attributeClickHandler(attribute: string, attributeType: TAttributeType, selected: boolean) { 
+    clickHandler(attribute, weapon.id!, selected)
   }
-
 
   return (
   <div className="grid grid-cols-3 border border-black p-2 mt-2 mb-2">
@@ -67,15 +47,15 @@ export default function ComWeapon({ weapon }: TProps) {
         })}
       </div>
       <div className="col-start-1 mr-2">
-        {numTraits! > 0 && <ComEquippedAttributes attributeType="traits" equippedList={weaponTraits} numTraits={numTraits} />}
+        {weapon.numTraits! > 0 && <ComEquippedAttributes attributeType="traits" equippedList={weapon.equippedTraits ? weapon.equippedTraits : []} numTraits={weapon.numTraits} />}
       </div> 
       <div className="col-start-2 col-span-2 ml-2">
-      {numTraits! > 0 && <ComAttributeDropdown
+      {weapon.numTraits! > 0 && <ComAttributeDropdown
           availableAttributes={availableTraits}
-          equippedAttributes={weaponTraits}
-          attributeType="trait"
+          equippedAttributes={weapon.equippedTraits ? weapon.equippedTraits : []}
+          attributeType="weaponTrait"
           title="Available Weapon Traits"
-          clickHandler={traitClickHandler}
+          clickHandler={attributeClickHandler}
         />}
       </div>
     </div>

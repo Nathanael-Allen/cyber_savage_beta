@@ -44,9 +44,17 @@ export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
     }
   }
 
+  function weaponClickHandler(trait: string, id: number, selected: boolean) {
+    if (!selected) {
+      handleAddWeaponTrait(unit.id!, trait, id)
+    } else { 
+      handleRemoveWeaponTrait(unit.id!, trait, id)
+    }
+  }
+  
   const availableWeapons = unit.availableWeapons.map(
     (weapon: IWeapon, index: number) => {
-      return <ComWeapon key={weapon.type + index} weapon={weapon} />;
+      return <ComWeapon key={weapon.type + index} weapon={weapon} clickHandler={weaponClickHandler} />;
     }
   );
 

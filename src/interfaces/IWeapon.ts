@@ -4,6 +4,7 @@ interface IWeapon {
   numTraits?: number;
   subtype?: "light" | "medium" | "heavy";
   equippedTraits?: string[];
+  id?: number | string;
 }
 
 export default IWeapon;

@@ -105,7 +105,7 @@ export default function ComAttributeDropdown({
                   attributeType={attributeType}
                   handler={clickHandler}
                 />
-              );
+              ); 
             } else {
               return (
                 <ComAvailableAttribute
