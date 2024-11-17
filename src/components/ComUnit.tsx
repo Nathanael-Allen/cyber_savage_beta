@@ -3,9 +3,8 @@ import { IUnit } from "../interfaces/IUnit";
 import traitListConstants from "../constants/traitListConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
 import ComAttributeDropdown from "./ComAttributeDropdown";
-import flawListConstants from "../constants/flawListConstants";
 import spellListConstants from "../constants/spellListConstants";
-import ComWeapon from "./ComWeapon";
+import ComWeapon, { TSubtype } from "./ComWeapon";
 import IWeapon from "../interfaces/IWeapon";
 import { TEquippedUnitsProps } from "../App";
 import { TAttributeType } from "../interfaces/TAttributeType";
@@ -22,14 +21,12 @@ type TAttributeClickHandler = (
 ) => void;
 
 const initialAvailableTraits = traitListConstants.sort();
-const initialAvailableFlaws = flawListConstants.sort();
 const initialAvailableSpells = spellListConstants.sort();
 
 export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
-  const { handleDeleteUnit, handleAddAttribute, handleRemoveAttribute, handleAddWeaponTrait, handleRemoveWeaponTrait } =
+  const { handleDeleteUnit, handleAddAttribute, handleRemoveAttribute, handleAddWeaponTrait, handleRemoveWeaponTrait, weaponSubtypeHandler } =
     equippedUnitProps;
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
-  const [availableFlaws] = useState<string[]>(initialAvailableFlaws);
   const [availableSpells] = useState<string[]>(initialAvailableSpells);
 
   function attributeClickHandler(
@@ -44,6 +41,10 @@ export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
     }
   }
 
+  function callbackSubtype(weaponID: number, subtype: TSubtype) {
+    weaponSubtypeHandler(unit.id!, subtype, weaponID)
+  }
+  
   function weaponClickHandler(trait: string, id: number, selected: boolean) {
     if (!selected) {
       handleAddWeaponTrait(unit.id!, trait, id)
@@ -54,7 +55,7 @@ export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
   
   const availableWeapons = unit.availableWeapons.map(
     (weapon: IWeapon, index: number) => {
-      return <ComWeapon key={weapon.type + index} weapon={weapon} clickHandler={weaponClickHandler} />;
+      return <ComWeapon key={weapon.type + index} weapon={weapon} subtypeHandler={callbackSubtype} clickHandler={weaponClickHandler} />;
     }
   );
 
@@ -80,10 +81,6 @@ export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
               attributeType="traits"
               numTraits={unit.numTraits}
             />
-            <ComEquippedAttributes
-              equippedList={unit.equippedFlaw ? unit.equippedFlaw : []}
-              attributeType="flaw"
-            />
             {unit.numSpells && (
               <ComEquippedAttributes
                 numSpells={unit.numSpells}
@@ -101,13 +98,7 @@ export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
             title="Available Traits"
             clickHandler={attributeClickHandler}
           />
-          <ComAttributeDropdown
-            availableAttributes={availableFlaws}
-            equippedAttributes={unit.equippedFlaw ? unit.equippedFlaw : []}
-            attributeType="flaw"
-            title="Available Flaws"
-            clickHandler={attributeClickHandler}
-          />
+          <button>Roll Flaw</button>
           {unit.numSpells && (
             <ComAttributeDropdown
               availableAttributes={availableSpells}

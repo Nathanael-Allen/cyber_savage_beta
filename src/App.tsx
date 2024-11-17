@@ -4,9 +4,9 @@ import { useState } from "react";
 import { IUnit, TUnitID } from "./interfaces/IUnit";
 import ComEquippedUnits from "./components/ComEquippedUnits";
 import ComAlertBox from "./components/ComAlertBox";
-import cloneUnit from "./utils/cloneUnit";
 import { TAttributeType } from "./interfaces/TAttributeType";
 import IWeapon from "./interfaces/IWeapon";
+import { TSubtype } from "./components/ComWeapon";
 
 type TView = "available" | "equipped";
 type TAlert = string | null;
@@ -24,6 +24,7 @@ type TEquippedUnitsProps = {
   handleDeleteUnit(UnitID: TUnitID): void;
   handleAddWeaponTrait(unitID: TUnitID, trait: string, weaponIndex: number): void;
   handleRemoveWeaponTrait(unitID: TUnitID, trait: string, weaponIndex: number): void;
+  weaponSubtypeHandler(UnitID: TUnitID, subtype: string, weaponIndex: number): void;
 };
 
 function App() {
@@ -35,9 +36,38 @@ function App() {
     handleRemoveAttribute: handleRemoveAttribute,
     handleDeleteUnit: handleDeleteUnit,
     handleAddWeaponTrait: handleAddWeaponTrait,
-    handleRemoveWeaponTrait: handleRemoveWeaponTrait
+    handleRemoveWeaponTrait: handleRemoveWeaponTrait,
+    weaponSubtypeHandler: weaponSubtypeHandler
   };
 
+  function weaponSubtypeHandler(unitID: TUnitID, subtype: TSubtype, weaponID: number) {
+    setUnitList(
+      unitList.map((unit) => {
+        if (unit.id === unitID) {
+          const updatedWeapons: IWeapon[] = unit.availableWeapons.map((weapon) => {
+            if (weapon.id === weaponID) {
+              return {
+                ...weapon,
+                subtype: subtype
+              }
+            } else {
+              return {
+                ...weapon
+              }
+            }
+          })
+          return {
+            ...unit,
+            availableWeapons: updatedWeapons
+          }
+        } else {
+          return {
+            ...unit
+          }
+        }
+      })
+    )
+  }
 
   function handleRemoveWeaponTrait(unitID: TUnitID, trait: string, id: number) {
     setUnitList(
@@ -122,11 +152,6 @@ function App() {
                   ? [...unit.equippedTraits, attribute]
                   : [attribute],
               };
-            case "flaw":
-              return {
-                ...unit,
-                equippedFlaw: [attribute],
-              };
             case "spell":
               return {
                 ...unit,
@@ -155,13 +180,6 @@ function App() {
       unitList.map((unit) => {
         if (unit.id === unitID) {
           switch (type) {
-            case "flaw":
-              return {
-                ...unit,
-                equippedFlaw: unit.equippedFlaw!.filter(
-                  (eAttribute) => eAttribute != attribute
-                ),
-              };
             case "spell":
               return {
                 ...unit,
@@ -226,7 +244,8 @@ function App() {
       {
         ...unit,
         availableWeapons: weapons,
-        id: unit.type + (unitList.length + 1), 
+        numTraits: unit.hasFlaw ? unit.numTraits + 1 : unit.numTraits,
+        id: unit.type + (unitList.length + 1)
       }
     ]);
     const message = `${unit.type} added!`;

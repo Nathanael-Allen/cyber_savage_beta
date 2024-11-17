@@ -5,16 +5,15 @@ import weaponTraitConstants from "../constants/weaponTraitConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
 import { TAttributeType } from "../interfaces/TAttributeType";
 
-type TProps = { weapon: IWeapon, clickHandler(trait: string, id: number | string, selected: boolean): void };
+type TProps = { weapon: IWeapon, clickHandler(trait: string, id: number | string, selected: boolean): void, subtypeHandler(weaponID: number, subtype: TSubtype): void; };
 type TSubtype = "light" | "medium" | "heavy";
 
 const initialAvailableTraits = weaponTraitConstants;
 
-export default function ComWeapon({ weapon, clickHandler }: TProps) {
+export default function ComWeapon({ weapon, clickHandler,  subtypeHandler }: TProps) {
   const [availableTraits] = useState<string[]>(
     initialAvailableTraits
   );
-  const [weaponSubtype, setWeaponSubtype] = useState<TSubtype | null>(weapon.subtype ? weapon.subtype : null);
   const subtypeOptions: TSubtype[] = ["light", "medium", "heavy"];
   const weaponName = weapon.techLevel + " " + weapon.type;
   
@@ -24,12 +23,12 @@ export default function ComWeapon({ weapon, clickHandler }: TProps) {
 
   return (
   <div className="grid grid-cols-3 border border-black p-2 mt-2 mb-2">
-      <h4 className="col-start-1 col-span-3 font-semibold text-lg border-b border-gray-300">{weaponName} ({weaponSubtype})</h4>
+      <h4 className="col-start-1 col-span-3 font-semibold text-lg border-b border-gray-300">{weaponName} ({weapon.subtype})</h4>
       <div className="col-start-1 col-span-3 flex gap-3 items-center">
         <p className="font-semibold">Weapon Subtype: </p>
         {subtypeOptions.map((type) => {
           let cssName = "w-full p-1 m-1 rounded-md hover:bg-gray-300"
-        if (weaponSubtype === type) {
+        if (weapon.subtype === type) {
             cssName = "w-full p-1 m-1 rounded-md bg-gray-600 text-white"
           }
           return (
@@ -37,7 +36,7 @@ export default function ComWeapon({ weapon, clickHandler }: TProps) {
               <button
                 className={cssName}
                 onClick={() => {
-                  setWeaponSubtype(type);
+                  subtypeHandler(weapon.id!, type);
                 }}
               >
                 {type}
@@ -61,3 +60,6 @@ export default function ComWeapon({ weapon, clickHandler }: TProps) {
     </div>
   );
 }
+
+
+export type {TSubtype}

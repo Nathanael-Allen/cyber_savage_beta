@@ -1,2 +1,2 @@
-type TAttributeType =  "trait" | "flaw" | "spell" | "weaponTrait";
+type TAttributeType =  "trait" | "spell" | "weaponTrait";
 export type {TAttributeType}
