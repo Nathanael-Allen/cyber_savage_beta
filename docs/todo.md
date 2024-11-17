@@ -26,10 +26,10 @@ ___
 ___
 
 - [ ] Replace more complex state functions with a reducer function
-
+- [ ] Change how units are displayed (seperate window for editing them)
 
 ## Known Bugs
 ___
 
 - [x] Deleting a unit from equipped units, clears the traits from other equipped units. Not sure why.
-- [ ] Flaws need to properly update number of unit traits.
+- [x] Flaws need to properly update number of unit traits.

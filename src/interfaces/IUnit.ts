@@ -1,4 +1,5 @@
 import IWeapon from "./IWeapon";
+import { TDicesType } from "./TDiceType";
 
 type TUnitID = string | number;
 
@@ -7,9 +8,15 @@ interface IUnit {
   readonly type: string;
   availableWeapons: IWeapon[];
   numTraits: number;
+  speed?: number;
+  health?: number;
+  diceMelee?: TDicesType;
+  diceRanged?: TDicesType;
+  diceDefense?: TDicesType;
+  diceWillpower?: TDicesType;
   numSpells?: number;
   equippedTraits?: string[];
-  equippedFlaw?: string[];
+  hasFlaw?: boolean;
   equippedSpells?: string[];
   id?: TUnitID;
 }
