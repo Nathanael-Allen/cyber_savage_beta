@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { IUnit } from "../interfaces/IUnit";
+import { TUnit } from "../types-interfaces/TUnit";
 
-type props = {unit: IUnit}
+type props = {unit: TUnit}
 
 export default function ComUnitNew({unit}: props) {
   const {
@@ -15,18 +14,18 @@ export default function ComUnitNew({unit}: props) {
     speed,
     equippedSpells,
     equippedTraits,
-    availableWeapons
+    equippedWeapons
   } = unit;
 
   
   return (
-    <div className="relative grid grid-cols-4 w-4/5 m-auto border-2 border-black rounded-md p-1 gap-1">
-      <div className="grid grid-cols-4 col-start-1 col-span-2 row-start-1 row-span-2 bg-gray-700 rounded-md">
+    <div className="relative max-w-4xl w-4/5 m-auto mb-10 border-2 border-black rounded-md p-4 gap-1 sm:grid sm:grid-cols-4">
+      <div className="grid grid-cols-4 bg-gray-700 rounded-md sm:col-start-1 sm:col-span-2 sm:row-start-1 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
-        <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">{type}</p>
+        <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 row-start text-center">{type}</p>
         <p className="text-white font-semibold text-lg mt-3 col-start-3 col-span-2 text-center">Level {level}</p>
       </div>
-      <div className="col-span-2 col-start-3 row-start-1 row-span-2 grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black">
+      <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:row-start-1 sm:row-span-2">
         <div>
           <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">{health}</div>
           <p className="font-semibold text-center">Health</p>
@@ -36,7 +35,7 @@ export default function ComUnitNew({unit}: props) {
           <p className="font-semibold text-center">Speed</p>
         </div>
       </div>
-      <div className="col-span-4 row-start-3 grid grid-cols-4 bg-gray-200 rounded-md p-2 mt-4 gap-2 border-2 border-black">
+      <div className="col-span-4 row-start-4 grid grid-cols-4 bg-gray-200 rounded-md p-2 mt-4 gap-2 border-2 border-black">
         <div>
           <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">{diceMelee}</div>
           <p className="font-semibold text-center">Melee</p>
@@ -54,7 +53,7 @@ export default function ComUnitNew({unit}: props) {
           <p className="font-semibold text-center">Willpower</p>
         </div>        
       </div>
-      <div className="min-h-36 row-start-4 border-2 border-black col-span-2 rounded-md mt-4">
+      <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-5 sm:col-span-4 md:col-span-2">
         <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">Characteristics</h4>
         {equippedTraits?.map((trait) => {
           return (
@@ -62,7 +61,7 @@ export default function ComUnitNew({unit}: props) {
           )
         })}
       </div>
-      <div className="min-h-36 row-start-4 border-2 border-black col-start-3 col-span-2 rounded-md mt-4">
+      <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-6 sm:col-span-4 md:col-start-3 md:col-span-2 md:row-start-5">
       <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">Spells</h4>
         {equippedSpells?.map((spell) => {
           return (
@@ -70,12 +69,12 @@ export default function ComUnitNew({unit}: props) {
           )
         })}
       </div>
-      <div className="col-span-4 min-h-56 border-2 border-black rounded-md mt-4">
+      <div className="min-h-56 border-2 border-black rounded-md mt-4 sm:col-span-4 sm:row-start-7">
         <h4 className="font-semibold text-center border-b text-xl border-black pb-1 mb-4 bg-gray-700 text-white">Weapons</h4>
-        {availableWeapons.map((weapon) => {
+        {equippedWeapons.map((weapon) => {
           return (
             <div className="grid grid-cols-6 items-center bg-gray-200 rounded-md border-2 border-black min-h-24 m-1">
-              <h4 className="font-semibold text-lg text-center">{weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()} ({weapon.subtype?.toUpperCase()})</h4>
+              <h4 className="font-semibold text-lg text-center max-md:col-span-6">{weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()} ({weapon.subtype?.toUpperCase()})</h4>
               <div>
                 <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">{weapon.numAttack}</div>
                 <p className="font-semibold text-center">Attacks</p>

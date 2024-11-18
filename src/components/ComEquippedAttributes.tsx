@@ -1,4 +1,4 @@
-import IUnit from "../interfaces/IUnit";
+import TUnit from "../types-interfaces/TUnit";
 
 
 type TAttributeType = "traits" | "spells" | "flaw"

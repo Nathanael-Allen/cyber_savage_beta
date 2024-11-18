@@ -1,9 +1,9 @@
-import { IUnit } from "../interfaces/IUnit";
+import { TUnit } from "../types-interfaces/TUnit";
 import ComUnit from "./ComUnit";
 import { TEquippedUnitsProps } from "../App";
 
 type TListProps = {
-  unitList: IUnit[];
+  unitList: TUnit[];
   unitProps: TEquippedUnitsProps;
 }
 

@@ -1,15 +1,15 @@
-import IUnit from "../interfaces/IUnit";
+import {TUnit} from "../types-interfaces/TUnit";
 
 interface UnitProps {
-  unit: IUnit;
-  handleAddUnit: (unit: IUnit) => void;
+  unit: TUnit;
+  handleAddUnit: (unit: TUnit) => void;
 }
 
 export default function ComAvailableUnit({ unit, handleAddUnit }: UnitProps) {
 
   let equipList;
-  if (unit.availableWeapons) {
-    const items = unit.availableWeapons.map((item, index) => {
+  if (unit.equippedWeapons) {
+    const items = unit.equippedWeapons.map((item, index) => {
       return <p key={index}>{item.techLevel + ' ' + item.type}</p>;
     });
     equipList = <>{items}</>;

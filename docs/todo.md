@@ -27,6 +27,7 @@ ___
 
 - [ ] Replace more complex state functions with a reducer function
 - [ ] Change how units are displayed (seperate window for editing them)
+- [ ] Edit window will take a unit for editing and it will return a unit after editing.
 
 ## Known Bugs
 ___

@@ -1,18 +1,18 @@
-import IUnit from "../interfaces/IUnit";
+import { TUnit } from "../types-interfaces/TUnit";
 import ComAvailableUnit from "./ComAvailableUnit";
 
-interface IUnitListProps {
-  unitList: IUnit[];
-  handleAddUnit: (unit: IUnit) => void;
+interface TUnitListProps {
+  unitList: TUnit[];
+  handleAddUnit: (unit: TUnit, unitList: TUnit[]) => void;
 }
 
 type TUnitBlockProps = {
-  unitList: IUnit[];
+  unitList: TUnit[];
   level: number;
-  handleAddUnit: (unit: IUnit) => void;
+  handleAddUnit: (unit: TUnit) => void;
 };
 
-function returnLevelList(units: IUnit[], level: number) {
+function returnLevelList(units: TUnit[], level: number) {
   return units.filter((unit) => {
     return unit.level === level;
   });
@@ -43,7 +43,7 @@ function ComAvailableUnitBlock({
 export default function ComAvailableUnitList({
   unitList,
   handleAddUnit,
-}: IUnitListProps) {
+}: TUnitListProps) {
   return (
     <div className="">
       <ComAvailableUnitBlock

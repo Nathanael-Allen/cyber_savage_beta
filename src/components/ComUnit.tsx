@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { IUnit } from "../interfaces/IUnit";
+import { TUnit } from "../types-interfaces/TUnit";
 import traitListConstants from "../constants/traitListConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
 import ComAttributeDropdown from "./ComAttributeDropdown";
 import spellListConstants from "../constants/spellListConstants";
 import ComWeapon, { TSubtype } from "./ComWeapon";
-import IWeapon from "../interfaces/IWeapon";
+import TWeapon from "../types-interfaces/TWeapon";
 import { TEquippedUnitsProps } from "../App";
-import { TAttributeType } from "../interfaces/TAttributeType";
+import { TAttributeType } from "../types-interfaces/TAttributeType";
 
-interface IUnitProps {
-  unit: IUnit;
+interface TUnitProps {
+  unit: TUnit;
   equippedUnitProps: TEquippedUnitsProps;
 }
 
@@ -23,7 +23,7 @@ type TAttributeClickHandler = (
 const initialAvailableTraits = traitListConstants.sort();
 const initialAvailableSpells = spellListConstants.sort();
 
-export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
+export default function ComUnit({ unit, equippedUnitProps }: TUnitProps) {
   const { handleDeleteUnit, handleAddAttribute, handleRemoveAttribute, handleAddWeaponTrait, handleRemoveWeaponTrait, weaponSubtypeHandler } =
     equippedUnitProps;
   const [availableTraits] = useState<string[]>(initialAvailableTraits);
@@ -53,8 +53,8 @@ export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
     }
   }
   
-  const availableWeapons = unit.availableWeapons.map(
-    (weapon: IWeapon, index: number) => {
+  const equippedWeapons = unit.equippedWeapons.map(
+    (weapon: TWeapon, index: number) => {
       return <ComWeapon key={weapon.type + index} weapon={weapon} subtypeHandler={callbackSubtype} clickHandler={weaponClickHandler} />;
     }
   );
@@ -116,7 +116,7 @@ export default function ComUnit({ unit, equippedUnitProps }: IUnitProps) {
         <h4 className="col-span-3 text-center font-semibold border-b border-black">
           Weapons
         </h4>
-        {availableWeapons}
+        {equippedWeapons}
       </div>
     </div>
   );

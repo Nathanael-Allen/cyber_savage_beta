@@ -1,12 +1,12 @@
 import ComUnitNew from "./components/ComUnitNew";
-import { IUnit } from "./interfaces/IUnit";
+import { TUnit } from "./types-interfaces/TUnit";
 
 
 export default function Test() { 
-  const myUnit: IUnit = {
+  const myUnit: TUnit = {
     level: 2,
     type: "Mage",
-    availableWeapons: [{ type: "melee", techLevel: "simple", subtype: "light", damage: 2, numAttack: 4, equippedTraits: ["Rending"] }],
+    equippedWeapons: [{ type: "melee", techLevel: "simple", subtype: "light", damage: 2, numAttack: 4, equippedTraits: ["Rending"] }],
     numTraits: 2,
     numSpells: 2,
     speed: 6,

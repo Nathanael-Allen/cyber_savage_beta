@@ -1,11 +1,11 @@
 import { useState } from "react";
-import IWeapon from "../interfaces/IWeapon";
+import TWeapon from "../types-interfaces/TWeapon";
 import ComAttributeDropdown from "./ComAttributeDropdown";
 import weaponTraitConstants from "../constants/weaponTraitConstants";
 import ComEquippedAttributes from "./ComEquippedAttributes";
-import { TAttributeType } from "../interfaces/TAttributeType";
+import { TAttributeType } from "../types-interfaces/TAttributeType";
 
-type TProps = { weapon: IWeapon, clickHandler(trait: string, id: number | string, selected: boolean): void, subtypeHandler(weaponID: number, subtype: TSubtype): void; };
+type TProps = { weapon: TWeapon, clickHandler(trait: string, id: number | string, selected: boolean): void, subtypeHandler(weaponID: number, subtype: TSubtype): void; };
 type TSubtype = "light" | "medium" | "heavy";
 
 const initialAvailableTraits = weaponTraitConstants;

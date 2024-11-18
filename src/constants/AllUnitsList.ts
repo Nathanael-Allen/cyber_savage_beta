@@ -1,10 +1,10 @@
- import { IUnit } from "../interfaces/IUnit";
+import { TUnit } from "../types-interfaces/types";
 
-const availableUnits: IUnit[] = [
+const availableUnits: TUnit[] = [
   {
     level: 1,
     type: "Grunt",
-    availableWeapons: [{ type: "ranged", techLevel: "simple" }],
+    equippedWeapons: [{ type: "ranged", techLevel: "simple" }],
     numTraits: 1,
     speed: 6,
     health: 12,
@@ -16,7 +16,7 @@ const availableUnits: IUnit[] = [
   {
     level: 1,
     type: "Fighter",
-    availableWeapons: [{ type: "melee", techLevel: "simple" }],
+    equippedWeapons: [{ type: "melee", techLevel: "simple" }],
     numTraits: 1,
     speed: 7,
     health: 12,
@@ -28,7 +28,7 @@ const availableUnits: IUnit[] = [
   {
     level: 2,
     type: "Trooper",
-    availableWeapons: [{ type: "ranged", techLevel: "standard" }],
+    equippedWeapons: [{ type: "ranged", techLevel: "standard" }],
     numTraits: 1,
     speed: 6,
     health: 14,
@@ -40,7 +40,7 @@ const availableUnits: IUnit[] = [
   {
     level: 2,
     type: "Warrior",
-    availableWeapons: [{ type: "melee", techLevel: "standard" }],
+    equippedWeapons: [{ type: "melee", techLevel: "standard" }],
     numTraits: 1,
     speed: 7,
     health: 14,
@@ -52,7 +52,7 @@ const availableUnits: IUnit[] = [
   {
     level: 2,
     type: "Outrider",
-    availableWeapons: [
+    equippedWeapons: [
       { type: "melee", techLevel: "simple" },
       { type: "ranged", techLevel: "simple" },
     ],
@@ -67,7 +67,7 @@ const availableUnits: IUnit[] = [
   {
     level: 2,
     type: "Mage",
-    availableWeapons: [{ type: "melee", techLevel: "simple" }],
+    equippedWeapons: [{ type: "melee", techLevel: "simple" }],
     numTraits: 2,
     numSpells: 2,
     speed: 6,
@@ -80,7 +80,7 @@ const availableUnits: IUnit[] = [
   {
     level: 3,
     type: "Gunner",
-    availableWeapons: [{ type: "ranged", techLevel: "advanced" }],
+    equippedWeapons: [{ type: "ranged", techLevel: "advanced" }],
     numTraits: 2,
     speed: 6,
     health: 16,
@@ -92,7 +92,7 @@ const availableUnits: IUnit[] = [
   {
     level: 3,
     type: "Vanguard",
-    availableWeapons: [{ type: "melee", techLevel: "advanced" }],
+    equippedWeapons: [{ type: "melee", techLevel: "advanced" }],
     numTraits: 2,
     speed: 7,
     health: 16,
@@ -104,7 +104,7 @@ const availableUnits: IUnit[] = [
   {
     level: 3,
     type: "Mercenary",
-    availableWeapons: [
+    equippedWeapons: [
       { type: "ranged", techLevel: "standard" },
       { type: "melee", techLevel: "standard" },
     ],
@@ -119,7 +119,7 @@ const availableUnits: IUnit[] = [
   {
     level: 3,
     type: "Magus",
-    availableWeapons: [{ type: "melee", techLevel: "standard" }],
+    equippedWeapons: [{ type: "melee", techLevel: "standard" }],
     numTraits: 2,
     numSpells: 3,
     speed: 6,
@@ -132,7 +132,7 @@ const availableUnits: IUnit[] = [
   {
     level: 4,
     type: "Veteran",
-    availableWeapons: [{ type: "ranged", techLevel: "advanced" }],
+    equippedWeapons: [{ type: "ranged", techLevel: "advanced" }],
     numTraits: 3,
     speed: 6,
     health: 18,
@@ -144,7 +144,7 @@ const availableUnits: IUnit[] = [
   {
     level: 4,
     type: "Champion",
-    availableWeapons: [{ type: "melee", techLevel: "advanced" }],
+    equippedWeapons: [{ type: "melee", techLevel: "advanced" }],
     numTraits: 3,
     speed: 7,
     health: 18,
@@ -156,7 +156,7 @@ const availableUnits: IUnit[] = [
   {
     level: 4,
     type: "Commando",
-    availableWeapons: [
+    equippedWeapons: [
       { type: "ranged", techLevel: "advanced" },
       { type: "melee", techLevel: "advanced" },
     ],
@@ -171,7 +171,7 @@ const availableUnits: IUnit[] = [
   {
     level: 4,
     type: "Archmage",
-    availableWeapons: [{ type: "melee", techLevel: "advanced" }],
+    equippedWeapons: [{ type: "melee", techLevel: "advanced" }],
     numTraits: 2,
     numSpells: 4,
     speed: 6,

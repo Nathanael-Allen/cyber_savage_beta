@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TAttributeType } from "../interfaces/TAttributeType";
+import { TAttributeType } from "../types-interfaces/TAttributeType";
 import { TAttributeClickHandler } from "./ComUnit";
 
 type TDropdownProps = {
