@@ -22,3 +22,5 @@ const FlawsList: TFlaw[] = [
   {name: "Weak Stomach", description: "When an ally dies within 3\" of this model -1 priority."},
   {name: "Bad Equipment", description: "Glancing hits do -1 damage."},
 ]
+
+export {FlawsList}
