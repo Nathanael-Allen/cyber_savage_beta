@@ -3,7 +3,7 @@ import { TUnit } from "../types-interfaces/types";
 import { SpellsList } from "../constants/SpellsList";
 type props = { unit: TUnit };
 
-export default function ({ unit }: props) {
+export default function ComEditWindow ({ unit }: props) {
   const {
     type,
     level,

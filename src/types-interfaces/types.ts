@@ -5,7 +5,7 @@ type TUnit = {
   readonly level: 1 | 2 | 3 | 4;
   readonly type: string;
   equippedWeapons: TWeapon[];
-  numCharacteristics: number;
+  numTraits: number;
   speed?: number;
   health?: number;
   diceMelee?: TDicesType;
@@ -36,7 +36,15 @@ type TCharacteristics = { name: string; description: string };
 
 type TFlaw = { name: string; description: string };
 
-type TSpells = {name: string, spellocity: TDicesType | "target", range: string, fizzle?: string, weak?: string, adequate?: string, exemplary?: string};
+type TSpells = {
+  name: string;
+  spellocity: TDicesType | "target";
+  range: string;
+  fizzle?: string;
+  weak?: string;
+  adequate?: string;
+  exemplary?: string;
+};
 
 type TWeaponTrait = {
   name: string;
@@ -47,4 +55,14 @@ type TWeaponTrait = {
 
 type TAttributeType = "trait" | "spell" | "weaponTrait";
 
-export type { TUnit, TUnitID, TWeapon, TDicesType, TAttributeType, TCharacteristics, TSpells, TWeaponTrait, TFlaw};
+export type {
+  TUnit,
+  TUnitID,
+  TWeapon,
+  TDicesType,
+  TAttributeType,
+  TCharacteristics,
+  TSpells,
+  TWeaponTrait,
+  TFlaw,
+};

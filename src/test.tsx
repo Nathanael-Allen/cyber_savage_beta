@@ -1,6 +1,6 @@
+import ComEditWindow from "./components/ComEditWindow";
 import ComUnitNew from "./components/ComUnitNew";
-import { TUnit } from "./types-interfaces/TUnit";
-
+import { TUnit } from "./types-interfaces/types";
 
 export default function Test() { 
   const myUnit: TUnit = {
@@ -20,6 +20,6 @@ export default function Test() {
   }
   
   return (
-    <ComUnitNew unit={myUnit} />
+    <ComEditWindow unit={myUnit} />
   )
 }

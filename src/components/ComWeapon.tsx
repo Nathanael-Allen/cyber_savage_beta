@@ -1,65 +1,38 @@
-import { useState } from "react";
-import TWeapon from "../types-interfaces/TWeapon";
-import ComAttributeDropdown from "./ComAttributeDropdown";
-import weaponTraitConstants from "../constants/weaponTraitConstants";
-import ComEquippedAttributes from "./ComEquippedAttributes";
-import { TAttributeType } from "../types-interfaces/TAttributeType";
+import { TWeapon } from "../types-interfaces/types";
+import { WeaponTraitsList } from "../constants/WeaponTraitsList";
 
-type TProps = { weapon: TWeapon, clickHandler(trait: string, id: number | string, selected: boolean): void, subtypeHandler(weaponID: number, subtype: TSubtype): void; };
-type TSubtype = "light" | "medium" | "heavy";
+type props = {weapon: TWeapon, clickHandler(): TWeapon}
 
-const initialAvailableTraits = weaponTraitConstants;
-
-export default function ComWeapon({ weapon, clickHandler,  subtypeHandler }: TProps) {
-  const [availableTraits] = useState<string[]>(
-    initialAvailableTraits
-  );
-  const subtypeOptions: TSubtype[] = ["light", "medium", "heavy"];
-  const weaponName = weapon.techLevel + " " + weapon.type;
-  
-  function attributeClickHandler(attribute: string, attributeType: TAttributeType, selected: boolean) { 
-    clickHandler(attribute, weapon.id!, selected)
-  }
-
+export default function ComWeapon({weapon, clickHandler}: props) {
   return (
-  <div className="grid grid-cols-3 border border-black p-2 mt-2 mb-2">
-      <h4 className="col-start-1 col-span-3 font-semibold text-lg border-b border-gray-300">{weaponName} ({weapon.subtype})</h4>
-      <div className="col-start-1 col-span-3 flex gap-3 items-center">
-        <p className="font-semibold">Weapon Subtype: </p>
-        {subtypeOptions.map((type) => {
-          let cssName = "w-full p-1 m-1 rounded-md hover:bg-gray-300"
-        if (weapon.subtype === type) {
-            cssName = "w-full p-1 m-1 rounded-md bg-gray-600 text-white"
-          }
+    <div className="grid grid-cols-6 items-center bg-gray-200 rounded-md border-2 border-black min-h-24 m-1">
+      <h4 className="font-semibold text-lg text-center max-md:col-span-6">
+        {weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()} (
+        {weapon.subtype?.toUpperCase()})
+      </h4>
+      <div>
+        <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">
+          {weapon.numAttack}
+        </div>
+        <p className="font-semibold text-center">Attacks</p>
+      </div>
+      <div>
+        <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">
+          {weapon.damage}
+        </div>
+        <p className="font-semibold text-center">Damage</p>
+      </div>
+      <div className="min-h-24 col-span-3">
+        <h4>Weapon Traits {weapon.equippedTraits ? weapon.equippedTraits.length : 0}/{weapon.numTraits}</h4>
+        {WeaponTraitsList.map((trait) => {
           return (
-            <p key={type}>
-              <button
-                className={cssName}
-                onClick={() => {
-                  subtypeHandler(weapon.id!, type);
-                }}
-              >
-                {type}
-              </button>
+            <p className="text-sm m-2">
+              <b>{trait.name}: </b> {trait.description}
             </p>
           );
         })}
       </div>
-      <div className="col-start-1 mr-2">
-        {weapon.numTraits! > 0 && <ComEquippedAttributes attributeType="traits" equippedList={weapon.equippedTraits ? weapon.equippedTraits : []} numTraits={weapon.numTraits} />}
-      </div> 
-      <div className="col-start-2 col-span-2 ml-2">
-      {weapon.numTraits! > 0 && <ComAttributeDropdown
-          availableAttributes={availableTraits}
-          equippedAttributes={weapon.equippedTraits ? weapon.equippedTraits : []}
-          attributeType="weaponTrait"
-          title="Available Weapon Traits"
-          clickHandler={attributeClickHandler}
-        />}
-      </div>
     </div>
   );
+
 }
-
-
-export type {TSubtype}
