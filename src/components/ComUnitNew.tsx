@@ -1,4 +1,4 @@
-import { TUnit } from "../types-interfaces/TUnit";
+import { TUnit } from "../types-interfaces/types";
 
 type props = {unit: TUnit}
 
@@ -13,7 +13,7 @@ export default function ComUnitNew({unit}: props) {
     health,
     speed,
     equippedSpells,
-    equippedTraits,
+    equippedCharacteristics,
     equippedWeapons
   } = unit;
 
@@ -55,9 +55,9 @@ export default function ComUnitNew({unit}: props) {
       </div>
       <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-5 sm:col-span-4 md:col-span-2">
         <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">Characteristics</h4>
-        {equippedTraits?.map((trait) => {
+        {equippedCharacteristics?.map((characteristic) => {
           return (
-            <p className="text-sm m-2"><b>{trait}: </b>This is a trait description placeholder...</p>
+            <p className="text-sm m-2"><b>{characteristic}: </b>This is a trait description placeholder...</p>
           )
         })}
       </div>

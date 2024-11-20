@@ -5,7 +5,7 @@ type TUnit = {
   readonly level: 1 | 2 | 3 | 4;
   readonly type: string;
   equippedWeapons: TWeapon[];
-  numTraits: number;
+  numCharacteristics: number;
   speed?: number;
   health?: number;
   diceMelee?: TDicesType;
@@ -13,7 +13,7 @@ type TUnit = {
   diceDefense?: TDicesType;
   diceWillpower?: TDicesType;
   numSpells?: number;
-  equippedTraits?: string[];
+  equippedCharacteristics?: string[];
   hasFlaw?: boolean;
   equippedSpells?: string[];
   id?: TUnitID;
