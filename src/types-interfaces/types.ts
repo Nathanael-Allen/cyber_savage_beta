@@ -5,7 +5,7 @@ type TUnit = {
   readonly level: 1 | 2 | 3 | 4;
   readonly type: string;
   equippedWeapons: TWeapon[];
-  numTraits: number;
+  numCharacteristics: number;
   speed?: number;
   health?: number;
   diceMelee?: TDicesType;
@@ -19,16 +19,6 @@ type TUnit = {
   id?: TUnitID;
 };
 
-type TWeapon = {
-  type: "ranged" | "melee" | "unarmed";
-  techLevel: "simple" | "standard" | "advanced";
-  numTraits?: number;
-  subtype?: "light" | "medium" | "heavy";
-  equippedTraits?: string[];
-  numAttack?: number;
-  damage?: number;
-  id?: number;
-};
 
 type TDicesType = "d4" | "d6" | "d8" | "d10" | "d12";
 
@@ -46,11 +36,22 @@ type TSpells = {
   exemplary?: string;
 };
 
+type TWeapon = {
+  type: "ranged" | "melee" | "unarmed";
+  techLevel: "simple" | "standard" | "advanced";
+  numTraits?: number;
+  subtype?: "light" | "medium" | "heavy";
+  equippedTraits?: string[];
+  numAttack?: number;
+  damage?: number;
+  id?: number;
+};
+
 type TWeaponTrait = {
   name: string;
   description: string;
   weaponType: "melee" | "ranged" | "both";
-  weaponSubtype?: "light" | "medium" | "heavy" | "all";
+  weaponSubtype: "light" | "medium" | "heavy" | "all";
 };
 
 type TAttributeType = "trait" | "spell" | "weaponTrait";

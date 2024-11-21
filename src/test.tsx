@@ -6,8 +6,8 @@ export default function Test() {
   const myUnit: TUnit = {
     level: 2,
     type: "Mage",
-    equippedWeapons: [{ type: "melee", techLevel: "simple", subtype: "light", damage: 2, numAttack: 4, equippedTraits: ["Rending"] }],
-    numTraits: 2,
+    equippedWeapons: [{ type: "melee", techLevel: "standard", subtype: "light", damage: 2, numAttack: 4, numTraits: 1, equippedTraits: ["Rending"] }],
+    numCharacteristics: 2,
     numSpells: 2,
     speed: 6,
     health: 12,
@@ -16,7 +16,7 @@ export default function Test() {
     diceDefense: "d6",
     diceWillpower: "d6",
     equippedSpells: ["Haste", "Heal"],
-    equippedTraits: ["Heavy Armor", "Hulking"]
+    equippedCharacteristics: ["Heavy Armor", "Hulking"]
   }
   
   return (
