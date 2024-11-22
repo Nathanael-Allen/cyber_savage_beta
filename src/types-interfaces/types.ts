@@ -40,12 +40,14 @@ type TWeapon = {
   type: "ranged" | "melee" | "unarmed";
   techLevel: "simple" | "standard" | "advanced";
   numTraits?: number;
-  subtype?: "light" | "medium" | "heavy";
-  equippedTraits?: string[];
+  subtype?: TWeaponSubtype;
+  equippedTraits?: TWeaponTrait[];
   numAttack?: number;
   damage?: number;
   id?: number;
 };
+
+type TWeaponSubtype = "light" | "medium" | "heavy";
 
 type TWeaponTrait = {
   name: string;
@@ -66,4 +68,5 @@ export type {
   TSpells,
   TWeaponTrait,
   TFlaw,
+  TWeaponSubtype,
 };

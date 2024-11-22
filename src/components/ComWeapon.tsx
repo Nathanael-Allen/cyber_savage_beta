@@ -1,22 +1,38 @@
-import { TWeapon } from "../types-interfaces/types";
+import { TWeapon, TWeaponSubtype, TWeaponTrait } from "../types-interfaces/types";
 import { WeaponTraitsList } from "../constants/WeaponTraitsList";
 
-type props = { weapon: TWeapon; clickHandler?(weapon: TWeapon): TWeapon };
+type props = { weapon: TWeapon; clickHandler(weapon: TWeapon): void };
 
 export default function ComWeapon({ weapon, clickHandler }: props) {
-  const traitCSS = "text-sm p-3 border border-black cursor-pointer hover:bg-gray-600 hover:text-white";
+  const traitCSS = "text-sm p-3 border border-black cursor-pointer hover:bg-blue-100";
   const equippedTraitCSS =
-    "text-sm p-3 border border-black bg-gray-600";
+    "text-sm p-3 border border-black bg-blue-200 cursor-pointer";
+  const subtypeCSS = "py-1 px-4 border border-black rounded-lg font-semibold hover:bg-gray-600 hover:text-white"
+  const equippedTraitNames = weapon.equippedTraits ? weapon.equippedTraits.map((trait) => {return trait.name}) : [];
+  
+  function subTypeHandler(subtype: TWeaponSubtype) {
+    const newWeapon: TWeapon = {
+      ...weapon,
+      subtype: subtype 
+    }
+    clickHandler(newWeapon)
+  }
 
-  function traitHandler(trait: string) {
+  function traitHandler(trait: TWeaponTrait) {
     let newTraits;
-    if (weapon.equippedTraits?.includes(trait)) {
+    if (equippedTraitNames.includes(trait.name) && weapon.equippedTraits) {
       newTraits = weapon.equippedTraits.filter((equippedTrait) => {
-        return equippedTrait != trait;
+        return equippedTrait.name != trait.name;
       })
+      console.log(newTraits)
     } else {
       newTraits = weapon.equippedTraits ? weapon.equippedTraits?.concat([trait]) : [trait]
     }
+    const newWeapon = {
+      ...weapon,
+      equippedTraits: newTraits
+    }
+    clickHandler(newWeapon)
   }
 
   return (
@@ -25,13 +41,13 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
         {weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()}
       </h4>
       <div className="flex col-span-6 gap-4 m-auto mt-4 mb-4">
-        <button className="py-1 px-4 border border-black rounded-lg font-semibold hover:bg-gray-600 hover:text-white">
+        <button onClick={() => {subTypeHandler("light")}} className={weapon.subtype === "light" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
           Light
         </button>
-        <button className="py-1 px-4 border border-black rounded-lg font-semibold hover:bg-gray-600 hover:text-white">
+        <button onClick={() => {subTypeHandler("medium")}} className={weapon.subtype === "medium" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
           Medium
         </button>
-        <button className="py-1 px-4 border border-black rounded-lg font-semibold hover:bg-gray-600 hover:text-white">
+        <button onClick={() => {subTypeHandler("heavy")}} className={weapon.subtype === "heavy" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
           Heavy
         </button>
       </div>
@@ -42,20 +58,22 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
           {weapon.numTraits}
         </h4>
         <div className="max-h-52 overflow-scroll">
-          {WeaponTraitsList.map((trait) => {
+          {WeaponTraitsList.map((trait, index) => {
             // Remove melee traits from list if weapon is ranged and vice versa
             if (trait.weaponType === weapon.type || trait.weaponType === "both") {
               // Filter out subtype specific traits
               if (trait.weaponSubtype === weapon.subtype || trait.weaponSubtype === "all"){
                 return (
-                  <p
+                  <p 
+                    key={index}
+                    onClick={() => traitHandler(trait)}
                     className={
-                      weapon.equippedTraits?.includes(trait.name)
+                      equippedTraitNames.includes(trait.name)
                         ? equippedTraitCSS
                         : traitCSS
                     }
                   >
-                    <button className={weapon.equippedTraits?.includes(trait.name) ? "text-left text-white" : "text-left hover:text-white"}>
+                    <button onClick={() => traitHandler(trait)} className={equippedTraitNames.includes(trait.name) ? "text-left" : "text-left"}>
                       <b>{trait.name}: </b> {trait.description}
                     </button>
                   </p>
