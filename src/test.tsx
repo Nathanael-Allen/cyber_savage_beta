@@ -11,19 +11,19 @@ export default function Test() {
       {
         type: "melee",
         techLevel: "standard",
-        subtype: "light",
-        damage: 2,
-        numAttack: 4,
         numTraits: 1,
+        id: 1,
         equippedTraits: [
-          {
-            name: "Rending",
-            description: "Target gets unfavorable defense stats.",
-            weaponType: "both",
-            weaponSubtype: "all",
-          },        
         ],
       },
+      {
+        type: "ranged",
+        techLevel: "standard",
+        numTraits: 1,
+        id: 2,
+        equippedTraits: [
+        ],
+      }
     ],
     numCharacteristics: 2,
     numSpells: 2,

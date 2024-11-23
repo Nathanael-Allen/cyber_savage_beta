@@ -36,7 +36,10 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
   }
 
   function weaponClickHandler(weapon: TWeapon) {
-    setStateWeapons([weapon]);
+    const updated = stateWeapons.map((equippedWeapon) => {
+      return equippedWeapon.id === weapon.id ? {...weapon} : {...equippedWeapon}
+    })
+    setStateWeapons(updated);
   }
 
   function spellClickHandler(spell: TSpells) {
@@ -101,7 +104,7 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
   return (
     <div>
       <h2 className="font-bold text-2xl text-center">{unit.type}</h2>
-      <div className="relative max-h-96 overflow-scroll rounded-md border-2 border-black m-2 bg-gray-200">
+      <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
         <div 
           onClick={() => {dropdownHandler('char')}}
           className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
@@ -111,32 +114,34 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
           </h4>
           <button><img src={openDropdowns.includes('char') ? "src/public/images/chevron-down.svg" : "src/public/images/chevron-right.svg"} alt="" className="ml-2" /></button>
         </div>
-        {openDropdowns.includes('char') && CharacteristicsList.map((char, index) => {
-          return (
-            <p
-              key={index}
-              className={
-                equippedCharNames.includes(char.name)
-                  ? equippedCharacteristicCSS
-                  : characteristicCSS
-              }
-              onClick={() => {
-                characteristicClickHandler(char);
-              }}
-            >
-              <button
+        <div className="max-h-96 overflow-scroll">        
+          {openDropdowns.includes('char') && CharacteristicsList.map((char, index) => {
+            return (
+              <p
+                key={index}
+                className={
+                  equippedCharNames.includes(char.name)
+                    ? equippedCharacteristicCSS
+                    : characteristicCSS
+                }
                 onClick={() => {
                   characteristicClickHandler(char);
                 }}
-                className="text-left"
               >
-                <b>{char.name}: </b> {char.description}
-              </button>
-            </p>
-          );
-        })}
+                <button
+                  onClick={() => {
+                    characteristicClickHandler(char);
+                  }}
+                  className="text-left"
+                >
+                  <b>{char.name}: </b> {char.description}
+                </button>
+              </p>
+            );
+          })}
+        </div>
       </div>
-      <div className="relative max-h-96 overflow-scroll rounded-md border-2 border-black m-2 bg-gray-200">
+      <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
         <div 
           onClick={() => {dropdownHandler('spell')}}
           className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
@@ -146,27 +151,29 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
           </h4>
           <button><img src={openDropdowns.includes('spell') ? "src/public/images/chevron-down.svg" : "src/public/images/chevron-right.svg"} alt="" className="ml-2" /></button>
         </div>
-        {openDropdowns.includes('spell') && SpellsList.map((spell, index) => {
-          return (
-            <p
-              key={index}
-              className={
-                equippedSpellNames.includes(spell.name)
-                  ? equippedCharacteristicCSS
-                  : characteristicCSS
-              }
-              onClick={() => spellClickHandler(spell)}
-            >
-              <button
+        <div className="max-h-96 overflow-scroll">
+          {openDropdowns.includes('spell') && SpellsList.map((spell, index) => {
+            return (
+              <p
+                key={index}
+                className={
+                  equippedSpellNames.includes(spell.name)
+                    ? equippedCharacteristicCSS
+                    : characteristicCSS
+                }
                 onClick={() => spellClickHandler(spell)}
-                className="text-left"
               >
-                <b>{spell.name}: </b> Range {spell.range} | Spellocity{" "}
-                {spell.spellocity}
-              </button>
-            </p>
-          );
-        })}
+                <button
+                  onClick={() => spellClickHandler(spell)}
+                  className="text-left"
+                >
+                  <b>{spell.name}: </b> Range {spell.range} | Spellocity{" "}
+                  {spell.spellocity}
+                </button>
+              </p>
+            );
+          })}
+        </div>
       </div>
       <div className="m-2 border-2 border-black rounded-md bg-gray-200">
         <div 
@@ -178,7 +185,6 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
           </h4>
           <button><img src={openDropdowns.includes('weapons') ? "src/public/images/chevron-down.svg" : "src/public/images/chevron-right.svg"} alt="" className="ml-2" /></button>
         </div>
-          
         {openDropdowns.includes('weapons') && stateWeapons.map((weapon, index) => {
           return (
             <div key={weapon.type + index}>
