@@ -3,9 +3,9 @@ import { TUnit } from "../types/types";
 const availableUnits: TUnit[] = [
   {
     level: 1,
-    type: "Grunt",
+    unitClass: "Grunt",
     equippedWeapons: [{ type: "ranged", techLevel: "simple" }],
-    numTraits: 1,
+    numCharacteristics: 1,
     speed: 6,
     health: 12,
     diceMelee: "d4",
@@ -15,9 +15,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 1,
-    type: "Fighter",
+    unitClass: "Fighter",
     equippedWeapons: [{ type: "melee", techLevel: "simple" }],
-    numTraits: 1,
+    numCharacteristics: 1,
     speed: 7,
     health: 12,
     diceMelee: "d6",
@@ -27,9 +27,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 2,
-    type: "Trooper",
+    unitClass: "Trooper",
     equippedWeapons: [{ type: "ranged", techLevel: "standard" }],
-    numTraits: 1,
+    numCharacteristics: 1,
     speed: 6,
     health: 14,
     diceMelee: "d4",
@@ -39,9 +39,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 2,
-    type: "Warrior",
+    unitClass: "Warrior",
     equippedWeapons: [{ type: "melee", techLevel: "standard" }],
-    numTraits: 1,
+    numCharacteristics: 1,
     speed: 7,
     health: 14,
     diceMelee: "d8",
@@ -51,12 +51,12 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 2,
-    type: "Outrider",
+    unitClass: "Outrider",
     equippedWeapons: [
       { type: "melee", techLevel: "simple" },
       { type: "ranged", techLevel: "simple" },
     ],
-    numTraits: 1,
+    numCharacteristics: 1,
     speed: 6,
     health: 14,
     diceMelee: "d6",
@@ -66,9 +66,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 2,
-    type: "Mage",
+    unitClass: "Mage",
     equippedWeapons: [{ type: "melee", techLevel: "simple" }],
-    numTraits: 2,
+    numCharacteristics: 2,
     numSpells: 2,
     speed: 6,
     health: 12,
@@ -79,9 +79,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 3,
-    type: "Gunner",
+    unitClass: "Gunner",
     equippedWeapons: [{ type: "ranged", techLevel: "advanced" }],
-    numTraits: 2,
+    numCharacteristics: 2,
     speed: 6,
     health: 16,
     diceMelee: "d6",
@@ -91,9 +91,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 3,
-    type: "Vanguard",
+    unitClass: "Vanguard",
     equippedWeapons: [{ type: "melee", techLevel: "advanced" }],
-    numTraits: 2,
+    numCharacteristics: 2,
     speed: 7,
     health: 16,
     diceMelee: "d10",
@@ -103,12 +103,12 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 3,
-    type: "Mercenary",
+    unitClass: "Mercenary",
     equippedWeapons: [
       { type: "ranged", techLevel: "standard" },
       { type: "melee", techLevel: "standard" },
     ],
-    numTraits: 2,
+    numCharacteristics: 2,
     speed: 6,
     health: 16,
     diceMelee: "d8",
@@ -118,9 +118,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 3,
-    type: "Magus",
+    unitClass: "Magus",
     equippedWeapons: [{ type: "melee", techLevel: "standard" }],
-    numTraits: 2,
+    numCharacteristics: 2,
     numSpells: 3,
     speed: 6,
     health: 14,
@@ -131,9 +131,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 4,
-    type: "Veteran",
+    unitClass: "Veteran",
     equippedWeapons: [{ type: "ranged", techLevel: "advanced" }],
-    numTraits: 3,
+    numCharacteristics: 3,
     speed: 6,
     health: 18,
     diceMelee: "d8",
@@ -143,9 +143,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 4,
-    type: "Champion",
+    unitClass: "Champion",
     equippedWeapons: [{ type: "melee", techLevel: "advanced" }],
-    numTraits: 3,
+    numCharacteristics: 3,
     speed: 7,
     health: 18,
     diceMelee: "d12",
@@ -155,12 +155,12 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 4,
-    type: "Commando",
+    unitClass: "Commando",
     equippedWeapons: [
       { type: "ranged", techLevel: "advanced" },
       { type: "melee", techLevel: "advanced" },
     ],
-    numTraits: 3,
+    numCharacteristics: 3,
     speed: 6,
     health: 18,
     diceMelee: "d10",
@@ -170,9 +170,9 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 4,
-    type: "Archmage",
+    unitClass: "Archmage",
     equippedWeapons: [{ type: "melee", techLevel: "advanced" }],
-    numTraits: 2,
+    numCharacteristics: 2,
     numSpells: 4,
     speed: 6,
     health: 16,
@@ -183,4 +183,4 @@ const availableUnits: TUnit[] = [
   },
 ];
 
-export default availableUnits;
+export {availableUnits};

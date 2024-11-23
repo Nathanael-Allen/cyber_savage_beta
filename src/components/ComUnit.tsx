@@ -4,7 +4,7 @@ type props = {unit: TUnit}
 
 export default function ComUnitNew({unit}: props) {
   const {
-    type,
+    unitClass,
     level,
     diceDefense,
     diceMelee,
@@ -22,7 +22,7 @@ export default function ComUnitNew({unit}: props) {
     <div className="relative max-w-4xl w-4/5 m-auto mb-10 border-2 border-black rounded-md p-4 gap-1 sm:grid sm:grid-cols-4">
       <div className="grid grid-cols-4 bg-gray-700 rounded-md sm:col-start-1 sm:col-span-2 sm:row-start-1 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
-        <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 row-start text-center">{type}</p>
+        <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 row-start text-center">{unitClass}</p>
         <p className="text-white font-semibold text-lg mt-3 col-start-3 col-span-2 text-center">Level {level}</p>
       </div>
       <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:row-start-1 sm:row-span-2">

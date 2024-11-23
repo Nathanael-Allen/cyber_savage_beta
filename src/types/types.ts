@@ -3,7 +3,7 @@ type TUnitID = string | number;
 
 type TUnit = {
   readonly level: 1 | 2 | 3 | 4;
-  readonly type: string;
+  readonly unitClass: string;
   equippedWeapons: TWeapon[];
   numCharacteristics: number;
   speed?: number;

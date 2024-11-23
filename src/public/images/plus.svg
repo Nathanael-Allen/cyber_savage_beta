@@ -1,0 +1,11 @@
+<svg
+  className="stroke-sky-400 h-8"
+  viewBox="0 0 24 24"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    d="M7 12h5m0 0h5m-5 0V7m0 5v5"
+  />
+</svg>
