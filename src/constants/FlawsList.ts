@@ -1,4 +1,4 @@
-import { TFlaw } from "../types-interfaces/types";
+import { TFlaw } from "../types/types";
 
 const FlawsList: TFlaw[] = [
   {name: "Arrogant", description: "Can never attack an enemy that has been attacked by an allied model this turn."},

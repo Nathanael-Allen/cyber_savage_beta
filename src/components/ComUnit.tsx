@@ -1,125 +1,99 @@
-import { useState } from "react";
-import { TUnit } from "../types-interfaces/TUnit";
-import traitListConstants from "../constants/traitListConstants";
-import ComEquippedAttributes from "./ComEquippedAttributes";
-import ComAttributeDropdown from "./ComAttributeDropdown";
-import spellListConstants from "../constants/spellListConstants";
-import ComWeapon, { TSubtype } from "./ComWeapon";
-import TWeapon from "../types-interfaces/TWeapon";
-import { TEquippedUnitsProps } from "../App";
-import { TAttributeType } from "../types-interfaces/TAttributeType";
+import { TUnit } from "../types/types";
 
-interface TUnitProps {
-  unit: TUnit;
-  equippedUnitProps: TEquippedUnitsProps;
-}
+type props = {unit: TUnit}
 
-type TAttributeClickHandler = (
-  attribute: string,
-  type: TAttributeType,
-  selected: boolean
-) => void;
+export default function ComUnitNew({unit}: props) {
+  const {
+    type,
+    level,
+    diceDefense,
+    diceMelee,
+    diceRanged,
+    diceWillpower,
+    health,
+    speed,
+    equippedSpells,
+    equippedCharacteristics,
+    equippedWeapons
+  } = unit;
 
-const initialAvailableTraits = traitListConstants.sort();
-const initialAvailableSpells = spellListConstants.sort();
-
-export default function ComUnit({ unit, equippedUnitProps }: TUnitProps) {
-  const { handleDeleteUnit, handleAddAttribute, handleRemoveAttribute, handleAddWeaponTrait, handleRemoveWeaponTrait, weaponSubtypeHandler } =
-    equippedUnitProps;
-  const [availableTraits] = useState<string[]>(initialAvailableTraits);
-  const [availableSpells] = useState<string[]>(initialAvailableSpells);
-
-  function attributeClickHandler(
-    attribute: string,
-    attributeType: TAttributeType,
-    selected: boolean
-  ): void {
-    if (!selected) {
-      handleAddAttribute(unit.id!, attribute, attributeType);
-    } else {
-      handleRemoveAttribute(unit.id!, attribute, attributeType);
-    }
-  }
-
-  function callbackSubtype(weaponID: number, subtype: TSubtype) {
-    weaponSubtypeHandler(unit.id!, subtype, weaponID)
-  }
   
-  function weaponClickHandler(trait: string, id: number, selected: boolean) {
-    if (!selected) {
-      handleAddWeaponTrait(unit.id!, trait, id)
-    } else { 
-      handleRemoveWeaponTrait(unit.id!, trait, id)
-    }
-  }
-  
-  const equippedWeapons = unit.equippedWeapons.map(
-    (weapon: TWeapon, index: number) => {
-      return <ComWeapon key={weapon.type + index} weapon={weapon} subtypeHandler={callbackSubtype} clickHandler={weaponClickHandler} />;
-    }
-  );
-
   return (
-    <div className="relative border border-black rounded-sm grid grid-cols-3 gap-2 mx-2 my-6 p-2">
-      <h4 className="font-semibold text-lg col-span-3 border-b border-black mb-1">
-        {unit.type}
-      </h4>
-      <button
-        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-        onClick={() => handleDeleteUnit(unit.id!)}
-      >
-        DELETE
-      </button>
-      <div className="col-start-1 col-span-3 p-2 border border-black rounded-md grid grid-cols-3 ">
-        <h4 className="col-span-3 text-center font-semibold mb-4 border-b border-black">
-          Attributes
-        </h4>
-        <div className="col-start-1 mr-2">
-          <div className="">
-            <ComEquippedAttributes
-              equippedList={unit.equippedTraits ? unit.equippedTraits : []}
-              attributeType="traits"
-              numTraits={unit.numTraits}
-            />
-            {unit.numSpells && (
-              <ComEquippedAttributes
-                numSpells={unit.numSpells}
-                equippedList={unit.equippedSpells ? unit.equippedSpells : []}
-                attributeType="spells"
-              />
-            )}
-          </div>
+    <div className="relative max-w-4xl w-4/5 m-auto mb-10 border-2 border-black rounded-md p-4 gap-1 sm:grid sm:grid-cols-4">
+      <div className="grid grid-cols-4 bg-gray-700 rounded-md sm:col-start-1 sm:col-span-2 sm:row-start-1 sm:row-span-2">
+        <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
+        <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 row-start text-center">{type}</p>
+        <p className="text-white font-semibold text-lg mt-3 col-start-3 col-span-2 text-center">Level {level}</p>
+      </div>
+      <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:row-start-1 sm:row-span-2">
+        <div>
+          <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">{health}</div>
+          <p className="font-semibold text-center">Health</p>
         </div>
-        <div className="col-start-2 col-span-2 ml-2">
-          <ComAttributeDropdown
-            availableAttributes={availableTraits}
-            equippedAttributes={unit.equippedTraits ? unit.equippedTraits : []}
-            attributeType="trait"
-            title="Available Traits"
-            clickHandler={attributeClickHandler}
-          />
-          <button>Roll Flaw</button>
-          {unit.numSpells && (
-            <ComAttributeDropdown
-              availableAttributes={availableSpells}
-              equippedAttributes={
-                unit.equippedSpells ? unit.equippedSpells : []
-              }
-              attributeType="spell"
-              title="Available Spells"
-              clickHandler={attributeClickHandler}
-            />
-          )}
+        <div>
+          <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">{speed}</div>
+          <p className="font-semibold text-center">Speed</p>
         </div>
       </div>
-      <div className="col-start-1 col-span-3 p-2 border border-black rounded-md">
-        <h4 className="col-span-3 text-center font-semibold border-b border-black">
-          Weapons
-        </h4>
-        {equippedWeapons}
+      <div className="col-span-4 row-start-4 grid grid-cols-4 bg-gray-200 rounded-md p-2 mt-4 gap-2 border-2 border-black">
+        <div>
+          <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">{diceMelee}</div>
+          <p className="font-semibold text-center">Melee</p>
+        </div>
+        <div>
+          <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">{diceRanged}</div>
+          <p className="font-semibold text-center">Ranged</p>
+        </div>
+        <div>
+          <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">{diceDefense}</div>
+          <p className="font-semibold text-center">Defense</p>
+        </div>        
+        <div>
+          <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">{diceWillpower}</div>
+          <p className="font-semibold text-center">Willpower</p>
+        </div>        
+      </div>
+      <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-5 sm:col-span-4 md:col-span-2">
+        <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">Characteristics</h4>
+        {equippedCharacteristics?.map((characteristic) => {
+          return (
+            <p className="text-sm m-2"><b>{characteristic.name}: </b>{characteristic.description}</p>
+          )
+        })}
+      </div>
+      <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-6 sm:col-span-4 md:col-start-3 md:col-span-2 md:row-start-5">
+      <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">Spells</h4>
+        {equippedSpells?.map((spell) => {
+          return (
+            <p className="text-sm m-2"><b>{spell.name}: </b>Range {spell.range}, Spellocity {spell.spellocity}</p>
+          )
+        })}
+      </div>
+      <div className="min-h-56 border-2 border-black rounded-md mt-4 sm:col-span-4 sm:row-start-7">
+        <h4 className="font-semibold text-center border-b text-xl border-black pb-1 mb-4 bg-gray-700 text-white">Weapons</h4>
+        {equippedWeapons.map((weapon) => {
+          return (
+            <div className="grid grid-cols-6 items-center bg-gray-200 rounded-md border-2 border-black min-h-24 m-1">
+              <h4 className="font-semibold text-lg text-center max-md:col-span-6">{weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()} ({weapon.subtype?.toUpperCase()})</h4>
+              <div>
+                <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">{weapon.numAttack}</div>
+                <p className="font-semibold text-center">Attacks</p>
+              </div> 
+              <div>
+                <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">{weapon.damage}</div>
+                <p className="font-semibold text-center">Damage</p>
+              </div> 
+              <div className="min-h-24 col-span-3">
+                {weapon.equippedTraits?.map((trait) => {
+                  return (
+                    <p className="text-sm m-2"><b>{trait.name}: </b>{trait.description}</p>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
-  );
+  )
 }
-
-export type { TAttributeClickHandler };

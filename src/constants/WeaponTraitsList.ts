@@ -1,4 +1,4 @@
-import { TWeaponTrait } from "../types-interfaces/types";
+import { TWeaponTrait } from "../types/types";
 
 const WeaponTraitsList: TWeaponTrait[] = [
   {

@@ -1,4 +1,4 @@
-import { TSpells } from "../types-interfaces/types";
+import { TSpells } from "../types/types";
 
 const SpellsList: TSpells[] = [
   { name: "Heal", spellocity: "d6", range: '6"' },

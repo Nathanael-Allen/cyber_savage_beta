@@ -1,4 +1,4 @@
-import { TWeapon, TWeaponSubtype, TWeaponTrait } from "../types-interfaces/types";
+import { TWeapon, TWeaponSubtype, TWeaponTrait } from "../types/types";
 import { WeaponTraitsList } from "../constants/WeaponTraitsList";
 
 type props = { weapon: TWeapon; clickHandler(weapon: TWeapon): void };

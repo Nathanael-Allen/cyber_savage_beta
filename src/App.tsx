@@ -2,9 +2,9 @@ import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import { handleAddUnit } from "./utils/clickHandlers/clickHandlers";
 import availableUnits from "./constants/AllUnitsList";
 import { useState } from "react";
-import { TUnit } from "./types-interfaces/types";
+import { TUnit } from "./types/types";
 import ComAlertBox from "./components/ComAlertBox";
-import ComUnitNew from "./components/ComUnitNew";
+import ComUnitNew from "./components/ComUnit";
 
 type TView = "available" | "equipped";
 type TAlert = string | null;

@@ -1,4 +1,4 @@
-import { TUnit } from "../types-interfaces/types";
+import { TUnit } from "../types/types";
 
 const availableUnits: TUnit[] = [
   {

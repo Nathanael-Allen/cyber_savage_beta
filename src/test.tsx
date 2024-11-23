@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ComEditWindow from "./components/ComEditWindow";
-import ComUnitNew from "./components/ComUnitNew";
-import { TUnit, TWeapon } from "./types-interfaces/types";
+import ComUnitNew from "./components/ComUnit";
+import { TUnit, TWeapon } from "./types/types";
 
 export default function Test() {
   const myUnit: TUnit = {
@@ -33,8 +33,8 @@ export default function Test() {
     diceRanged: "d4",
     diceDefense: "d6",
     diceWillpower: "d6",
-    equippedSpells: ["Haste", "Heal"],
-    equippedCharacteristics: ["Heavy Armor", "Hulking"],
+    equippedSpells: [],
+    equippedCharacteristics: [],
   };
   const [unit, setUnit] = useState(myUnit);
 

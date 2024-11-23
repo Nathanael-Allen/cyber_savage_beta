@@ -1,4 +1,4 @@
-import { TCharacteristics } from "../types-interfaces/types";
+import { TCharacteristics } from "../types/types";
 
 const CharacteristicsList: TCharacteristics[] = [
   {

@@ -1,4 +1,4 @@
-import { TUnit } from "../../types-interfaces/TUnit";
+import { TUnit } from "../../types/TUnit";
 
 type TView = "available" | "equipped";
 type TAlert = string | null;

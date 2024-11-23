@@ -13,9 +13,9 @@ type TUnit = {
   diceDefense?: TDicesType;
   diceWillpower?: TDicesType;
   numSpells?: number;
-  equippedCharacteristics?: string[];
+  equippedCharacteristics?: TCharacteristics[];
   hasFlaw?: boolean;
-  equippedSpells?: string[];
+  equippedSpells?: TSpells[];
   id?: TUnitID;
 };
 
