@@ -15,7 +15,7 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
     }
   }
 
-  function addUnitHandler(unit: TUnit) {
+  function handleAddUnit(unit: TUnit) {
     const equippedUnit = {...unit}
     addUnitCallback(equippedUnit) 
   }
@@ -25,6 +25,7 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
 
   return (
     <div>
+      <h1 className="font-semibold text-3xl text-center py-2">Add Units</h1>
       <div className="border-b border-black ">
         <div
           onClick={() => {
@@ -47,7 +48,7 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
         {openDropdowns.includes(1) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 1) {
-              return <ComAvailableUnit key={index} unit={availUnit} />;
+              return <ComAvailableUnit key={index} unit={availUnit} handleAddUnit={handleAddUnit} />;
             }
           })}
       </div>
@@ -73,7 +74,7 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
         {openDropdowns.includes(2) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 2) {
-              return <ComAvailableUnit key={index} unit={availUnit} />;
+              return <ComAvailableUnit key={index} unit={availUnit} handleAddUnit={handleAddUnit} />;
             }
           })}
       </div>
@@ -99,7 +100,7 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
         {openDropdowns.includes(3) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 3) {
-              return <ComAvailableUnit key={index} unit={availUnit} />;
+              return <ComAvailableUnit key={index} unit={availUnit} handleAddUnit={handleAddUnit} />;
             }
           })}
       </div>
@@ -125,7 +126,7 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
         {openDropdowns.includes(4) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 4) {
-              return <ComAvailableUnit key={index} unit={availUnit} />;
+              return <ComAvailableUnit key={index} unit={availUnit} handleAddUnit={handleAddUnit} />;
             }
           })}
       </div>

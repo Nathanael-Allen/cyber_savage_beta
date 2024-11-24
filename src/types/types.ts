@@ -1,6 +1,8 @@
 // Types
 type TUnitID = string | number;
 
+type TMainViews = "addUnits" | "equippedUnits" | "editUnit"
+
 type TUnit = {
   readonly level: 1 | 2 | 3 | 4;
   readonly unitClass: string;
@@ -69,4 +71,5 @@ export type {
   TWeaponTrait,
   TFlaw,
   TWeaponSubtype,
+  TMainViews,
 };

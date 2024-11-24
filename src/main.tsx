@@ -5,7 +5,6 @@ import Test from "./test.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Test></Test>
-    {/* <App /> */}
+    <App />
   </StrictMode>
 );
