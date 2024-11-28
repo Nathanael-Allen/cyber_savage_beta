@@ -18,9 +18,9 @@ export default function ComAvailableUnit({ unit, handleAddUnit }: props) {
             viewBox="0 0 24 24"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M7 12h5m0 0h5m-5 0V7m0 5v5"
             />
           </svg>
@@ -44,13 +44,11 @@ export default function ComAvailableUnit({ unit, handleAddUnit }: props) {
       </div>
       <div className="col-span-6 py-1 flex gap-3 pl-5">
         <p>Weapons:</p>
-        {unit.equippedWeapons.map((weapon) => {
+        {unit.equippedWeapons.map((weapon, index) => {
           return (
-            <>
-              <p>
-                {weapon.techLevel} {weapon.type}
-              </p>
-            </>
+            <p key={index}>
+              {weapon.techLevel} {weapon.type}
+            </p>
           );
         })}
       </div>

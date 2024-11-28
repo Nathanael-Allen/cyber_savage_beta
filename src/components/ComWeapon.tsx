@@ -51,7 +51,7 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
           Heavy
         </button>
       </div>
-      <div className="col-span-6 border border-black rounded-md m-2">
+      {weapon.numTraits && <div className="col-span-6 border border-black rounded-md m-2">
         <h4 className="bg-gray-700 text-white text-center p-1 rounded-t-md">
           Weapon Traits{" "}
           {weapon.equippedTraits ? weapon.equippedTraits.length : 0}/
@@ -82,7 +82,7 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
             }
           })}
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

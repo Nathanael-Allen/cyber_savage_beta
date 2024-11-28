@@ -44,9 +44,9 @@ export default function ComAvailableUnitList({ addUnitCallback }: props) {
             >
               <path
                 stroke="#fff"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.4"
                 d="m15 6-6 6 6 6"
               />
             </svg>
@@ -83,9 +83,9 @@ export default function ComAvailableUnitList({ addUnitCallback }: props) {
             >
               <path
                 stroke="#fff"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.4"
                 d="m15 6-6 6 6 6"
               />
             </svg>
@@ -122,9 +122,9 @@ export default function ComAvailableUnitList({ addUnitCallback }: props) {
             >
               <path
                 stroke="#fff"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.4"
                 d="m15 6-6 6 6 6"
               />
             </svg>
@@ -161,9 +161,9 @@ export default function ComAvailableUnitList({ addUnitCallback }: props) {
             >
               <path
                 stroke="#fff"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.4"
                 d="m15 6-6 6 6 6"
               />
             </svg>

@@ -16,6 +16,11 @@ export default function App() {
     setEquippedUnits([...equippedUnits, updatedUnit])
   }
 
+  function editUnit(unit: TUnit) {
+    setUnitToEdit(unit);
+    setView("editUnit");
+  }
+
   function saveUnit(unit: TUnit) {
     setEquippedUnits(equippedUnits.map((equippedUnit) => {
       if (equippedUnit.id === unit.id) {
@@ -28,6 +33,7 @@ export default function App() {
         }
       }
     }))
+    setView("equippedUnits")
   }
   
   // State variables
@@ -47,14 +53,14 @@ export default function App() {
       {view === "equippedUnits" && 
       <div>
       <h1 className="font-semibold text-3xl text-center py-2">Equipped Units {totalPoints}/10</h1>
-      {equippedUnits.map((unit) => {
+      {equippedUnits.map((unit, index) => {
           return (
-            <ComUnitNew unit={unit} />
+            <ComUnitNew key={index} unit={unit} editCallback={editUnit} />
           )
         })}
       </div>
       }
-      {view === "editUnit" && <ComEditWindow unit={unitToEdit!} />}
+      {view === "editUnit" && <ComEditWindow unit={unitToEdit!} mainHandler={saveUnit} />}
     </div>
 
   )

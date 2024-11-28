@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { TUnit } from "../types/types";
 
-type props = { unit: TUnit };
+type props = { unit: TUnit, editCallback: (unit: TUnit) => void };
 
-export default function ComUnitNew({ unit }: props) {
+export default function ComUnitNew({ unit, editCallback }: props) {
   const [open, setOpen] = useState(false);
   const {
     unitClass,
@@ -25,7 +25,7 @@ export default function ComUnitNew({ unit }: props) {
 
   return (
     <div className="relative max-w-4xl sm:w-4/5 m-auto mb-10 border-2 border-black sm:rounded-md p-2 gap-1 sm:grid sm:grid-cols-4">
-      <button className="text-sky-600 w-full row-start-1 font-semibold text-right pr-1 pb-2 text-2xl sm:col-span-4 hover:text-sky-800">Edit</button>      
+      <button onClick={() => {editCallback(unit)}} className="text-sky-600 w-full row-start-1 font-semibold text-right pr-1 pb-2 text-2xl sm:col-span-4 hover:text-sky-800">Edit</button>      
       <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-2 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
         <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">
@@ -95,9 +95,9 @@ export default function ComUnitNew({ unit }: props) {
             <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
               Characteristics
             </h4>
-            {equippedCharacteristics?.map((characteristic) => {
+            {equippedCharacteristics?.map((characteristic, index) => {
               return (
-                <p className="text-sm m-2">
+                <p className="text-sm m-2" key={index}>
                   <b>{characteristic.name}: </b>
                   {characteristic.description}
                 </p>
@@ -108,9 +108,9 @@ export default function ComUnitNew({ unit }: props) {
             <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
               Spells
             </h4>
-            {equippedSpells?.map((spell) => {
+            {equippedSpells?.map((spell, index) => {
               return (
-                <p className="text-sm m-2">
+                <p className="text-sm m-2" key={index}>
                   <b>{spell.name}: </b>Range {spell.range}, Spellocity{" "}
                   {spell.spellocity}
                 </p>
@@ -121,9 +121,9 @@ export default function ComUnitNew({ unit }: props) {
             <h4 className="font-semibold text-center border-b text-xl border-black pb-1 mb-4 bg-gray-700 text-white">
               Weapons
             </h4>
-            {equippedWeapons.map((weapon) => {
+            {equippedWeapons.map((weapon, index) => {
               return (
-                <div className="grid grid-cols-6 items-center bg-gray-200 rounded-md border-2 border-black min-h-24 m-1">
+                <div key={index} className="grid grid-cols-6 items-center bg-gray-200 rounded-md border-2 border-black min-h-24 m-1">
                   <h4 className="font-semibold text-lg text-center max-md:col-span-6">
                     {weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()}{" "}
                     ({weapon.subtype?.toUpperCase()})
@@ -141,9 +141,9 @@ export default function ComUnitNew({ unit }: props) {
                     <p className="font-semibold text-center">Damage</p>
                   </div>
                   <div className="min-h-24 col-span-3">
-                    {weapon.equippedTraits?.map((trait) => {
+                    {weapon.equippedTraits?.map((trait, index) => {
                       return (
-                        <p className="text-sm m-2">
+                        <p key={index} className="text-sm m-2">
                           <b>{trait.name}: </b>
                           {trait.description}
                         </p>
@@ -170,9 +170,9 @@ export default function ComUnitNew({ unit }: props) {
           viewBox="0 0 24 24"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.4"
             d="m15 6-6 6 6 6"
           />
         </svg>

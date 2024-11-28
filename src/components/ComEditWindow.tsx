@@ -7,7 +7,7 @@ type props = { unit: TUnit; mainHandler(unit: TUnit): void };
 
 export default function ComEditWindow({ unit, mainHandler }: props) {
   const {
-    type,
+    unitClass,
     level,
     diceDefense,
     diceMelee,
@@ -23,7 +23,7 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
     id,
   } = unit;
 
-  // Click handlers   
+  // Click handlers
   function getUnit() {
     return {
       ...unit,
@@ -37,8 +37,10 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
 
   function weaponClickHandler(weapon: TWeapon) {
     const updated = stateWeapons.map((equippedWeapon) => {
-      return equippedWeapon.id === weapon.id ? {...weapon} : {...equippedWeapon}
-    })
+      return equippedWeapon.id === weapon.id
+        ? { ...weapon }
+        : { ...equippedWeapon };
+    });
     setStateWeapons(updated);
   }
 
@@ -64,14 +66,15 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
     }
   }
 
-  function dropdownHandler(dropdown: 'char' | 'spell' | 'weapons') {
+  function dropdownHandler(dropdown: "char" | "spell" | "weapons") {
     if (openDropdowns.includes(dropdown)) {
-      setOpenDropdowns(openDropdowns.filter(openDropdown => openDropdown != dropdown))
+      setOpenDropdowns(
+        openDropdowns.filter((openDropdown) => openDropdown != dropdown)
+      );
     } else {
-      setOpenDropdowns([...openDropdowns, dropdown])
+      setOpenDropdowns([...openDropdowns, dropdown]);
     }
   }
-
 
   // State variables
   const [stateCharacteristics, setStateCharacteristics] = useState(
@@ -83,13 +86,13 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
     equippedSpells ? equippedSpells : []
   );
   const [stateWeapons, setStateWeapons] = useState(equippedWeapons);
-  const [openDropdowns, setOpenDropdowns] = useState<string[]>([])
-  
+  const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
+
   // Updates the unit in top level when a click handler is triggered
-  useEffect(
-    () => mainHandler(getUnit()),
-    [stateCharacteristics, stateWeapons, stateSpells]
-  );
+  // useEffect(
+  //   () => mainHandler(getUnit()),
+  //   [stateCharacteristics, stateWeapons, stateSpells]
+  // );
 
   // Lists of equipped attributes names
   const equippedCharNames = stateCharacteristics.map((char) => char.name);
@@ -103,100 +106,160 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
 
   return (
     <div>
-      <h2 className="font-bold text-2xl text-center">{unit.type}</h2>
+      <h2 className="font-bold text-2xl text-center">{unitClass}</h2>
       <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
-        <div 
-          onClick={() => {dropdownHandler('char')}}
+        <div
+          onClick={() => {
+            dropdownHandler("char");
+          }}
           className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
-          >
+        >
           <h4>
             Characteristics {stateCharacteristics.length}/{numCharacteristics}
           </h4>
-          <button><img src={openDropdowns.includes('char') ? "src/public/images/chevron-down.svg" : "src/public/images/chevron-right.svg"} alt="" className="ml-2" /></button>
+          <button>
+            <svg
+              width="32"
+              height="32"
+              fill="none"
+              transform={openDropdowns.includes('char') ? "rotate(270)" : "rotate(180)" }
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.4"
+                d="m15 6-6 6 6 6"
+              />
+            </svg>
+          </button>
         </div>
-        <div className="max-h-96 overflow-scroll">        
-          {openDropdowns.includes('char') && CharacteristicsList.map((char, index) => {
-            return (
-              <p
-                key={index}
-                className={
-                  equippedCharNames.includes(char.name)
-                    ? equippedCharacteristicCSS
-                    : characteristicCSS
-                }
-                onClick={() => {
-                  characteristicClickHandler(char);
-                }}
-              >
-                <button
+        <div className="max-h-96 overflow-scroll">
+          {openDropdowns.includes("char") &&
+            CharacteristicsList.map((char, index) => {
+              return (
+                <p
+                  key={index}
+                  className={
+                    equippedCharNames.includes(char.name)
+                      ? equippedCharacteristicCSS
+                      : characteristicCSS
+                  }
                   onClick={() => {
                     characteristicClickHandler(char);
                   }}
-                  className="text-left"
                 >
-                  <b>{char.name}: </b> {char.description}
-                </button>
-              </p>
-            );
-          })}
+                  <button
+                    onClick={() => {
+                      characteristicClickHandler(char);
+                    }}
+                    className="text-left"
+                  >
+                    <b>{char.name}: </b> {char.description}
+                  </button>
+                </p>
+              );
+            })}
         </div>
       </div>
-      <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
-        <div 
-          onClick={() => {dropdownHandler('spell')}}
-          className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
+      {stateSpells.length > 0 && (
+        <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
+          <div
+            onClick={() => {
+              dropdownHandler("spell");
+            }}
+            className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
           >
-          <h4>
-            Spells {stateSpells.length}/{numSpells}
-          </h4>
-          <button><img src={openDropdowns.includes('spell') ? "src/public/images/chevron-down.svg" : "src/public/images/chevron-right.svg"} alt="" className="ml-2" /></button>
-        </div>
-        <div className="max-h-96 overflow-scroll">
-          {openDropdowns.includes('spell') && SpellsList.map((spell, index) => {
-            return (
-              <p
-                key={index}
-                className={
-                  equippedSpellNames.includes(spell.name)
-                    ? equippedCharacteristicCSS
-                    : characteristicCSS
-                }
-                onClick={() => spellClickHandler(spell)}
-              >
-                <button
-                  onClick={() => spellClickHandler(spell)}
-                  className="text-left"
-                >
-                  <b>{spell.name}: </b> Range {spell.range} | Spellocity{" "}
-                  {spell.spellocity}
-                </button>
-              </p>
-            );
-          })}
-        </div>
-      </div>
-      <div className="m-2 border-2 border-black rounded-md bg-gray-200">
-        <div 
-          onClick={() => {dropdownHandler('weapons')}}
-          className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
-          >
-          <h4>
-            Weapons
-          </h4>
-          <button><img src={openDropdowns.includes('weapons') ? "src/public/images/chevron-down.svg" : "src/public/images/chevron-right.svg"} alt="" className="ml-2" /></button>
-        </div>
-        {openDropdowns.includes('weapons') && stateWeapons.map((weapon, index) => {
-          return (
-            <div key={weapon.type + index}>
-              <ComWeapon
-                key={index}
-                weapon={weapon}
-                clickHandler={weaponClickHandler}
+            <h4>
+              Spells {stateSpells.length}/{numSpells}
+            </h4>
+            <button>
+            <svg
+              width="32"
+              height="32"
+              fill="none"
+              transform={openDropdowns.includes('spell') ? "rotate(270)" : "rotate(180)" }
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.4"
+                d="m15 6-6 6 6 6"
               />
-            </div>
-          );
-        })}
+            </svg>
+          </button>
+          </div>
+          <div className="max-h-96 overflow-scroll">
+            {openDropdowns.includes("spell") &&
+              SpellsList.map((spell, index) => {
+                return (
+                  <p
+                    key={index}
+                    className={
+                      equippedSpellNames.includes(spell.name)
+                        ? equippedCharacteristicCSS
+                        : characteristicCSS
+                    }
+                    onClick={() => spellClickHandler(spell)}
+                  >
+                    <button
+                      onClick={() => spellClickHandler(spell)}
+                      className="text-left"
+                    >
+                      <b>{spell.name}: </b> Range {spell.range} | Spellocity{" "}
+                      {spell.spellocity}
+                    </button>
+                  </p>
+                );
+              })}
+          </div>
+        </div>
+      )}
+      <div className="m-2 border-2 border-black rounded-md bg-gray-200">
+        <div
+          onClick={() => {
+            dropdownHandler("weapons");
+          }}
+          className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
+        >
+          <h4>Weapons</h4>
+          <button>
+            <svg
+              width="32"
+              height="32"
+              fill="none"
+              transform={openDropdowns.includes('weapons') ? "rotate(270)" : "rotate(180)" }
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.4"
+                d="m15 6-6 6 6 6"
+              />
+            </svg>
+          </button>
+        </div>
+        {openDropdowns.includes("weapons") &&
+          stateWeapons.map((weapon, index) => {
+            return (
+              <div key={weapon.type + index}>
+                <ComWeapon
+                  key={index}
+                  weapon={weapon}
+                  clickHandler={weaponClickHandler}
+                />
+              </div>
+            );
+          })}
       </div>
+      <button className="absolute bottom-6 right-6 font-semibold text-2xl bg-gray-800 text-white p-3 rounded-lg">
+        Save
+      </button>
     </div>
   );
 }
