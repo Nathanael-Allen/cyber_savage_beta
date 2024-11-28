@@ -24,17 +24,18 @@ export default function ComUnitNew({ unit }: props) {
   }
 
   return (
-    <div className="relative max-w-4xl w-4/5 m-auto mb-10 border-2 border-black rounded-md p-4 gap-1 sm:grid sm:grid-cols-4">
-      <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-1 sm:row-span-2">
+    <div className="relative max-w-4xl sm:w-4/5 m-auto mb-10 border-2 border-black sm:rounded-md p-2 gap-1 sm:grid sm:grid-cols-4">
+      <button className="text-sky-600 w-full row-start-1 font-semibold text-right pr-1 pb-2 text-2xl sm:col-span-4 hover:text-sky-800">Edit</button>      
+      <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-2 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
-        <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 row-start text-center">
+        <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">
           {unitClass}
         </p>
         <p className="text-white font-semibold text-lg mt-3 col-start-3 col-span-2 text-center">
           Level {level}
         </p>
       </div>
-      <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:row-start-1 sm:row-span-2 max-sm:hidden">
+      <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:row-start-2 sm:row-span-2 max-sm:hidden">
         <div>
           <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">
             {health}
@@ -50,7 +51,7 @@ export default function ComUnitNew({ unit }: props) {
       </div>
       {open && (
         <div className="sm:col-span-4 sm:grid sm:grid-cols-4 sm:gap-2">
-          <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:row-start-1 sm:row-span-2 sm:hidden">
+          <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:hidden">
             <div>
               <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">
                 {health}
@@ -157,10 +158,11 @@ export default function ComUnitNew({ unit }: props) {
       )}
       <div
         onClick={handleOpen}
-        className="flex justify-center items-center flex-row rounded-b-md text-center text-white font-semibold text-lg bg-gray-700 py-2 border-t border-white cursor-pointer sm:col-span-4 sm:row-start-7"
+        className="group flex justify-center items-center flex-row rounded-b-md text-center text-white font-semibold text-lg bg-gray-700 py-2 border-t border-white cursor-pointer sm:col-span-4 sm:row-start-7 hover:shadow-custom"
       >
         <button className="pb-1">{!open ? "Show" : "Hide"} Details </button>
         <svg
+          className="stroke-white group-hover:stroke-gray-200"
           width="32"
           height="32"
           fill="none"
@@ -168,7 +170,6 @@ export default function ComUnitNew({ unit }: props) {
           viewBox="0 0 24 24"
         >
           <path
-            stroke="#ffff"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2.4"

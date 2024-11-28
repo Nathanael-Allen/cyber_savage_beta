@@ -3,9 +3,9 @@ import { availableUnits } from "../constants/AllUnitsList";
 import ComAvailableUnit from "./ComAvailableUnit";
 import { useState } from "react";
 
-type props = {addUnitCallback(unit: TUnit): void}
+type props = { addUnitCallback(unit: TUnit): void };
 
-export default function ComAvailableUnitList({addUnitCallback}: props) {
+export default function ComAvailableUnitList({ addUnitCallback }: props) {
   // Click handlers
   function dropdownHandler(level: number) {
     if (openDropdowns.includes(level)) {
@@ -16,8 +16,8 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
   }
 
   function handleAddUnit(unit: TUnit) {
-    const equippedUnit = {...unit}
-    addUnitCallback(equippedUnit) 
+    const equippedUnit = { ...unit };
+    addUnitCallback(equippedUnit);
   }
 
   // State variables
@@ -35,20 +35,33 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
         >
           <h2 className="pb-1">Level 1</h2>
           <button>
-            <img
-              src={
-                openDropdowns.includes(1)
-                  ? "src/public/images/chevron-down.svg"
-                  : "src/public/images/chevron-right.svg"
-              }
-              alt="dropdown arrow"
-            />
+            <svg
+              width="32"
+              height="32"
+              fill="none"
+              transform={!openDropdowns.includes(1) ? "rotate(180)" : "rotate(270)"}
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.4"
+                d="m15 6-6 6 6 6"
+              />
+            </svg>
           </button>
         </div>
         {openDropdowns.includes(1) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 1) {
-              return <ComAvailableUnit key={index} unit={availUnit} handleAddUnit={handleAddUnit} />;
+              return (
+                <ComAvailableUnit
+                  key={index}
+                  unit={availUnit}
+                  handleAddUnit={handleAddUnit}
+                />
+              );
             }
           })}
       </div>
@@ -61,20 +74,33 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
         >
           <h2 className="pb-1">Level 2</h2>
           <button>
-            <img
-              src={
-                openDropdowns.includes(2)
-                  ? "src/public/images/chevron-down.svg"
-                  : "src/public/images/chevron-right.svg"
-              }
-              alt="dropdown arrow"
-            />
+          <svg
+              width="32"
+              height="32"
+              fill="none"
+              transform={!openDropdowns.includes(2) ? "rotate(180)" : "rotate(270)"}
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.4"
+                d="m15 6-6 6 6 6"
+              />
+            </svg>
           </button>
         </div>
         {openDropdowns.includes(2) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 2) {
-              return <ComAvailableUnit key={index} unit={availUnit} handleAddUnit={handleAddUnit} />;
+              return (
+                <ComAvailableUnit
+                  key={index}
+                  unit={availUnit}
+                  handleAddUnit={handleAddUnit}
+                />
+              );
             }
           })}
       </div>
@@ -87,25 +113,38 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
         >
           <h2 className="pb-1">Level 3</h2>
           <button>
-            <img
-              src={
-                openDropdowns.includes(3)
-                  ? "src/public/images/chevron-down.svg"
-                  : "src/public/images/chevron-right.svg"
-              }
-              alt="dropdown arrow"
-            />
+          <svg
+              width="32"
+              height="32"
+              fill="none"
+              transform={!openDropdowns.includes(3) ? "rotate(180)" : "rotate(270)"}
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.4"
+                d="m15 6-6 6 6 6"
+              />
+            </svg>
           </button>
         </div>
         {openDropdowns.includes(3) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 3) {
-              return <ComAvailableUnit key={index} unit={availUnit} handleAddUnit={handleAddUnit} />;
+              return (
+                <ComAvailableUnit
+                  key={index}
+                  unit={availUnit}
+                  handleAddUnit={handleAddUnit}
+                />
+              );
             }
           })}
       </div>
       <div className="">
-      <div
+        <div
           onClick={() => {
             dropdownHandler(4);
           }}
@@ -113,20 +152,33 @@ export default function ComAvailableUnitList({addUnitCallback}: props) {
         >
           <h2 className="pb-1">Level 4</h2>
           <button>
-            <img
-              src={
-                openDropdowns.includes(4)
-                  ? "src/public/images/chevron-down.svg"
-                  : "src/public/images/chevron-right.svg"
-              }
-              alt="dropdown arrow"
-            />
+          <svg
+              width="32"
+              height="32"
+              fill="none"
+              transform={!openDropdowns.includes(4) ? "rotate(180)" : "rotate(270)"}
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.4"
+                d="m15 6-6 6 6 6"
+              />
+            </svg>
           </button>
         </div>
         {openDropdowns.includes(4) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 4) {
-              return <ComAvailableUnit key={index} unit={availUnit} handleAddUnit={handleAddUnit} />;
+              return (
+                <ComAvailableUnit
+                  key={index}
+                  unit={availUnit}
+                  handleAddUnit={handleAddUnit}
+                />
+              );
             }
           })}
       </div>

@@ -3,17 +3,37 @@ import { TMainViews, TUnit } from "./types/types"
 import ComAvailableUnitList from "./components/ComAvailableUnitList"
 import ComUnitNew from "./components/ComUnit"
 import getTotalPoints from "./utils/getTotalPoints"
+import ComEditWindow from "./components/ComEditWindow"
 
 
 export default function App() {
   // Click Handlers
   function handleAddUnit(unit:TUnit) {
-    setEquippedUnits([...equippedUnits, unit])
+    const updatedUnit = {
+      ...unit,
+      id: equippedUnits.length
+    }
+    setEquippedUnits([...equippedUnits, updatedUnit])
+  }
+
+  function saveUnit(unit: TUnit) {
+    setEquippedUnits(equippedUnits.map((equippedUnit) => {
+      if (equippedUnit.id === unit.id) {
+        return {
+          ...unit
+        }
+      } else {
+        return {
+          ...equippedUnit
+        }
+      }
+    }))
   }
   
   // State variables
   const [view, setView] = useState<TMainViews>("addUnits")
   const [equippedUnits, setEquippedUnits] = useState<TUnit[]>([])
+  const [unitToEdit, setUnitToEdit] = useState<TUnit>()
   const totalPoints = getTotalPoints(equippedUnits);
   
   return (
@@ -34,6 +54,7 @@ export default function App() {
         })}
       </div>
       }
+      {view === "editUnit" && <ComEditWindow unit={unitToEdit!} />}
     </div>
 
   )
