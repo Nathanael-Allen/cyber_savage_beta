@@ -24,7 +24,7 @@ export default function ComUnitNew({ unit, editCallback }: props) {
   }
 
   return (
-    <div className="relative max-w-4xl sm:w-4/5 m-auto mb-10 border-2 border-black sm:rounded-md p-2 gap-1 sm:grid sm:grid-cols-4">
+    <div className="relative max-w-4xl md:w-4/5 m-auto mb-10 border-2 border-black sm:rounded-md p-2 gap-1 sm:grid sm:grid-cols-4">
       <button onClick={() => {editCallback(unit)}} className="text-sky-600 w-full row-start-1 font-semibold text-right pr-1 pb-2 text-2xl sm:col-span-4 hover:text-sky-800">Edit</button>      
       <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-2 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
@@ -91,7 +91,7 @@ export default function ComUnitNew({ unit, editCallback }: props) {
               <p className="font-semibold text-center">Willpower</p>
             </div>
           </div>
-          <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-5 sm:col-span-4 md:col-span-2">
+          {unit.numCharacteristics && <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-5 sm:col-span-4 md:col-span-2">
             <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
               Characteristics
             </h4>
@@ -103,8 +103,8 @@ export default function ComUnitNew({ unit, editCallback }: props) {
                 </p>
               );
             })}
-          </div>
-          <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-6 sm:col-span-4 md:col-start-3 md:col-span-2 md:row-start-5">
+          </div>}
+          {unit.numSpells && <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-6 sm:col-span-4 md:col-start-3 md:col-span-2 md:row-start-5">
             <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
               Spells
             </h4>
@@ -116,7 +116,7 @@ export default function ComUnitNew({ unit, editCallback }: props) {
                 </p>
               );
             })}
-          </div>
+          </div>}
           <div className="min-h-56 border-2 border-black rounded-md mt-4 sm:col-span-4 sm:row-start-7">
             <h4 className="font-semibold text-center border-b text-xl border-black pb-1 mb-4 bg-gray-700 text-white">
               Weapons

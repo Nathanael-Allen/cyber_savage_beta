@@ -3,9 +3,9 @@ import { TCharacteristics, TSpells, TUnit, TWeapon } from "../types/types";
 import { SpellsList } from "../constants/SpellsList";
 import ComWeapon from "./ComWeapon";
 import { CharacteristicsList } from "../constants/CharacteristicsList";
-type props = { unit: TUnit; mainHandler(unit: TUnit): void };
+type props = { unit: TUnit; saveHandler(unit: TUnit): void, cancelHandler(): void};
 
-export default function ComEditWindow({ unit, mainHandler }: props) {
+export default function ComEditWindow({ unit, saveHandler, cancelHandler }: props) {
   const {
     unitClass,
     level,
@@ -34,6 +34,12 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
       equippedWeapons: stateWeapons,
     };
   }
+
+  function saveUnit() {
+    const updatedUnit = getUnit();
+    saveHandler(updatedUnit);
+  }
+  
 
   function weaponClickHandler(weapon: TWeapon) {
     const updated = stateWeapons.map((equippedWeapon) => {
@@ -76,6 +82,8 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
     }
   }
 
+  
+
   // State variables
   const [stateCharacteristics, setStateCharacteristics] = useState(
     equippedCharacteristics ? equippedCharacteristics : []
@@ -88,12 +96,6 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
   const [stateWeapons, setStateWeapons] = useState(equippedWeapons);
   const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
 
-  // Updates the unit in top level when a click handler is triggered
-  // useEffect(
-  //   () => mainHandler(getUnit()),
-  //   [stateCharacteristics, stateWeapons, stateSpells]
-  // );
-
   // Lists of equipped attributes names
   const equippedCharNames = stateCharacteristics.map((char) => char.name);
   const equippedSpellNames = stateSpells.map((spell) => spell.name);
@@ -105,7 +107,7 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
     "text-sm p-3 border border-black cursor-pointer bg-blue-200";
 
   return (
-    <div>
+    <div className="mt-8">
       <h2 className="font-bold text-2xl text-center">{unitClass}</h2>
       <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
         <div
@@ -122,7 +124,9 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
               width="32"
               height="32"
               fill="none"
-              transform={openDropdowns.includes('char') ? "rotate(270)" : "rotate(180)" }
+              transform={
+                openDropdowns.includes("char") ? "rotate(270)" : "rotate(180)"
+              }
               viewBox="0 0 24 24"
             >
               <path
@@ -163,7 +167,7 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
             })}
         </div>
       </div>
-      {stateSpells.length > 0 && (
+      {numSpells && (
         <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
           <div
             onClick={() => {
@@ -175,22 +179,26 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
               Spells {stateSpells.length}/{numSpells}
             </h4>
             <button>
-            <svg
-              width="32"
-              height="32"
-              fill="none"
-              transform={openDropdowns.includes('spell') ? "rotate(270)" : "rotate(180)" }
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="#fff"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.4"
-                d="m15 6-6 6 6 6"
-              />
-            </svg>
-          </button>
+              <svg
+                width="32"
+                height="32"
+                fill="none"
+                transform={
+                  openDropdowns.includes("spell")
+                    ? "rotate(270)"
+                    : "rotate(180)"
+                }
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.4"
+                  d="m15 6-6 6 6 6"
+                />
+              </svg>
+            </button>
           </div>
           <div className="max-h-96 overflow-scroll">
             {openDropdowns.includes("spell") &&
@@ -231,7 +239,11 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
               width="32"
               height="32"
               fill="none"
-              transform={openDropdowns.includes('weapons') ? "rotate(270)" : "rotate(180)" }
+              transform={
+                openDropdowns.includes("weapons")
+                  ? "rotate(270)"
+                  : "rotate(180)"
+              }
               viewBox="0 0 24 24"
             >
               <path
@@ -257,7 +269,12 @@ export default function ComEditWindow({ unit, mainHandler }: props) {
             );
           })}
       </div>
-      <button className="absolute bottom-6 right-6 font-semibold text-2xl bg-gray-800 text-white p-3 rounded-lg">
+      <button onClick={cancelHandler} className="">
+        <svg viewBox="0 0 1024 1024" className="fill-gray-800 h-12 absolute top-12 right-4 hover:fill-gray-600">
+          <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z" />
+        </svg>
+      </button>
+      <button onClick={saveUnit} className="fixed bottom-6 right-6 font-semibold text-2xl bg-gray-800 text-white p-3 rounded-lg hover:shadow-custom hover:bg-gray-700">
         Save
       </button>
     </div>

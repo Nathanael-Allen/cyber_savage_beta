@@ -1,19 +1,29 @@
 import { useState } from "react"
-import { TMainViews, TUnit } from "./types/types"
+import { TMainViews, TUnit, TWeapon } from "./types/types"
 import ComAvailableUnitList from "./components/ComAvailableUnitList"
 import ComUnitNew from "./components/ComUnit"
 import getTotalPoints from "./utils/getTotalPoints"
 import ComEditWindow from "./components/ComEditWindow"
+import { availableUnits } from "./constants/AllUnitsList"
+import getNumWeaponTraits from "./utils/getNumWeaponTraits"
 
 
 export default function App() {
   // Click Handlers
   function handleAddUnit(unit:TUnit) {
-    const updatedUnit = {
+    const weapons: TWeapon[] = unit.equippedWeapons.map((weapon, index) => {return {...weapon, id: index, numTraits: getNumWeaponTraits(weapon.techLevel)}})
+    
+    const updatedUnit: TUnit = {
       ...unit,
-      id: equippedUnits.length
+      id: equippedUnits.length,
+      equippedWeapons: weapons
     }
     setEquippedUnits([...equippedUnits, updatedUnit])
+  }
+
+  function cancelHandler() {
+    setUnitToEdit(undefined);
+    setView('equippedUnits')
   }
 
   function editUnit(unit: TUnit) {
@@ -60,7 +70,7 @@ export default function App() {
         })}
       </div>
       }
-      {view === "editUnit" && <ComEditWindow unit={unitToEdit!} mainHandler={saveUnit} />}
+      {view === "editUnit" && <ComEditWindow unit={unitToEdit!} saveHandler={saveUnit} cancelHandler={cancelHandler} />}
     </div>
 
   )

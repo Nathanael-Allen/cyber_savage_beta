@@ -1,5 +1,6 @@
-import { TWeapon, TWeaponSubtype, TWeaponTrait } from "../types/types";
+import { TDicesType, TWeapon, TWeaponSubtype, TWeaponTrait } from "../types/types";
 import { WeaponTraitsList } from "../constants/WeaponTraitsList";
+import updateSubtype from "../utils/updateSubtype";
 
 type props = { weapon: TWeapon; clickHandler(weapon: TWeapon): void };
 
@@ -11,9 +12,12 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
   const equippedTraitNames = weapon.equippedTraits ? weapon.equippedTraits.map((trait) => {return trait.name}) : [];
   
   function subTypeHandler(subtype: TWeaponSubtype) {
+    const { numAttacks, damage } = updateSubtype(subtype);
     const newWeapon: TWeapon = {
       ...weapon,
-      subtype: subtype 
+      subtype: subtype, 
+      damage: damage,
+      numAttack: numAttacks
     }
     clickHandler(newWeapon)
   }
@@ -51,7 +55,7 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
           Heavy
         </button>
       </div>
-      {weapon.numTraits && <div className="col-span-6 border border-black rounded-md m-2">
+      {weapon.numTraits! > 0 && <div className="col-span-6 border border-black rounded-md m-2">
         <h4 className="bg-gray-700 text-white text-center p-1 rounded-t-md">
           Weapon Traits{" "}
           {weapon.equippedTraits ? weapon.equippedTraits.length : 0}/

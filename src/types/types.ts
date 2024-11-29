@@ -26,6 +26,8 @@ type TDicesType = "d4" | "d6" | "d8" | "d10" | "d12";
 
 type TCharacteristics = { name: string; description: string };
 
+type TTechLevel = "simple" | "standard" | "advanced"; 
+
 type TFlaw = { name: string; description: string };
 
 type TSpells = {
@@ -40,7 +42,7 @@ type TSpells = {
 
 type TWeapon = {
   type: "ranged" | "melee" | "unarmed";
-  techLevel: "simple" | "standard" | "advanced";
+  techLevel: TTechLevel;
   numTraits?: number;
   subtype?: TWeaponSubtype;
   equippedTraits?: TWeaponTrait[];
@@ -72,4 +74,5 @@ export type {
   TFlaw,
   TWeaponSubtype,
   TMainViews,
+  TTechLevel,
 };
