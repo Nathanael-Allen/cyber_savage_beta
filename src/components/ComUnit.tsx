@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { TUnit } from "../types/types";
 
-type props = { unit: TUnit, editCallback: (unit: TUnit) => void };
+type props = {
+  unit: TUnit;
+  editCallback: (unit: TUnit) => void;
+  deleteHandler: (id: number | string) => void;
+};
 
-export default function ComUnitNew({ unit, editCallback }: props) {
+export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
   const [open, setOpen] = useState(false);
   const {
     unitClass,
@@ -23,9 +27,31 @@ export default function ComUnitNew({ unit, editCallback }: props) {
     setOpen(!open);
   }
 
+  function deleteUnit() {
+    deleteHandler(unit.id!);
+  }
+
   return (
     <div className="relative max-w-4xl md:w-4/5 m-auto mb-10 border-2 border-black sm:rounded-md p-2 gap-1 sm:grid sm:grid-cols-4">
-      <button onClick={() => {editCallback(unit)}} className="text-sky-600 w-full row-start-1 font-semibold text-right pr-1 pb-2 text-2xl sm:col-span-4 hover:text-sky-800">Edit</button>      
+      <div className="row-start-1 font-semibold text-right px-1 pb-2  sm:col-span-4 flex">
+        <button onClick={deleteUnit}>
+          <svg 
+            className="fill-red-700 h-9 hover:fill-red-800"
+            viewBox="0 0 512 512">
+            <path
+              d="M420.48 121.813 390.187 91.52 256 225.92 121.813 91.52 91.52 121.813 225.92 256 91.52 390.187l30.293 30.293L256 286.08l134.187 134.4 30.293-30.293L286.08 256z"
+            />
+          </svg>
+        </button>
+        <button
+          onClick={() => {
+            editCallback(unit);
+          }}
+          className="text-sky-600 text-2xl ml-auto hover:text-sky-800"
+        >
+          Edit
+        </button>
+      </div>
       <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-2 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
         <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">
@@ -91,39 +117,46 @@ export default function ComUnitNew({ unit, editCallback }: props) {
               <p className="font-semibold text-center">Willpower</p>
             </div>
           </div>
-          {unit.numCharacteristics && <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-5 sm:col-span-4 md:col-span-2">
-            <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
-              Characteristics
-            </h4>
-            {equippedCharacteristics?.map((characteristic, index) => {
-              return (
-                <p className="text-sm m-2" key={index}>
-                  <b>{characteristic.name}: </b>
-                  {characteristic.description}
-                </p>
-              );
-            })}
-          </div>}
-          {unit.numSpells && <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-6 sm:col-span-4 md:col-start-3 md:col-span-2 md:row-start-5">
-            <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
-              Spells
-            </h4>
-            {equippedSpells?.map((spell, index) => {
-              return (
-                <p className="text-sm m-2" key={index}>
-                  <b>{spell.name}: </b>Range {spell.range}, Spellocity{" "}
-                  {spell.spellocity}
-                </p>
-              );
-            })}
-          </div>}
+          {unit.numCharacteristics && (
+            <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-5 sm:col-span-4 md:col-span-2">
+              <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
+                Characteristics
+              </h4>
+              {equippedCharacteristics?.map((characteristic, index) => {
+                return (
+                  <p className="text-sm m-2" key={index}>
+                    <b>{characteristic.name}: </b>
+                    {characteristic.description}
+                  </p>
+                );
+              })}
+            </div>
+          )}
+          {unit.numSpells && (
+            <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-6 sm:col-span-4 md:col-start-3 md:col-span-2 md:row-start-5">
+              <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
+                Spells
+              </h4>
+              {equippedSpells?.map((spell, index) => {
+                return (
+                  <p className="text-sm m-2" key={index}>
+                    <b>{spell.name}: </b>Range {spell.range}, Spellocity{" "}
+                    {spell.spellocity}
+                  </p>
+                );
+              })}
+            </div>
+          )}
           <div className="min-h-56 border-2 border-black rounded-md mt-4 sm:col-span-4 sm:row-start-7">
             <h4 className="font-semibold text-center border-b text-xl border-black pb-1 mb-4 bg-gray-700 text-white">
               Weapons
             </h4>
             {equippedWeapons.map((weapon, index) => {
               return (
-                <div key={index} className="grid grid-cols-6 items-center bg-gray-200 rounded-md border-2 border-black min-h-24 m-1">
+                <div
+                  key={index}
+                  className="grid grid-cols-6 items-center bg-gray-200 rounded-md border-2 border-black min-h-24 m-1"
+                >
                   <h4 className="font-semibold text-lg text-center max-md:col-span-6">
                     {weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()}{" "}
                     ({weapon.subtype?.toUpperCase()})
