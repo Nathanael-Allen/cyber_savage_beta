@@ -50,13 +50,6 @@ type TWeapon = {
   id?: number;
 };
 
-type TAlert = {
-  unitType: string;
-  time: number;
-  index: number;
-  handleRemoveAlert: (index: number) => void;
-};
-
 type TWeaponSubtype = "light" | "medium" | "heavy";
 
 type TWeaponTrait = {
@@ -81,5 +74,4 @@ export type {
   TWeaponSubtype,
   TMainViews,
   TTechLevel,
-  TAlert
 };

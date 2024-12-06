@@ -1,5 +1,5 @@
-import { useEffect, useId, useState } from "react";
-import { TAlert, TMainViews, TUnit, TWeapon } from "./types/types";
+import { useEffect, useId, useRef, useState } from "react";
+import { TMainViews, TUnit, TWeapon } from "./types/types";
 import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import ComUnit from "./components/ComUnit";
 import getTotalPoints from "./utils/getTotalPoints";
@@ -11,12 +11,7 @@ import ComAlert from "./components/ComAlert";
 export default function App() {
   // Click Handlers
   function handleAddUnit(unit: TUnit) {
-    handleAddAlert({
-      unitType: unit.unitClass,
-      time: 3000,
-      index: alerts.length,
-      handleRemoveAlert: handleRemoveAlert,
-    });
+    handleAddAlert(unit.unitClass);
     const weapons: TWeapon[] = unit.equippedWeapons.map((weapon, index) => {
       return {
         ...weapon,
@@ -25,13 +20,8 @@ export default function App() {
       };
     });
 
-    function handleAddAlert(alert: TAlert) {
-      setAlerts([...alerts, alert]);
-    }
-
-    function handleRemoveAlert(index: number) {
-      console.log(index + "removed")
-      setAlerts(alerts.filter((a) => a.index === index));
+    function handleAddAlert(unitClass: string) {
+      setAlert(unitClass);
     }
 
     const updatedUnit: TUnit = {
@@ -81,13 +71,22 @@ export default function App() {
   const [view, setView] = useState<TMainViews>("addUnits");
   const [equippedUnits, setEquippedUnits] = useState<TUnit[]>(getStorage());
   const [unitToEdit, setUnitToEdit] = useState<TUnit>();
-  const [alerts, setAlerts] = useState<TAlert[]>([]);
+  const [alert, setAlert] = useState<string>();
+  const alertTimer = useRef<number>();
   const totalPoints = getTotalPoints(equippedUnits);
 
   useEffect(() => {
     setStorage(equippedUnits);
-    console.log(alerts)
-  }, [equippedUnits, alerts]);
+  }, [equippedUnits]);
+
+  useEffect(() => {
+    if (alert) {
+      alertTimer.current = setTimeout(() => {
+        setAlert(undefined);
+      }, 3000);
+      return () => clearTimeout(alertTimer.current);
+    }
+  }, [alert]);
 
   return (
     <div>
@@ -137,15 +136,13 @@ export default function App() {
           cancelHandler={cancelHandler}
         />
       )}
-      <div className="fixed bottom-4 right-4">
-        {alerts.map((alert, index) => {
-          return (
-            <div key={index} className="border border-black rounded-md text-lg font-semibold bg-gray-200 p-4 ">
-              <ComAlert alert={alert} />
-            </div>
-          );
-        })}
-      </div>
+      {alert && (
+        <div className="fixed bottom-4 right-4">
+          <div className="border border-black rounded-md text-lg font-semibold bg-gray-200 p-4 ">
+            <ComAlert unitClass={alert!} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
