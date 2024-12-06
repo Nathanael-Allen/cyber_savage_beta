@@ -1,7 +1,7 @@
 // Types
 type TUnitID = string | number;
 
-type TMainViews = "addUnits" | "equippedUnits" | "editUnit";
+type TMainViews = "addUnits" | "equippedUnits" | "editUnit" | "main";
 
 type TUnit = {
   readonly level: 1 | 2 | 3 | 4;

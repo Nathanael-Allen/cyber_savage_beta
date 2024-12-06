@@ -7,6 +7,7 @@ import ComEditWindow from "./components/ComEditWindow";
 import getNumWeaponTraits from "./utils/getNumWeaponTraits";
 import { getStorage, setStorage } from "./utils/storage";
 import ComAlert from "./components/ComAlert";
+import ComMainMenu from "./components/ComMainMenu";
 
 export default function App() {
   // Click Handlers
@@ -67,17 +68,17 @@ export default function App() {
     setEquippedUnits(updatedUnits);
   }
 
+  function handleNewArmy() {
+    setView("addUnits")
+  }
+
   // State variables
-  const [view, setView] = useState<TMainViews>("addUnits");
+  const [view, setView] = useState<TMainViews>("main");
   const [equippedUnits, setEquippedUnits] = useState<TUnit[]>(getStorage());
   const [unitToEdit, setUnitToEdit] = useState<TUnit>();
   const [alert, setAlert] = useState<string>();
   const alertTimer = useRef<number>();
   const totalPoints = getTotalPoints(equippedUnits);
-
-  useEffect(() => {
-    setStorage(equippedUnits);
-  }, [equippedUnits]);
 
   useEffect(() => {
     if (alert) {
@@ -91,31 +92,36 @@ export default function App() {
   return (
     <div>
       <header className="w-full flex text-xl bg-gray-800 text-white">
-        <button
-          onClick={() => {
-            setView("addUnits");
-          }}
-          className="border-r border-white py-2 px-4 hover:shadow-custom"
-        >
-          Add Units
-        </button>
-        <button
-          onClick={() => {
-            setView("equippedUnits");
-          }}
-          className="py-2 px-4 border-r border-white hover:shadow-custom"
-        >
-          Equipped Units
-        </button>
+        {view === "main" && <p className="py-2 m-auto">CYBER SAVAGE LIST BUILDER</p>}
+        {view !== "main" && (
+          <button
+            onClick={() => {
+              setView("addUnits");
+            }}
+            className="border-r border-white py-2 px-4 hover:shadow-custom"
+          >
+            Add Units
+          </button>
+        )}
+        {view !== "main" && (
+          <button
+            onClick={() => {
+              setView("equippedUnits");
+            }}
+            className="py-2 px-4 border-r border-white hover:shadow-custom"
+          >
+            Equipped Units
+          </button>
+        )}
       </header>
-
+      {view === "main" && <ComMainMenu handleNewArmy={handleNewArmy}/>}
       {view === "addUnits" && (
         <ComAvailableUnitList addUnitCallback={handleAddUnit} />
       )}
       {view === "equippedUnits" && (
         <div>
           <h1 className="font-semibold text-3xl text-center py-2">
-            Equipped Units {totalPoints}/10
+            Equipped Units<br/><b className="text-lg font-normal">Points: {totalPoints}</b>
           </h1>
           {equippedUnits.map((unit, index) => {
             return (
