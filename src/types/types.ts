@@ -1,7 +1,7 @@
 // Types
 type TUnitID = string | number;
 
-type TMainViews = "addUnits" | "equippedUnits" | "editUnit"
+type TMainViews = "addUnits" | "equippedUnits" | "editUnit";
 
 type TUnit = {
   readonly level: 1 | 2 | 3 | 4;
@@ -21,12 +21,11 @@ type TUnit = {
   id?: TUnitID;
 };
 
-
 type TDicesType = "d4" | "d6" | "d8" | "d10" | "d12";
 
 type TCharacteristics = { name: string; description: string };
 
-type TTechLevel = "simple" | "standard" | "advanced"; 
+type TTechLevel = "simple" | "standard" | "advanced";
 
 type TFlaw = { name: string; description: string };
 
@@ -49,6 +48,13 @@ type TWeapon = {
   numAttack?: number;
   damage?: number;
   id?: number;
+};
+
+type TAlert = {
+  unitType: string;
+  time: number;
+  index: number;
+  handleRemoveAlert: (index: number) => void;
 };
 
 type TWeaponSubtype = "light" | "medium" | "heavy";
@@ -75,4 +81,5 @@ export type {
   TWeaponSubtype,
   TMainViews,
   TTechLevel,
+  TAlert
 };
