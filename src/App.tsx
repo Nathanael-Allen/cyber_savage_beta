@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TMainViews, TUnit, TWeapon } from "./types/types";
 import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import ComUnit from "./components/ComUnit";
@@ -8,6 +8,7 @@ import getNumWeaponTraits from "./utils/getNumWeaponTraits";
 import { getStorage, setStorage } from "./utils/storage";
 import ComAlert from "./components/ComAlert";
 import ComMainMenu from "./components/ComMainMenu";
+import checkCharacteristics from "./utils/checkCharacteristics";
 
 export default function App() {
   // Click Handlers
@@ -22,12 +23,17 @@ export default function App() {
     });
 
     function handleAddAlert(unitClass: string) {
-      setAlert(unitClass);
+      setAlert(`${unitClass} added!`);
     }
 
+    let bonusHealth = unit.bonusHealth ? unit.bonusHealth : 0; 
+    let bonusSpeed = unit.bonusSpeed ? unit.bonusSpeed : 0; 
+    
     const updatedUnit: TUnit = {
       ...unit,
       id: equippedUnits.length,
+      bonusHealth: bonusHealth,
+      bonusSpeed: bonusSpeed,
       equippedWeapons: weapons,
     };
     setEquippedUnits([...equippedUnits, updatedUnit]);
@@ -60,6 +66,13 @@ export default function App() {
     setView("equippedUnits");
   }
 
+  function saveArmy() {
+    if (equippedUnits) {
+      localStorage.setItem("myArmy", JSON.stringify(equippedUnits));
+      setAlert("Army Saved!");
+    }
+  }
+
   function deleteHandler(id: number | string) {
     const updatedUnits = equippedUnits.filter((unit) => {
       return unit.id !== id;
@@ -69,7 +82,16 @@ export default function App() {
   }
 
   function handleNewArmy() {
-    setView("addUnits")
+    setView("addUnits");
+  }
+
+  function handleLoadArmy() {
+    const army = localStorage.getItem("myArmy");
+    if (army) {
+      const parsedArmy = JSON.parse(army);
+      setEquippedUnits(parsedArmy);
+      setView("equippedUnits");
+    }
   }
 
   // State variables
@@ -92,7 +114,9 @@ export default function App() {
   return (
     <div>
       <header className="w-full flex text-xl bg-gray-800 text-white">
-        {view === "main" && <p className="py-2 m-auto">CYBER SAVAGE LIST BUILDER</p>}
+        {view === "main" && (
+          <p className="py-2 m-auto">CYBER SAVAGE LIST BUILDER</p>
+        )}
         {view !== "main" && (
           <button
             onClick={() => {
@@ -114,14 +138,29 @@ export default function App() {
           </button>
         )}
       </header>
-      {view === "main" && <ComMainMenu handleNewArmy={handleNewArmy}/>}
+      {view === "main" && (
+        <ComMainMenu
+          handleNewArmy={handleNewArmy}
+          handleLoadArmy={handleLoadArmy}
+        />
+      )}
       {view === "addUnits" && (
         <ComAvailableUnitList addUnitCallback={handleAddUnit} />
       )}
       {view === "equippedUnits" && (
         <div>
+          <div className="w-full text-right">
+            <button
+              onClick={saveArmy}
+              className="text-lg bg-gray-800 text-white p-2 m-2 font-semibold rounded-md hover:shadow-custom"
+            >
+              Save Army
+            </button>
+          </div>
           <h1 className="font-semibold text-3xl text-center py-2">
-            Equipped Units<br/><b className="text-lg font-normal">Points: {totalPoints}</b>
+            Equipped Units
+            <br />
+            <b className="text-lg font-normal">Points: {totalPoints}</b>
           </h1>
           {equippedUnits.map((unit, index) => {
             return (
@@ -145,7 +184,7 @@ export default function App() {
       {alert && (
         <div className="fixed bottom-4 right-4">
           <div className="border border-black rounded-md text-lg font-semibold bg-gray-200 p-4 ">
-            <ComAlert unitClass={alert!} />
+            <ComAlert message={alert!} />
           </div>
         </div>
       )}

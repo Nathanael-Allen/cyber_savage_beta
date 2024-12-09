@@ -51,7 +51,7 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 2,
-    unitClass: "Outrider",
+    unitClass: "Mercenary",
     equippedWeapons: [
       { type: "melee", techLevel: "simple" },
       { type: "ranged", techLevel: "simple" },
@@ -79,7 +79,7 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 3,
-    unitClass: "Gunner",
+    unitClass: "Veteran",
     equippedWeapons: [{ type: "ranged", techLevel: "advanced" }],
     numCharacteristics: 2,
     speed: 6,
@@ -103,7 +103,7 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 3,
-    unitClass: "Mercenary",
+    unitClass: "Raider",
     equippedWeapons: [
       { type: "ranged", techLevel: "standard" },
       { type: "melee", techLevel: "standard" },
@@ -131,7 +131,7 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 4,
-    unitClass: "Veteran",
+    unitClass: "Commando",
     equippedWeapons: [{ type: "ranged", techLevel: "advanced" }],
     numCharacteristics: 3,
     speed: 6,
@@ -155,7 +155,7 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 4,
-    unitClass: "Commando",
+    unitClass: "Marauder",
     equippedWeapons: [
       { type: "ranged", techLevel: "advanced" },
       { type: "melee", techLevel: "advanced" },

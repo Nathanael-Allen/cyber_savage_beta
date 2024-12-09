@@ -18,6 +18,8 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
     diceWillpower,
     health,
     speed,
+    bonusHealth,
+    bonusSpeed,
     equippedSpells,
     equippedCharacteristics,
     equippedWeapons,
@@ -64,13 +66,13 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
       <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:row-start-2 sm:row-span-2 max-sm:hidden">
         <div>
           <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">
-            {health}
+            {health! + bonusHealth!}
           </div>
           <p className="font-semibold text-center">Health</p>
         </div>
         <div>
           <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">
-            {speed}
+            {speed! + bonusSpeed!}
           </div>
           <p className="font-semibold text-center">Speed</p>
         </div>
@@ -80,13 +82,13 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
           <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:hidden">
             <div>
               <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">
-                {health}
+                {health! + bonusHealth!}
               </div>
               <p className="font-semibold text-center">Health</p>
             </div>
             <div>
               <div className="flex justify-center items-center rounded-full w-14 h-14 m-auto bg-white border-2 border-black text-lg font-semibold">
-                {speed}
+                {speed! + bonusSpeed!}
               </div>
               <p className="font-semibold text-center">Speed</p>
             </div>

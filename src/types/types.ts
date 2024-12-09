@@ -10,6 +10,8 @@ type TUnit = {
   numCharacteristics: number;
   speed?: number;
   health?: number;
+  bonusHealth?: number;
+  bonusSpeed?: number;
   diceMelee?: TDicesType;
   diceRanged?: TDicesType;
   diceDefense?: TDicesType;

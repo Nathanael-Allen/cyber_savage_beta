@@ -1,5 +1,5 @@
-type props = {unitClass: string}
+type props = {message: string}
 
-export default function ComAlert({unitClass}: props) {
-  return <>{unitClass} added!</>;
+export default function ComAlert({message}: props) {
+  return <>{message}</>;
 }

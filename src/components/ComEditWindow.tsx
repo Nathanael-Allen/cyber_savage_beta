@@ -3,6 +3,7 @@ import { TCharacteristics, TSpells, TUnit, TWeapon } from "../types/types";
 import { SpellsList } from "../constants/SpellsList";
 import ComWeapon from "./ComWeapon";
 import { CharacteristicsList } from "../constants/CharacteristicsList";
+import checkCharacteristics from "../utils/checkCharacteristics";
 type props = { unit: TUnit; saveHandler(unit: TUnit): void, cancelHandler(): void};
 
 export default function ComEditWindow({ unit, saveHandler, cancelHandler }: props) {
@@ -17,6 +18,8 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
     numSpells,
     health,
     speed,
+    bonusHealth,
+    bonusSpeed,
     equippedSpells,
     equippedCharacteristics,
     equippedWeapons,
@@ -37,7 +40,9 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
 
   function saveUnit() {
     const updatedUnit = getUnit();
-    saveHandler(updatedUnit);
+    const unitWithBonuses = checkCharacteristics(updatedUnit);
+    console.log(unitWithBonuses)
+    saveHandler(unitWithBonuses);
   }
   
 
