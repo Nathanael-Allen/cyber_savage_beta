@@ -1,4 +1,4 @@
-import { TDicesType, TWeapon, TWeaponSubtype, TWeaponTrait } from "../types/types";
+import { TWeapon, TWeaponSubtype, TWeaponTrait } from "../types/types";
 import { WeaponTraitsList } from "../constants/WeaponTraitsList";
 import updateSubtype from "../utils/updateSubtype";
 

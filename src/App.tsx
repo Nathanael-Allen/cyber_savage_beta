@@ -5,10 +5,9 @@ import ComUnit from "./components/ComUnit";
 import getTotalPoints from "./utils/getTotalPoints";
 import ComEditWindow from "./components/ComEditWindow";
 import getNumWeaponTraits from "./utils/getNumWeaponTraits";
-import { getStorage, setStorage } from "./utils/storage";
+import { getStorage } from "./utils/storage";
 import ComAlert from "./components/ComAlert";
 import ComMainMenu from "./components/ComMainMenu";
-import checkCharacteristics from "./utils/checkCharacteristics";
 
 export default function App() {
   // Click Handlers

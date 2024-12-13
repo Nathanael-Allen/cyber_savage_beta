@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TCharacteristics, TSpells, TUnit, TWeapon } from "../types/types";
 import { SpellsList } from "../constants/SpellsList";
 import ComWeapon from "./ComWeapon";
@@ -9,21 +9,13 @@ type props = { unit: TUnit; saveHandler(unit: TUnit): void, cancelHandler(): voi
 export default function ComEditWindow({ unit, saveHandler, cancelHandler }: props) {
   const {
     unitClass,
-    level,
-    diceDefense,
-    diceMelee,
-    diceRanged,
-    diceWillpower,
     numCharacteristics,
     numSpells,
     health,
     speed,
-    bonusHealth,
-    bonusSpeed,
     equippedSpells,
     equippedCharacteristics,
     equippedWeapons,
-    id,
   } = unit;
 
   // Click handlers
@@ -93,8 +85,8 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
   const [stateCharacteristics, setStateCharacteristics] = useState(
     equippedCharacteristics ? equippedCharacteristics : []
   );
-  const [stateHealth, setStateHealth] = useState(health);
-  const [stateSpeed, setStateSpeed] = useState(speed);
+  const [stateHealth] = useState(health);
+  const [stateSpeed] = useState(speed);
   const [stateSpells, setStateSpells] = useState(
     equippedSpells ? equippedSpells : []
   );
