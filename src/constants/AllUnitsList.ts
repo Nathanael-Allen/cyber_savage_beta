@@ -53,8 +53,8 @@ const availableUnits: TUnit[] = [
     level: 2,
     unitClass: "Mercenary",
     equippedWeapons: [
-      { type: "melee", techLevel: "simple" },
-      { type: "ranged", techLevel: "simple" },
+      { type: "melee", techLevel: "standard" },
+      { type: "ranged", techLevel: "standard" },
     ],
     numCharacteristics: 1,
     speed: 6,
@@ -105,8 +105,8 @@ const availableUnits: TUnit[] = [
     level: 3,
     unitClass: "Raider",
     equippedWeapons: [
-      { type: "ranged", techLevel: "standard" },
-      { type: "melee", techLevel: "standard" },
+      { type: "ranged", techLevel: "advanced" },
+      { type: "melee", techLevel: "advanced" },
     ],
     numCharacteristics: 2,
     speed: 6,

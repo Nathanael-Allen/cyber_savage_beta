@@ -160,6 +160,10 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
               Weapons
             </h4>
             {equippedWeapons.map((weapon, index) => {
+              const bonusAttacks = weapon.bonusAttacks ? weapon.bonusAttacks : 0;
+              const bonusDamage = weapon.bonusDamage ? weapon.bonusDamage : 0;
+              const attacks = weapon.numAttack ? weapon.numAttack : 0;
+              const damage = weapon.damage ? weapon.damage : 0;
               return (
                 <div
                   key={index}
@@ -170,14 +174,14 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
                     ({weapon.subtype?.toUpperCase()})
                   </h4>
                   <div>
-                    <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">
-                      {weapon.numAttack}
+                     <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">
+                      {attacks + bonusAttacks}
                     </div>
                     <p className="font-semibold text-center">Attacks</p>
                   </div>
                   <div>
                     <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">
-                      {weapon.damage}
+                      {damage + bonusDamage}
                     </div>
                     <p className="font-semibold text-center">Damage</p>
                   </div>

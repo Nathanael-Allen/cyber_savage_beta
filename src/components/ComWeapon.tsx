@@ -1,6 +1,7 @@
 import { TWeapon, TWeaponSubtype, TWeaponTrait } from "../types/types";
 import { WeaponTraitsList } from "../constants/WeaponTraitsList";
 import updateSubtype from "../utils/updateSubtype";
+import checkWeaponTraits from "../utils/checkWeaponTraits";
 
 type props = { weapon: TWeapon; clickHandler(weapon: TWeapon): void };
 
@@ -32,9 +33,15 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
     } else {
       newTraits = weapon.equippedTraits ? weapon.equippedTraits?.concat([trait]) : [trait]
     }
-    const newWeapon = {
+    let newWeapon = {
       ...weapon,
       equippedTraits: newTraits
+    }
+    const {bonusAttacks, bonusDamage} = checkWeaponTraits(newWeapon);
+    newWeapon = {
+      ...newWeapon,
+      bonusAttacks: bonusAttacks,
+      bonusDamage: bonusDamage
     }
     clickHandler(newWeapon)
   }

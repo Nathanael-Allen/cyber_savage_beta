@@ -50,6 +50,8 @@ type TWeapon = {
   equippedTraits?: TWeaponTrait[];
   numAttack?: number;
   damage?: number;
+  bonusAttacks?: number;
+  bonusDamage?: number;
   id?: number;
 };
 
