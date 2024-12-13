@@ -15,7 +15,7 @@ export default function updateSubtype(subtype: TWeaponSubtype) {
       break;
     case "heavy":
       numAttacks = 2;
-      damage = 5;
+      damage = 4;
       break;
   }
 

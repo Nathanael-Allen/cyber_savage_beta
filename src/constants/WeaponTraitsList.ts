@@ -155,6 +155,13 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Penetrating",
+    description:
+      "Glancing hits do full damage",
+    weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
+    name: "Penetrating",
     description: "Glancing hits do 2 damage",
     weaponType: "both",
     weaponSubtype: "all",
@@ -183,6 +190,12 @@ const WeaponTraitsList: TWeaponTrait[] = [
     description: "+1 attack (light weapons only).",
     weaponType: "both",
     weaponSubtype: "light",
+  },
+  {
+    name: "Rampage",
+    description: "Immediately after slaying a model with this weapon premake a move action.",
+    weaponType: "both",
+    weaponSubtype: "all",
   },
   {
     name: "Rending",
@@ -219,6 +232,12 @@ const WeaponTraitsList: TWeaponTrait[] = [
     description: "Unfavorable melee, +1 attack (heavy melee weapon only).",
     weaponType: "melee",
     weaponSubtype: "heavy",
+  },
+  {
+    name: "Vengful",
+    description: "Strengthen attacks made with this weapon after the equipped model has performed a reaction. Lasts until the end of the models next activation.",
+    weaponType: "both",
+    weaponSubtype: "all",
   },
   {
     name: "Violent",
