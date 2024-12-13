@@ -9,6 +9,7 @@ type props = { unit: TUnit; saveHandler(unit: TUnit): void, cancelHandler(): voi
 export default function ComEditWindow({ unit, saveHandler, cancelHandler }: props) {
   const {
     unitClass,
+    unitName,
     numCharacteristics,
     numSpells,
     health,
@@ -19,9 +20,10 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
   } = unit;
 
   // Click handlers
-  function getUnit() {
+  function getUnit(): TUnit {
     return {
       ...unit,
+      unitName: unitNameState,
       equippedCharacteristics: stateCharacteristics,
       health: stateHealth,
       speed: stateSpeed,
@@ -82,6 +84,7 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
   
 
   // State variables
+  const [unitNameState, setUnitName] = useState(unitName ? unitName : "")
   const [stateCharacteristics, setStateCharacteristics] = useState(
     equippedCharacteristics ? equippedCharacteristics : []
   );
@@ -106,6 +109,9 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
   return (
     <div className="mt-8">
       <h2 className="font-bold text-2xl text-center">{unitClass}</h2>
+      <div className="flex justify-center items-center">
+        <input className="w-1/2 border border-black rounded-md p-1" onChange={e => setUnitName(e.target.value)} type="text" placeholder={unitName ? unitName : "Unit Name..."} />
+      </div>
       <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
         <div
           onClick={() => {

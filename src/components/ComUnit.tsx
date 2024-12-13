@@ -10,6 +10,7 @@ type props = {
 export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
   const [open, setOpen] = useState(false);
   const {
+    unitName,
     unitClass,
     level,
     diceDefense,
@@ -56,7 +57,12 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
       </div>
       <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-2 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
+        {unitName &&
         <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">
+          {unitName}
+        </p>
+        }
+        <p className="text-white font-semibold text-xl mt-3 col-start-3 col-span-2 text-center">
           {unitClass}
         </p>
         <p className="text-white font-semibold text-lg mt-3 col-start-3 col-span-2 text-center">

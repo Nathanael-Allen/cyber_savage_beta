@@ -153,7 +153,7 @@ export default function App() {
               onClick={saveArmy}
               className="text-lg bg-gray-800 text-white p-2 m-2 font-semibold rounded-md hover:shadow-custom"
             >
-              Save Army
+              Save Force
             </button>
           </div>
           <h1 className="font-semibold text-3xl text-center py-2">

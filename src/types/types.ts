@@ -8,6 +8,7 @@ type TUnit = {
   readonly unitClass: string;
   equippedWeapons: TWeapon[];
   numCharacteristics: number;
+  unitName?: string;
   speed?: number;
   health?: number;
   bonusHealth?: number;
