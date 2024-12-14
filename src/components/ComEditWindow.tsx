@@ -107,10 +107,10 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
     "text-sm p-3 border border-black cursor-pointer bg-blue-200";
 
   return (
-    <div className="mt-8">
-      <h2 className="font-bold text-2xl text-center">{unitClass}</h2>
+    <div className="">
+      <h2 className="mb-8 font-bold text-3xl text-center">{unitClass}</h2>
       <div className="flex justify-center items-center">
-        <input className="w-1/2 border border-black rounded-md p-1" onChange={e => setUnitName(e.target.value)} type="text" placeholder={unitName ? unitName : "Unit Name..."} />
+        <input className="w-11/12 border text-xl border-black rounded-md p-1" onChange={e => setUnitName(e.target.value)} type="text" placeholder={unitName ? unitName : "Unit Name..."} />
       </div>
       <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
         <div
@@ -272,8 +272,8 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
             );
           })}
       </div>
-      <button onClick={cancelHandler} className="">
-        <svg viewBox="0 0 1024 1024" className="fill-gray-800 h-12 absolute top-12 right-4 hover:fill-gray-600">
+      <button onClick={cancelHandler} className="absolute top-0 right-4">
+        <svg viewBox="0 0 1024 1024" className="fill-red-800 h-12 hover:fill-red-600">
           <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z" />
         </svg>
       </button>

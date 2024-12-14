@@ -6,6 +6,10 @@ const CharacteristicsList: TCharacteristics[] = [
     description: 'Always count as in cover unless within 3" of an enemy model',
   },
   {
+    name: "Adaptive",
+    description: 'After this model has been made the target of an attack, all models attackign this model count as unfavorable for the rest of the round.',
+  },
+  {
     name: "Ambush",
     description:
       "Complex action, go on ambush. When an enemy within charge range and LoS activates, this model may make a charge against that model at the end or beginning of any of it's actions.",

@@ -25,7 +25,6 @@ export default function ComAvailableUnitList({ addUnitCallback }: props) {
 
   return (
     <div>
-      <h1 className="font-semibold text-3xl text-center py-2">Add Units</h1>
       <div className="border-b border-black ">
         <div
           onClick={() => {

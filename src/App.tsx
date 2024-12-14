@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { TMainViews, TUnit, TWeapon } from "./types/types";
+import { TForce, TMainViews, TUnit, TWeapon } from "./types/types";
 import ComAvailableUnitList from "./components/ComAvailableUnitList";
 import ComUnit from "./components/ComUnit";
 import getTotalPoints from "./utils/getTotalPoints";
@@ -25,9 +25,9 @@ export default function App() {
       setAlert(`${unitClass} added!`);
     }
 
-    let bonusHealth = unit.bonusHealth ? unit.bonusHealth : 0; 
-    let bonusSpeed = unit.bonusSpeed ? unit.bonusSpeed : 0; 
-    
+    let bonusHealth = unit.bonusHealth ? unit.bonusHealth : 0;
+    let bonusSpeed = unit.bonusSpeed ? unit.bonusSpeed : 0;
+
     const updatedUnit: TUnit = {
       ...unit,
       id: equippedUnits.length,
@@ -66,8 +66,13 @@ export default function App() {
   }
 
   function saveArmy() {
-    if (equippedUnits) {
-      localStorage.setItem("myArmy", JSON.stringify(equippedUnits));
+    if (forceState) {
+      const allForcesJson = localStorage.getItem("forces");
+      const allForces = allForcesJson ? JSON.parse(allForcesJson) : [];
+
+      const force:TForce = {...forceState, units: equippedUnits};
+      const newForces = [...allForces, force]
+      localStorage.setItem("forces", JSON.stringify(newForces));
       setAlert("Army Saved!");
     }
   }
@@ -80,21 +85,20 @@ export default function App() {
     setEquippedUnits(updatedUnits);
   }
 
-  function handleNewArmy() {
-    setView("addUnits");
+  function handleNewArmy(forceName: string) {
+    setForceState({forceID: 1, forceName: forceName, units: []})
+    setView("force");
   }
 
-  function handleLoadArmy() {
-    const army = localStorage.getItem("myArmy");
-    if (army) {
-      const parsedArmy = JSON.parse(army);
-      setEquippedUnits(parsedArmy);
-      setView("equippedUnits");
-    }
+  function handleLoadArmy(force: TForce) {
+    setView('force')
+    setForceState(force);
+    setEquippedUnits(force.units);
   }
 
   // State variables
   const [view, setView] = useState<TMainViews>("main");
+  const [forceState, setForceState] = useState<TForce>()
   const [equippedUnits, setEquippedUnits] = useState<TUnit[]>(getStorage());
   const [unitToEdit, setUnitToEdit] = useState<TUnit>();
   const [alert, setAlert] = useState<string>();
@@ -112,55 +116,88 @@ export default function App() {
 
   return (
     <div>
-      <header className="w-full flex text-xl bg-gray-800 text-white">
-        {view === "main" && (
-          <p className="py-2 m-auto">CYBER SAVAGE LIST BUILDER</p>
-        )}
-        {view !== "main" && (
-          <button
-            onClick={() => {
-              setView("addUnits");
-            }}
-            className="border-r border-white py-2 px-4 hover:shadow-custom"
-          >
-            Add Units
-          </button>
-        )}
-        {view !== "main" && (
-          <button
-            onClick={() => {
-              setView("equippedUnits");
-            }}
-            className="py-2 px-4 border-r border-white hover:shadow-custom"
-          >
-            Equipped Units
-          </button>
-        )}
-      </header>
+      {view === "main" && <header className="w-full flex text-3xl text-center bg-gray-800 text-white">
+      <p className="py-2 m-auto font-anta">CYBER SAVAGE LIST BUILDER</p>
+      </header>}
       {view === "main" && (
         <ComMainMenu
           handleNewArmy={handleNewArmy}
           handleLoadArmy={handleLoadArmy}
         />
       )}
-      {view === "addUnits" && (
-        <ComAvailableUnitList addUnitCallback={handleAddUnit} />
-      )}
-      {view === "equippedUnits" && (
+      {view === "force" && (
         <div>
-          <div className="w-full text-right">
+          <h1 className="text-center font-anta text-4xl underline">
+            {forceState?.forceName}
+          </h1>
+          <div className="flex flex-col gap-6 justify-center items-center my-8">
+            <b className="text-lg font-normal">Points: {totalPoints}</b>
+            <button
+              onClick={() => setView("equippedUnits")}
+              className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
+            >
+              UNITS
+            </button>
             <button
               onClick={saveArmy}
-              className="text-lg bg-gray-800 text-white p-2 m-2 font-semibold rounded-md hover:shadow-custom"
+              className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
             >
-              Save Force
+              SAVE FORCE
             </button>
           </div>
-          <h1 className="font-semibold text-3xl text-center py-2">
-            Equipped Units
-            <br />
-            <b className="text-lg font-normal">Points: {totalPoints}</b>
+        </div>
+      )}
+      {view === "addUnits" && (
+        <div className="relative">
+          <button
+            onClick={() => setView("force")}
+            className="absolute -top-1 right-2"
+          >
+            <svg
+              viewBox="0 0 1024 1024"
+              className="h-11 fill-red-800 hover:fill-red-600"
+            >
+              <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z" />
+            </svg>
+          </button>
+          <h1 className="font-anta font-semibold text-3xl text-center mb-4">
+            ADD
           </h1>
+          <button
+            onClick={() => {
+              setView("equippedUnits");
+            }}
+            className="fixed bottom-12 z-10 right-2 bg-gray-800 font-semibold text-lg text-white p-3 mx-auto text-center rounded-full hover:shadow-custom"
+          >
+            EQUIPPED UNITS
+          </button>
+          <ComAvailableUnitList addUnitCallback={handleAddUnit} />
+        </div>
+      )}
+      {view === "equippedUnits" && (
+        <div className="relative">
+          <button
+            onClick={() => setView("force")}
+            className="absolute -top-1 right-2"
+          >
+            <svg
+              viewBox="0 0 1024 1024"
+              className="h-11 fill-red-800 hover:fill-red-600"
+            >
+              <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z" />
+            </svg>
+          </button>
+          <h1 className="font-anta font-semibold text-3xl text-center">
+            UNITS
+          </h1>
+          <button
+            onClick={() => {
+              setView("addUnits");
+            }}
+            className="fixed bottom-12 z-10 right-2 bg-gray-800 font-semibold text-lg text-white p-3 mx-auto text-center rounded-full hover:shadow-custom"
+          >
+            ADD UNITS
+          </button>
           {equippedUnits.map((unit, index) => {
             return (
               <ComUnit
@@ -181,7 +218,7 @@ export default function App() {
         />
       )}
       {alert && (
-        <div className="fixed bottom-4 right-4">
+        <div className="fixed bottom-4 left-4">
           <div className="border border-black rounded-md text-lg font-semibold bg-gray-200 p-4 ">
             <ComAlert message={alert!} />
           </div>

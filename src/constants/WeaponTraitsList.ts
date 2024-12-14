@@ -110,6 +110,13 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
+    name: "Humiliating",
+    description:
+      "(Wd8) Target counts as 1 level lower",
+    weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
     name: "Incendiary",
     description: "(Wd8) 1 damage.",
     weaponType: "both",

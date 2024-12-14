@@ -9,6 +9,9 @@ export default {
     extend: {
       boxShadow: {
         'custom': 'inset 0px 0px 20px 5px rgb(255 255 255 / .1)'
+      },
+      fontFamily: {
+        anta: ['Anta', 'sans-serif']
       }
     },
   },

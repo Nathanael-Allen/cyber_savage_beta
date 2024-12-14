@@ -1,7 +1,7 @@
 // Types
 type TUnitID = string | number;
 
-type TMainViews = "addUnits" | "equippedUnits" | "editUnit" | "main";
+type TMainViews = "addUnits" | "equippedUnits" | "editUnit" | "main" | "force";
 
 type TUnit = {
   readonly level: 1 | 2 | 3 | 4;
@@ -23,6 +23,12 @@ type TUnit = {
   equippedSpells?: TSpells[];
   id?: TUnitID;
 };
+
+type TForce = {
+  forceName: string;
+  forceID: number;
+  units: TUnit[];  
+}
 
 type TDicesType = "d4" | "d6" | "d8" | "d10" | "d12";
 
@@ -79,4 +85,6 @@ export type {
   TWeaponSubtype,
   TMainViews,
   TTechLevel,
+  TForce,
 };
+
