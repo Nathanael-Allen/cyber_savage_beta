@@ -26,7 +26,7 @@ type TUnit = {
 
 type TForce = {
   forceName: string;
-  forceID: number;
+  forceID: string;
   units: TUnit[];  
 }
 

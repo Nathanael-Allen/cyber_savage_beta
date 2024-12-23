@@ -86,7 +86,7 @@ export default function App() {
   }
 
   function handleNewArmy(forceName: string) {
-    setForceState({forceID: 1, forceName: forceName, units: []})
+    setForceState({forceID: forceName, forceName: forceName, units: []})
     setView("force");
   }
 
