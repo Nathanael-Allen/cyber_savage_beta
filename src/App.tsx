@@ -5,9 +5,10 @@ import ComUnit from "./components/ComUnit";
 import getTotalPoints from "./utils/getTotalPoints";
 import ComEditWindow from "./components/ComEditWindow";
 import getNumWeaponTraits from "./utils/getNumWeaponTraits";
-import { getStorage } from "./utils/storage";
 import ComAlert from "./components/ComAlert";
 import ComMainMenu from "./components/ComMainMenu";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import ComPDF from "./components/ComPDF";
 
 export default function App() {
   // Click Handlers
@@ -68,12 +69,13 @@ export default function App() {
   function saveArmy() {
     if (forceState) {
       const allForcesJson = localStorage.getItem("forces");
-      const allForces = allForcesJson ? JSON.parse(allForcesJson) : [];
-
+      const allForces: TForce[]  = allForcesJson ? JSON.parse(allForcesJson) : [];
+      const updatedForces: TForce[] = allForces.filter((force) => force.forceID !== forceState.forceID); 
+      
       const force:TForce = {...forceState, units: equippedUnits};
-      const newForces = [...allForces, force]
+      const newForces = [...updatedForces, force]
       localStorage.setItem("forces", JSON.stringify(newForces));
-      setAlert("Army Saved!");
+      setAlert("Force Saved!");
     }
   }
 
@@ -87,6 +89,7 @@ export default function App() {
 
   function handleNewArmy(forceName: string) {
     setForceState({forceID: forceName, forceName: forceName, units: []})
+    setEquippedUnits([]);
     setView("force");
   }
 
@@ -99,11 +102,11 @@ export default function App() {
   // State variables
   const [view, setView] = useState<TMainViews>("main");
   const [forceState, setForceState] = useState<TForce>()
-  const [equippedUnits, setEquippedUnits] = useState<TUnit[]>(getStorage());
+  const [equippedUnits, setEquippedUnits] = useState<TUnit[]>([]);
   const [unitToEdit, setUnitToEdit] = useState<TUnit>();
   const [alert, setAlert] = useState<string>();
   const alertTimer = useRef<number>();
-  const totalPoints = getTotalPoints(equippedUnits);
+  const totalPoints = equippedUnits ? getTotalPoints(equippedUnits) : 0;
 
   useEffect(() => {
     if (alert) {
@@ -127,7 +130,9 @@ export default function App() {
       )}
       {view === "force" && (
         <div>
-          <h1 className="text-center font-anta text-4xl underline">
+          <button onClick={() => setView('main')}
+           className="absolute top-2 left-2 text-xl underline font-semibold hover:text-gray-800">Main Menu</button>
+          <h1 className="text-center font-anta text-4xl underline mt-4">
             {forceState?.forceName}
           </h1>
           <div className="flex flex-col gap-6 justify-center items-center my-8">
@@ -143,6 +148,11 @@ export default function App() {
               className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
             >
               SAVE FORCE
+            </button>
+            <button
+              className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
+            >
+              <PDFDownloadLink document={<ComPDF unitList={equippedUnits}/>} fileName={'cyber-savage-' + forceState?.forceName}>PRINT FORCE</PDFDownloadLink>
             </button>
           </div>
         </div>

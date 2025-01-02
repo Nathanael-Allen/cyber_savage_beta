@@ -34,7 +34,7 @@ type TDicesType = "d4" | "d6" | "d8" | "d10" | "d12";
 
 type TCharacteristics = { name: string; description: string };
 
-type TTechLevel = "simple" | "standard" | "advanced";
+type TTechLevel = "simple" | "standard" | "advanced" | "prime";
 
 type TFlaw = { name: string; description: string };
 

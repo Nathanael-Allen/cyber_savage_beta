@@ -2,7 +2,7 @@ import { Document, View, Text, Page } from "@react-pdf/renderer";
 import { TUnit } from "../types/types";
 type props = { unitList: TUnit[] };
 
-export default function Test({ unitList }: props) {
+export default function ComPDF({ unitList }: props) {
   return (
     <Document>
       <Page size="A4" orientation="landscape" style={[{display: 'flex', flexDirection: 'row'}]}>
@@ -11,6 +11,9 @@ export default function Test({ unitList }: props) {
             <View style={[{margin: 10, border: 1, width: 400, height: 580, position: 'relative'}]}>
               <View>
                 <View style={[{position: 'absolute'}]}>
+                  <Text>
+                    {unit.unitName}
+                  </Text>
                   <Text>
                     {unit.unitClass}
                   </Text>
