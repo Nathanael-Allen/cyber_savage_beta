@@ -4,7 +4,7 @@ type TUnitID = string | number;
 type TMainViews = "addUnits" | "equippedUnits" | "editUnit" | "main" | "force";
 
 type TUnit = {
-  readonly level: 1 | 2 | 3 | 4;
+  readonly level: 1 | 2 | 3 | 4 | 5;
   readonly unitClass: string;
   equippedWeapons: TWeapon[];
   numCharacteristics: number;

@@ -118,12 +118,12 @@ export default function ComPDF({ unitList }: props) {
                             <View style={[{display: 'flex', flexDirection: 'row', gap: 10}]}>
                               <View>
                                 <Text>
-                                  {weapon.numAttack} Attacks
+                                  {weapon.bonusAttacks ? weapon.numAttack! + weapon.bonusAttacks : weapon.numAttack} Attacks
                                 </Text>
                               </View>
                               <View>
                                 <Text>
-                                  {weapon.damage} Damage
+                                  {weapon.damage! + (weapon.bonusDamage ? weapon.bonusDamage : 0)} Damage
                                 </Text>
                               </View>
                             </View>

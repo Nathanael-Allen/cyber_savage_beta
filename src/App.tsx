@@ -21,7 +21,6 @@ export default function App() {
         numTraits: getNumWeaponTraits(weapon.techLevel),
       };
     });
-
     function handleAddAlert(unitClass: string) {
       setAlert(`${unitClass} added!`);
     }
@@ -46,6 +45,7 @@ export default function App() {
 
   function editUnit(unit: TUnit) {
     setUnitToEdit(unit);
+    unit.equippedWeapons.forEach((weapon) => console.log('num traits' + weapon.numTraits))
     setView("editUnit");
   }
 
@@ -200,6 +200,7 @@ export default function App() {
           <h1 className="font-anta font-semibold text-3xl text-center">
             UNITS
           </h1>
+          {equippedUnits.length <= 0 && <p className="text-center">empty...</p>}
           <button
             onClick={() => {
               setView("addUnits");

@@ -17,7 +17,7 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
     const newWeapon: TWeapon = {
       ...weapon,
       subtype: subtype, 
-      damage: damage,
+      damage: weapon.techLevel === 'prime' ? damage + 1 : damage,
       numAttack: numAttacks
     }
     clickHandler(newWeapon)

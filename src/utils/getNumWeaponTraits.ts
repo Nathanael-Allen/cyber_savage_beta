@@ -11,6 +11,9 @@ export default function getNumWeaponTraits(techLevel: TTechLevel) {
       numTraits = 1;
       break;
     case "advanced":
+      numTraits = 1;
+      break;
+    case "prime":
       numTraits = 2;
       break;
   }

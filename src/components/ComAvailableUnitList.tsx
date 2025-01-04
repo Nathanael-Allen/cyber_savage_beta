@@ -142,7 +142,7 @@ export default function ComAvailableUnitList({ addUnitCallback }: props) {
             }
           })}
       </div>
-      <div className="">
+      <div className="border-b border-black">
         <div
           onClick={() => {
             dropdownHandler(4);
@@ -171,6 +171,45 @@ export default function ComAvailableUnitList({ addUnitCallback }: props) {
         {openDropdowns.includes(4) &&
           availableUnits.map((availUnit, index) => {
             if (availUnit.level === 4) {
+              return (
+                <ComAvailableUnit
+                  key={index}
+                  unit={availUnit}
+                  handleAddUnit={handleAddUnit}
+                />
+              );
+            }
+          })}
+      </div>
+      <div className="">
+        <div
+          onClick={() => {
+            dropdownHandler(5);
+          }}
+          className="flex justify-center  font-bold text-2xl text-white py-3 bg-gray-800 cursor-pointer hover:shadow-custom"
+        >
+          <h2 className="pb-1">Level 5</h2>
+          <button>
+          <svg
+              width="32"
+              height="32"
+              fill="none"
+              transform={!openDropdowns.includes(5) ? "rotate(180)" : "rotate(270)"}
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.4"
+                d="m15 6-6 6 6 6"
+              />
+            </svg>
+          </button>
+        </div>
+        {openDropdowns.includes(5) &&
+          availableUnits.map((availUnit, index) => {
+            if (availUnit.level === 5) {
               return (
                 <ComAvailableUnit
                   key={index}

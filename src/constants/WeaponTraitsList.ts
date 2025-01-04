@@ -168,12 +168,6 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
-    name: "Penetrating",
-    description: "Glancing hits do 2 damage",
-    weaponType: "both",
-    weaponSubtype: "all",
-  },
-  {
     name: "Power Up",
     description:
       "Spend a combat action to power up. Strengthen attack stats and +1 damage on next attack.",
