@@ -1,4 +1,4 @@
-import { TWeapon, TWeaponSubtype, TWeaponTrait } from "../types/types";
+import { TWeapon, TWeaponSubtype, TWeaponTrait, TWeaponType } from "../types/types";
 import { WeaponTraitsList } from "../constants/WeaponTraitsList";
 import updateSubtype from "../utils/updateSubtype";
 import checkWeaponTraits from "../utils/checkWeaponTraits";
@@ -19,6 +19,14 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
       subtype: subtype, 
       damage: weapon.techLevel === 'prime' ? damage + 1 : damage,
       numAttack: numAttacks
+    }
+    clickHandler(newWeapon)
+  }
+
+  function typeHandler(type: TWeaponType){
+    const newWeapon: TWeapon = {
+      ...weapon,
+      type: type
     }
     clickHandler(newWeapon)
   }
@@ -62,6 +70,14 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
           Heavy
         </button>
       </div>
+      {weapon.changeType && <div className="flex col-span-6 gap-4 m-auto mt-4 mb-4">
+        <button onClick={() => {typeHandler("ranged")}} className={weapon.type === "ranged" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
+          Ranged
+        </button>
+        <button onClick={() => {typeHandler("melee")}} className={weapon.type === "melee" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
+          Melee
+        </button>
+      </div>}
       {weapon.numTraits! > 0 && <div className="col-span-6 border border-black rounded-md m-2">
         <h4 className="bg-gray-700 text-white text-center p-1 rounded-t-md">
           Weapon Traits{" "}

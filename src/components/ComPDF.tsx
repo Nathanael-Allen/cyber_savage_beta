@@ -1,14 +1,18 @@
 import { Document, View, Text, Page } from "@react-pdf/renderer";
 import { TUnit } from "../types/types";
-type props = { unitList: TUnit[] };
+type props = { unitList: TUnit[], forceName: string, discipline: string };
 
-export default function ComPDF({ unitList }: props) {
+export default function ComPDF({ unitList, forceName, discipline }: props) {
   return (
     <Document>
+    {unitList.map((unit, index) => {
+      return (
       <Page size="A4" orientation="landscape" style={[{display: 'flex', flexDirection: 'row'}]}>
-        {unitList.map((unit) => {
-          return (
-            <View style={[{margin: 10, border: 1, width: 400, height: 580, position: 'relative'}]}>
+        <View style={[{display: 'flex', flexDirection: 'row', gap: 10, position: 'absolute', width: 800, top: 2, left: 250,}]}>
+          <Text style={[{fontSize: 24, fontWeight: 'bold'}]}>{forceName}</Text>
+          <Text style={[{fontSize: 24, fontWeight: 'bold'}]}> Combat Discipline: {discipline}</Text>
+        </View>
+            <View style={[{margin: 10, marginTop: 30, border: 1, width: 400, height: 560, position: 'relative'}]}>
               <View>
                 <View style={[{position: 'absolute'}]}>
                   <Text>
@@ -145,9 +149,9 @@ export default function ComPDF({ unitList }: props) {
                   </View>
               </View>
             </View>
-          );
-        })}
       </Page>
+          );
+  })}
     </Document>
   );
 }

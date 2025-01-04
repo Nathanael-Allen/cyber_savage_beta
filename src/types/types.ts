@@ -1,7 +1,13 @@
 // Types
 type TUnitID = string | number;
 
-type TMainViews = "addUnits" | "equippedUnits" | "editUnit" | "main" | "force";
+type TMainViews = "addUnits" | "equippedUnits" | "editUnit" | "main" | "force" | "disciplines";
+
+type TDiscipline = {
+  title: string,
+  description: string,
+  lines: string[]
+}
 
 type TUnit = {
   readonly level: 1 | 2 | 3 | 4 | 5;
@@ -49,7 +55,7 @@ type TSpells = {
 };
 
 type TWeapon = {
-  type: "ranged" | "melee" | "unarmed";
+  type: TWeaponType;
   techLevel: TTechLevel;
   numTraits?: number;
   subtype?: TWeaponSubtype;
@@ -59,9 +65,12 @@ type TWeapon = {
   bonusAttacks?: number;
   bonusDamage?: number;
   id?: number;
+  changeType?: boolean;
 };
 
 type TWeaponSubtype = "light" | "medium" | "heavy";
+
+type TWeaponType = "melee" | "ranged" | "unarmed";
 
 type TWeaponTrait = {
   name: string;
@@ -81,10 +90,12 @@ export type {
   TCharacteristics,
   TSpells,
   TWeaponTrait,
+  TWeaponType,
   TFlaw,
   TWeaponSubtype,
   TMainViews,
   TTechLevel,
   TForce,
+  TDiscipline
 };
 

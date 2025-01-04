@@ -7,8 +7,9 @@ import ComEditWindow from "./components/ComEditWindow";
 import getNumWeaponTraits from "./utils/getNumWeaponTraits";
 import ComAlert from "./components/ComAlert";
 import ComMainMenu from "./components/ComMainMenu";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import ComPDF from "./components/ComPDF";
+import { Disciplines } from "./constants/Disciplines";
 
 export default function App() {
   // Click Handlers
@@ -105,8 +106,12 @@ export default function App() {
   const [equippedUnits, setEquippedUnits] = useState<TUnit[]>([]);
   const [unitToEdit, setUnitToEdit] = useState<TUnit>();
   const [alert, setAlert] = useState<string>();
+  const [disciplineState, setDiscipline] = useState<string>();
   const alertTimer = useRef<number>();
   const totalPoints = equippedUnits ? getTotalPoints(equippedUnits) : 0;
+
+  const selectedDisciplineCss = "relative text-center border border-sky-800 w-2/3 m-auto rounded-md my-5 py-2 text-2xl bg-sky-100 text-black hover:shadow-custom cursor-pointer";
+  const unselectedDisciplineCss = "relative text-center border border-black w-2/3 m-auto rounded-md my-5 py-2 text-2xl bg-gray-700 text-white hover:shadow-custom cursor-pointer";
 
   useEffect(() => {
     if (alert) {
@@ -119,24 +124,35 @@ export default function App() {
 
   return (
     <div>
+
       {view === "main" && <header className="w-full flex text-3xl text-center bg-gray-800 text-white">
       <p className="py-2 m-auto font-anta">CYBER SAVAGE LIST BUILDER</p>
       </header>}
       {view === "main" && (
         <ComMainMenu
-          handleNewArmy={handleNewArmy}
-          handleLoadArmy={handleLoadArmy}
+        handleNewArmy={handleNewArmy}
+        handleLoadArmy={handleLoadArmy}
         />
       )}
       {view === "force" && (
         <div>
+          <PDFViewer width={800} height={500} children={<ComPDF unitList={equippedUnits} forceName={forceState!.forceName} discipline={disciplineState ? disciplineState : ''}/>} />
           <button onClick={() => setView('main')}
            className="absolute top-2 left-2 text-xl underline font-semibold hover:text-gray-800">Main Menu</button>
           <h1 className="text-center font-anta text-4xl underline mt-4">
             {forceState?.forceName}
           </h1>
-          <div className="flex flex-col gap-6 justify-center items-center my-8">
+          <h1 className="text-center font-anta text-xl underline mt-2">
+            Combat Discipline: {disciplineState}
+          </h1>
+          <div className="flex flex-col gap-6 justify-center items-center my-4">
             <b className="text-lg font-normal">Points: {totalPoints}</b>
+            <button
+              onClick={() => setView("disciplines")}
+              className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
+            >
+              Combat Discipline
+            </button>
             <button
               onClick={() => setView("equippedUnits")}
               className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
@@ -152,8 +168,35 @@ export default function App() {
             <button
               className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
             >
-              <PDFDownloadLink document={<ComPDF unitList={equippedUnits}/>} fileName={'cyber-savage-' + forceState?.forceName}>PRINT FORCE</PDFDownloadLink>
+              <PDFDownloadLink document={<ComPDF unitList={equippedUnits} forceName={forceState!.forceName} discipline={disciplineState ? disciplineState : ''} />} fileName={'cyber-savage-' + forceState?.forceName}>PRINT FORCE</PDFDownloadLink>
             </button>
+          </div>
+        </div>
+      )}
+      {view === "disciplines" && (
+        <div>
+          <button
+            onClick={() => setView("force")}
+            className="absolute -top-1 right-2"
+          >
+            <svg
+              viewBox="0 0 1024 1024"
+              className="h-11 fill-red-800 hover:fill-red-600"
+            >
+              <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z" />
+            </svg>
+          </button>
+          <h1 className="font-anta font-semibold text-3xl text-center mb-4">
+            Disciplines
+          </h1>
+          <div>
+            {Disciplines.map((discipline) => {
+              return (
+              <div onClick={() => setDiscipline(discipline)} 
+              className={disciplineState === discipline ? selectedDisciplineCss : unselectedDisciplineCss}>
+                <button>{discipline}</button>
+              </div>)
+            })}
           </div>
         </div>
       )}
