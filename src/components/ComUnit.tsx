@@ -37,14 +37,8 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
   return (
     <div className="relative max-w-4xl md:w-4/5 m-auto mb-10 border-2 border-black sm:rounded-md p-2 gap-1 sm:grid sm:grid-cols-4">
       <div className="row-start-1 font-semibold text-right px-1 pb-2  sm:col-span-4 flex">
-        <button onClick={deleteUnit}>
-          <svg 
-            className="fill-red-700 h-9 hover:fill-red-800"
-            viewBox="0 0 512 512">
-            <path
-              d="M420.48 121.813 390.187 91.52 256 225.92 121.813 91.52 91.52 121.813 225.92 256 91.52 390.187l30.293 30.293L256 286.08l134.187 134.4 30.293-30.293L286.08 256z"
-            />
-          </svg>
+        <button onClick={deleteUnit} className="text-red-700 hover:text-red-800 text-2xl">
+          delete
         </button>
         <button
           onClick={() => {

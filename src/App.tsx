@@ -7,7 +7,7 @@ import ComEditWindow from "./components/ComEditWindow";
 import getNumWeaponTraits from "./utils/getNumWeaponTraits";
 import ComAlert from "./components/ComAlert";
 import ComMainMenu from "./components/ComMainMenu";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import ComPDF from "./components/ComPDF";
 import { Disciplines } from "./constants/Disciplines";
 
@@ -123,7 +123,7 @@ export default function App() {
   }, [alert]);
 
   return (
-    <div>
+    <div className="max-w-4xl m-auto">
 
       {view === "main" && <header className="w-full flex text-3xl text-center bg-gray-800 text-white">
       <p className="py-2 m-auto font-anta">CYBER SAVAGE LIST BUILDER</p>
@@ -136,7 +136,6 @@ export default function App() {
       )}
       {view === "force" && (
         <div>
-          <PDFViewer width={800} height={500} children={<ComPDF unitList={equippedUnits} forceName={forceState!.forceName} discipline={disciplineState ? disciplineState : ''}/>} />
           <button onClick={() => setView('main')}
            className="absolute top-2 left-2 text-xl underline font-semibold hover:text-gray-800">Main Menu</button>
           <h1 className="text-center font-anta text-4xl underline mt-4">
