@@ -106,7 +106,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
     name: "Focus Strike",
     description:
       "Start of activation may strengthen melee and weaken defense on self.",
-    weaponType: "both",
+    weaponType: "melee",
     weaponSubtype: "all",
   },
   {
@@ -249,4 +249,4 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
 ];
 
-export {WeaponTraitsList}
+export { WeaponTraitsList }

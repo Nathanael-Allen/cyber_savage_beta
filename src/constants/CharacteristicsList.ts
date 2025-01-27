@@ -12,11 +12,15 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Ambush",
     description:
-      "Complex action, go on ambush. When an enemy within charge range and LoS activates, this model may make a charge against that model at the end or beginning of any of it's actions.",
+      "Combat action, go on ambush. When an enemy within 6\" and LoS activate this model may make a charge against that model at the end or beginning of any of it\'s actions.",
+  },
+  {
+    name: "Agile",
+    description: "Ignore climbing, area terrain, and obstacles"
   },
   {
     name: "Avenger",
-    description: 'When an ally dies within 8" strengthen attack stats.',
+    description: "When an ally dies withing 8\" strengthen all stats.",
   },
   {
     name: "Berserk",
@@ -26,12 +30,16 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Bloodlust",
     description:
-      "When targeting a model with below half of its starting health, strengthen attack.",
+      "When targeting a model with below half of it\'s starting health stat favorable ranged + melee.",
   },
   {
     name: "Command",
     description:
       'Spend a utility action to activate a lower level unactivated ally within 6"',
+  },
+  {
+    name: "Companion",
+    description: "Once per round gain favorable on any comparison but only roll a d4."
   },
   {
     name: "Cruel",
@@ -50,7 +58,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Devious",
     description:
-      "When a model that is base to base with this model makes a move or charge action, spend a reaction to make an attack against that model.",
+      "Spend a reaction at any point when a model makes a move or charge action while base to base with this model; make a close combat action against this target.",
   },
   {
     name: "Dodge",
@@ -60,12 +68,12 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Duelist",
     description:
-      "The first time this model makes a duel action do not spend a reaction",
+      "The first time this model reacts with \"duel\" in a turn does not spend a reacion token.",
   },
   {
     name: "Enhanced Vision",
     description:
-      "Ignore active camo, stealthy, and all charges count as visible.",
+      "Ignore stealthy, invisible and count all charges as visible.",
   },
   {
     name: "Evade",
@@ -79,29 +87,29 @@ const CharacteristicsList: TCharacteristics[] = [
   { name: "Fast", description: "+3 speed" },
   {
     name: "Fly",
-    description: 'Use sprint action, ignore terrain and move up to 16"',
+    description: "Spend complex action, ignore terrain and move up to 20\"",
   },
   {
     name: "Formidable",
     description:
-      "This model counts as one level higher for all purposes other than team construction.",
+      "When this model compares it\'s level add 1.",
   },
   {
     name: "Good Luck",
     description:
-      "Anytime this model makes a test, matching dice rolls are counted as one value higher.",
+      "Anytime this model makes a test, defends, attacks, or reacts, if 2 or more of the same number is rolled count them as 1 values higher.",
   },
   {
     name: "Grenadier",
     description:
-      'Make a ranged attack action with 8" range, d10 dmg, and explosive. Can add 1 weapon trait to the grenade. (single use per game)',
+      'Single use ranged action, (range 8\", d10 damage, 6 explosive) take a single weapon trait.',
   },
   {
     name: "Gunfighter",
     description:
       "The first time this model reacts with shootout each turn, do not spend reaction.",
   },
-  { name: "Heavy Armor", description: "Gain favorable defense rolls" },
+  { name: "Heavy Armor", description: "Favorable defense -1 speed." },
   {
     name: "Heroic",
     description:
@@ -114,49 +122,48 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Horrifying",
     description:
-      "Any model making a melee attack against this model must pass a willpower test against this models willpower. On fail weaken attack for the melee action.",
+      "Any model targeting this model with a combat action must test willpower vs this model. If failed weaken attack for the combat action.",
   },
   { name: "Hulking Body", description: "+4 Health" },
   {
     name: "Impervious",
-    description: "This model takes no damage from glancing hits.",
+    description: "Glancing hits do 0 damage to this model.",
   },
   {
     name: "Indomitable",
-    description: "Favorable willpower on all willpower tests.",
+    description: "Favorable willpower when targeted by an effect or spell.",
   },
   {
     name: "Last Stand",
     description:
-      "On death if this model still has not activated, spend the activation to make a charge or attack action.",
+      "If this model dies it may make a ranged combat action or a 6\" charge",
   },
   {
     name: "Medic",
     description:
-      "Spend utility action to roll 4 willpower tests against willpower(d6). Heal 2hp per success. Can target self or adjacent ally.",
+      "Spend a utility action; roll 4 dice (willpower d6) heal 2hp per success.",
   },
   { name: "Mounted", description: "+2 speed, +2 health" },
   { name: "Mystical", description: "Gain a spell" },
   {
-    name: "Outmaneuver",
+    name: "Opportunist",
     description:
-      'After performing a combat action this model may spend a reaction to immediately move up to 4"',
+      'After taking damage from an attack this model may move up to 3\"',
   },
   {
     name: "Overshield",
     description:
-      "Start with an overshield token that strengthens defense while equipped. Lose this token after taking damage, token recharges each round.",
+      "Start each round with one overshield token. Spend this token after taking damage gaining invincible (-1 incoming damage).",
   },
   {
     name: "Overwatch",
     description:
-      "Spend combat action to activate, while active if a model moves within LoS you may choose to make a ranged attack against the model. (One attack per activation)",
+      "Spend a combat action. If an enemy activates in LoS, this model may make a ranged combat action against the enemy during any point of the enemies activation.",
   },
-  { name: "Pathfinder", description: "Ignore area terrain and obstacles" },
   {
     name: "Psychic Dominance",
     description:
-      'Enemy Spellcasters within 8" roll all spells vs this models willpower.',
+      'Enemy spellcasters within 12\" replace their Spellocity with this models willpower value.',
   },
   {
     name: "Savage",
@@ -165,17 +172,17 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Rage",
     description:
-      "Gain favorable on all combat actions while below half health.",
+      "When this model is below half it's starting health strengthen all stats.",
   },
-  { name: "Regeneration", description: "Heal 2 at the start of each round." },
+  { name: "Regeneration", description: "At the start of each activation heal 2." },
   {
     name: "Scout",
     description:
-      "After depoloyment but before the first turn this model may make a sprint action. If multiple players have scout, resolve in order of initiative.",
+      "After depoloyment but before the first turn this model may make a sprint or move action. If multiple players have scout, resolve scout actions in order of initiative.",
   },
   {
     name: "Self Destruct",
-    description: 'On death make a 6 damage, d10 attack to all models within 3"',
+    description: 'Complex action or on death, make a single d10 attack (deals 6 damage to all models within 3")',
   },
   {
     name: "Small",
@@ -184,30 +191,30 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Stealthy",
     description:
-      "When this model is in cover any model making a charge or ranged attack action against this model must first pass a willpower test against this model.",
+      "When this model is in cover a model must test willpower against it to target it with a charge or ranged attack action.",
   },
   {
-    name: "Super Strength",
+    name: "Support",
     description:
-      'After resolving a melee attack by this model move the target 4" directly away regardless if any damage was done. (Does not stack with concussive)',
+      'Spend a utility action to restore a single models reaction token within 3\"',
   },
   {
     name: "Unyielding",
     description:
-      'Strengthen a stat at the start of this models activation, if this model has more enemies than allies within 3"',
+      'Favorable all stats if this model has more enemies than friendly models (includes self) within 3\"',
   },
   {
     name: "Volatile",
     description:
-      "After defending against a melee attack if this model took damage the attcking model takes 1 damage.",
+      "If this model takes 1 or more damage from a melee attack, deal 1 damage to the attacking model.",
   },
   {
     name: "Weapons Specialist",
-    description: "This models weapons gain an extra trait",
+    description: "All weapons have an extra trait.",
   },
   {
     name: "Wicked",
-    description: 'When an enemy dies with 8" strengthen attack stats',
+    description: 'When an enemy dies with 8" strengthen all stats.',
   },
 ];
 
