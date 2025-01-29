@@ -2,14 +2,17 @@
 
 ## High Priority/Functionality
 ___
+
 - [ ] Extra Weapon trait needs to add another weapon
+- [ ] Warning messages when units are breaking rules (i.e. Too many characteristics, No weapons equipped, etc...)
+- [ ] PDF file needs to include a page of rules for equipped characteristics and remove descriptions from the character sheets
 - [x] Save and load a list. Idea right now is to save and load from a json file.
 - [x] Save and load list from local storage.'
 - [x] Finalize trait and spell lists. Should include descriptions
 - [x] Add weapon modification to Unit component. Need to be able to select melee/range and traits.
 - [x] Create weapon trait list.
 - [x] Add delete button on equipped unit
-
+- [x] Heavy armor needs to adjust speed stat 
 
 ## Low Priority/UI Stuff
 ___
@@ -24,6 +27,7 @@ ___
 ## Code Refactoring
 ___
 
+- [ ] Replace "views" with routes
 - [ ] Replace more complex state functions with a reducer function
 - [x] Change how units are displayed (seperate window for editing them)
 - [x] Edit window will take a unit for editing and it will return a unit after editing.

@@ -10,20 +10,20 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
   const equippedTraitCSS =
     "text-sm p-3 border border-black bg-blue-200 cursor-pointer";
   const subtypeCSS = "py-1 px-4 border border-black rounded-lg font-semibold hover:bg-gray-600 hover:text-white"
-  const equippedTraitNames = weapon.equippedTraits ? weapon.equippedTraits.map((trait) => {return trait.name}) : [];
-  
+  const equippedTraitNames = weapon.equippedTraits ? weapon.equippedTraits.map((trait) => { return trait.name }) : [];
+
   function subTypeHandler(subtype: TWeaponSubtype) {
     const { numAttacks, damage } = updateSubtype(subtype);
     const newWeapon: TWeapon = {
       ...weapon,
-      subtype: subtype, 
+      subtype: subtype,
       damage: weapon.techLevel === 'prime' ? damage + 1 : damage,
       numAttack: numAttacks
     }
     clickHandler(newWeapon)
   }
 
-  function typeHandler(type: TWeaponType){
+  function typeHandler(type: TWeaponType) {
     const newWeapon: TWeapon = {
       ...weapon,
       type: type
@@ -45,7 +45,7 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
       ...weapon,
       equippedTraits: newTraits
     }
-    const {bonusAttacks, bonusDamage} = checkWeaponTraits(newWeapon);
+    const { bonusAttacks, bonusDamage } = checkWeaponTraits(newWeapon);
     newWeapon = {
       ...newWeapon,
       bonusAttacks: bonusAttacks,
@@ -60,21 +60,21 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
         {weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()}
       </h4>
       <div className="flex col-span-6 gap-4 m-auto mt-4 mb-4">
-        <button onClick={() => {subTypeHandler("light")}} className={weapon.subtype === "light" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
+        <button onClick={() => { subTypeHandler("light") }} className={weapon.subtype === "light" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
           Light
         </button>
-        <button onClick={() => {subTypeHandler("medium")}} className={weapon.subtype === "medium" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
+        <button onClick={() => { subTypeHandler("medium") }} className={weapon.subtype === "medium" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
           Medium
         </button>
-        <button onClick={() => {subTypeHandler("heavy")}} className={weapon.subtype === "heavy" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
+        <button onClick={() => { subTypeHandler("heavy") }} className={weapon.subtype === "heavy" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
           Heavy
         </button>
       </div>
       {weapon.changeType && <div className="flex col-span-6 gap-4 m-auto mt-4 mb-4">
-        <button onClick={() => {typeHandler("ranged")}} className={weapon.type === "ranged" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
+        <button onClick={() => { typeHandler("ranged") }} className={weapon.type === "ranged" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
           Ranged
         </button>
-        <button onClick={() => {typeHandler("melee")}} className={weapon.type === "melee" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
+        <button onClick={() => { typeHandler("melee") }} className={weapon.type === "melee" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
           Melee
         </button>
       </div>}
@@ -89,9 +89,9 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
             // Remove melee traits from list if weapon is ranged and vice versa
             if (trait.weaponType === weapon.type || trait.weaponType === "both") {
               // Filter out subtype specific traits
-              if (trait.weaponSubtype === weapon.subtype || trait.weaponSubtype === "all"){
+              if (trait.weaponSubtype === weapon.subtype || trait.weaponSubtype === "all") {
                 return (
-                  <p 
+                  <p
                     key={index}
                     onClick={() => traitHandler(trait)}
                     className={
