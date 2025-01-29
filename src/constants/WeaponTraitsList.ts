@@ -9,6 +9,12 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
+    name: "Adaptive",
+    description: "This weapon cannot be disordered (ranged only).",
+    weaponType: "ranged",
+    weaponSubtype: "all",
+  },
+  {
     name: "Advanced Optics",
     description: "Ignore cover.",
     weaponType: "ranged",
@@ -16,14 +22,14 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Blind",
-    description: "(Wd8) Cannot have priority.",
+    description: "If a target takes damage from this weapon, target can no longer have priority until end of their next activation.",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Bouncing Ammo",
     description:
-      'For each miss select a different model within 6" and make a single attack against it. (Can only bounce once)',
+      'For each miss, select a new target within 6" and make a single attack against it WEAKENED. These attacks cannot generate further attacks of any kind (ranged only).',
     weaponType: "ranged",
     weaponSubtype: "all",
   },
@@ -35,57 +41,57 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Concussive",
-    description: 'Knockback 1" per damage.',
+    description: 'Knockback 1" per 2 points of damage.',
+    weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
+    name: "Critical",
+    description: 'Roll a d20 when this weapon is used in combat. If a 20 is rolled, triple the total damage this weapon would deal.',
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Cryo",
-    description: "-3 Speed.",
+    description: "If a target takes damage from this weapon -3 Speed.",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Dampening",
-    description: "(Wd8) Target loses all weapon traits.",
+    description: "If a target takes damage from this weapon, (Wd8) Target loses all weapon traits.",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Daze",
-    description: "Unfavorable attack stats.",
+    description: "If a target takes damage from this weapon Unfavorable willpower",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Deflect",
-    description: "Defend ranged with melee.",
+    description: "Favorable defense vs shooting (melee only)",
     weaponType: "melee",
-    weaponSubtype: "all",
-  },
-  {
-    name: "Deteriorate",
-    description: "(Wd8) Weaken defense stats.",
-    weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Disorient",
     description:
-      "(Wd8) Targets character traits have no effect other than ones that increase health.",
+      "If target takes damage from this weapon (Wd8) Target's character traits have no effect other than ones that increase health.",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Dispel",
     description:
-      "May not cast spells. Nullify any magic magic effects (When targeting terrain or other effects, automatically hit).",
+      "If target takes damage from this weapon, may not cast spells. Nullify any magic magic effects (When targeting terrain or other effects, automatically hit).",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Drag",
-    description: "Move target adjacent to self (optimal range only).",
+    description: "If a target takes damage from this weapon (1 dice willpower test vs target), if target fails move the target b2b with the attacker, optimal range only (ranged only)",
     weaponType: "ranged",
     weaponSubtype: "all",
   },
@@ -98,7 +104,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Explosive",
-    description: 'All models within 2" of target take 1 hit.',
+    description: 'Make 1 attack with 0 traits to all models within 2" of the target. A model may only be affected by this once during a single combat action (ranged only)',
     weaponType: "ranged",
     weaponSubtype: "all",
   },
@@ -112,7 +118,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
   {
     name: "Humiliating",
     description:
-      "(Wd8) Target counts as 1 level lower",
+      "If a target takes damage from this weapon, count target as 1 level lower.",
     weaponType: "both",
     weaponSubtype: "all",
   },
@@ -124,20 +130,20 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Indirect",
-    description: "May draw LoS from any friendly model (costs complex action).",
+    description: "May draw LoS from any friendly model. When targeting a model this way -1 damage.",
     weaponType: "ranged",
     weaponSubtype: "all",
   },
   {
     name: "Indiscriminate",
     description:
-      "After performing a melee action roll 1 additional attack on each adjacent model.",
+      "After performing a melee combat action roll 1 attack on each other model within 1\" of this model",
     weaponType: "melee",
     weaponSubtype: "all",
   },
   {
     name: "Life Drain",
-    description: "Each successful hit heal this model 1 health",
+    description: "Each hit from this weapon that deals damage heals this model for 1 health (melee only)",
     weaponType: "melee",
     weaponSubtype: "all",
   },
@@ -149,7 +155,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Maim",
-    description: "(Wd8) Weaken attack stats.",
+    description: "If a target takes damage from this weapon (Wd8) weaken ranged and melee stats until end of next activation.",
     weaponType: "both",
     weaponSubtype: "all",
   },
@@ -170,14 +176,20 @@ const WeaponTraitsList: TWeaponTrait[] = [
   {
     name: "Power Up",
     description:
-      "Spend a combat action to power up. Strengthen attack stats and +1 damage on next attack.",
+      "Spend a combat action to power up. This weapon gains +1 damage and strengthen the models Mel or Rng Stat until the next time this weapon is used.",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Psychotronic",
-    description: "(Wd8) Target is moved in a random direction.",
+    description: "If a target takes damage from this weapon (Wd8) move d8 in a scatter dice direction. If this model hits a wall take 1 damage.",
     weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
+    name: "Punishing",
+    description: "If a target takes damage from this weapon, target is disordered (ranged only)",
+    weaponType: "ranged",
     weaponSubtype: "all",
   },
   {
@@ -187,20 +199,20 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
-    name: "Rapid Fire",
-    description: "+1 attack (light weapons only).",
-    weaponType: "both",
-    weaponSubtype: "light",
-  },
-  {
     name: "Rampage",
-    description: "Immediately after slaying a model with this weapon premake a move action.",
+    description: "Immediately after slaying a model with this weapon, perform a move action.",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
-    name: "Rending",
-    description: "Target gets unfavorable defense stats.",
+    name: "Rampage",
+    description: "Immediately after slaying a model with this weapon perform a move action.",
+    weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
+    name: "Shattering",
+    description: "If a target takes damage from this weapon (Wd8) weaken Defense until end of next activation.",
     weaponType: "both",
     weaponSubtype: "all",
   },
@@ -208,23 +220,17 @@ const WeaponTraitsList: TWeaponTrait[] = [
     name: "Short Range",
     description: "Half all range intervals +1 damage.",
     weaponType: "ranged",
-    weaponSubtype: "all",
+    weaponSubtype: "heavy",
   },
   {
     name: "Stun",
-    description: "Target may not perform reactions.",
+    description: "If target takes damage from this weapon, remove targets reaction token.",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
-    name: "Specialized",
-    description: "This weapon may target anyone when disordered.",
-    weaponType: "ranged",
-    weaponSubtype: "all",
-  },
-  {
     name: "Suppress",
-    description: "(Wd8) -1 action.",
+    description: "If target takes damage from this weapon (Wd8) -1 action until end of next activation.",
     weaponType: "both",
     weaponSubtype: "all",
   },
@@ -243,7 +249,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
   {
     name: "Violent",
     description:
-      "Target cannot react to attacks or charges from a model with this weapon trait.",
+      "1 Dice test willpower against target, if target fails they cannot react to attacks or charges from a model with a weapon with this trait.",
     weaponType: "both",
     weaponSubtype: "all",
   },

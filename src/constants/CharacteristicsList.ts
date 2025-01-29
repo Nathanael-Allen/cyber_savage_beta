@@ -209,6 +209,10 @@ const CharacteristicsList: TCharacteristics[] = [
       "If this model takes 1 or more damage from a melee attack, deal 1 damage to the attacking model.",
   },
   {
+    name: "Ward",
+    description: "Gain priority even when targeted by enemy spells",
+  },
+  {
     name: "Weapons Specialist",
     description: "All weapons have an extra trait.",
   },
