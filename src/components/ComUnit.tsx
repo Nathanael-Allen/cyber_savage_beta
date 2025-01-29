@@ -44,17 +44,17 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
           onClick={() => {
             editCallback(unit);
           }}
-          className="text-sky-600 text-2xl ml-auto hover:text-sky-800"
+          className="text-sky-600 text-xl ml-auto hover:text-sky-800"
         >
-          Edit
+          Edit Loadout
         </button>
       </div>
       <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-2 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
         {unitName &&
-        <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">
-          {unitName}
-        </p>
+          <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">
+            {unitName}
+          </p>
         }
         <p className="text-white font-semibold text-xl mt-3 col-start-3 col-span-2 text-center">
           {unitClass}
@@ -168,7 +168,7 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
                     ({weapon.subtype?.toUpperCase()})
                   </h4>
                   <div>
-                     <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">
+                    <div className="flex justify-center items-center rounded-full w-12 h-12 m-auto bg-white border-2 border-black text-lg font-semibold">
                       {attacks + bonusAttacks}
                     </div>
                     <p className="font-semibold text-center">Attacks</p>
