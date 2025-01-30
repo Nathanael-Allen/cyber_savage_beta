@@ -6,7 +6,9 @@ const Disciplines: string[] = [
   'War-beast',
   'Honor-bound',
   'Bastion',
-  'Battle Standard'
+  'Battle Standard',
+  'Predetory',
+  'Cultist',
 ];
 
 export { Disciplines };
