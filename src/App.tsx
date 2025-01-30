@@ -70,10 +70,10 @@ export default function App() {
   function saveArmy() {
     if (forceState) {
       const allForcesJson = localStorage.getItem("forces");
-      const allForces: TForce[]  = allForcesJson ? JSON.parse(allForcesJson) : [];
-      const updatedForces: TForce[] = allForces.filter((force) => force.forceID !== forceState.forceID); 
-      
-      const force:TForce = {...forceState, units: equippedUnits};
+      const allForces: TForce[] = allForcesJson ? JSON.parse(allForcesJson) : [];
+      const updatedForces: TForce[] = allForces.filter((force) => force.forceID !== forceState.forceID);
+
+      const force: TForce = { ...forceState, units: equippedUnits };
       const newForces = [...updatedForces, force]
       localStorage.setItem("forces", JSON.stringify(newForces));
       setAlert("Force Saved!");
@@ -89,7 +89,7 @@ export default function App() {
   }
 
   function handleNewArmy(forceName: string) {
-    setForceState({forceID: forceName, forceName: forceName, units: []})
+    setForceState({ forceID: forceName, forceName: forceName, units: [] })
     setEquippedUnits([]);
     setView("force");
   }
@@ -126,18 +126,18 @@ export default function App() {
     <div className="max-w-4xl m-auto">
 
       {view === "main" && <header className="w-full flex text-3xl text-center bg-gray-800 text-white">
-      <p className="py-2 m-auto font-anta">CYBER SAVAGE LIST BUILDER</p>
+        <p className="py-2 m-auto font-anta">CYBER SAVAGE LIST BUILDER</p>
       </header>}
       {view === "main" && (
         <ComMainMenu
-        handleNewArmy={handleNewArmy}
-        handleLoadArmy={handleLoadArmy}
+          handleNewArmy={handleNewArmy}
+          handleLoadArmy={handleLoadArmy}
         />
       )}
       {view === "force" && (
         <div>
           <button onClick={() => setView('main')}
-           className="absolute top-2 left-2 text-xl underline font-semibold hover:text-gray-800">Main Menu</button>
+            className="absolute top-2 left-2 text-xl underline font-semibold hover:text-gray-800">Main Menu</button>
           <h1 className="text-center font-anta text-4xl underline mt-4">
             {forceState?.forceName}
           </h1>
@@ -156,7 +156,7 @@ export default function App() {
               onClick={() => setView("equippedUnits")}
               className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
             >
-              UNITS
+              CHARACTERS
             </button>
             <button
               onClick={saveArmy}
@@ -191,10 +191,10 @@ export default function App() {
           <div>
             {Disciplines.map((discipline) => {
               return (
-              <div onClick={() => setDiscipline(discipline)} 
-              className={disciplineState === discipline ? selectedDisciplineCss : unselectedDisciplineCss}>
-                <button>{discipline}</button>
-              </div>)
+                <div onClick={() => setDiscipline(discipline)}
+                  className={disciplineState === discipline ? selectedDisciplineCss : unselectedDisciplineCss}>
+                  <button>{discipline}</button>
+                </div>)
             })}
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function App() {
             }}
             className="fixed bottom-12 z-10 right-2 bg-gray-800 font-semibold text-lg text-white p-3 mx-auto text-center rounded-full hover:shadow-custom"
           >
-            EQUIPPED UNITS
+            EQUIPPED CHARACTERS
           </button>
           <ComAvailableUnitList addUnitCallback={handleAddUnit} />
         </div>
@@ -240,7 +240,7 @@ export default function App() {
             </svg>
           </button>
           <h1 className="font-anta font-semibold text-3xl text-center">
-            UNITS
+            CHARACTERS
           </h1>
           {equippedUnits.length <= 0 && <p className="text-center">empty...</p>}
           <button
@@ -249,7 +249,7 @@ export default function App() {
             }}
             className="fixed bottom-12 z-10 right-2 bg-gray-800 font-semibold text-lg text-white p-3 mx-auto text-center rounded-full hover:shadow-custom"
           >
-            ADD UNITS
+            ADD CHARACTERS
           </button>
           {equippedUnits.map((unit, index) => {
             return (

@@ -4,7 +4,7 @@ const availableUnits: TUnit[] = [
   {
     level: 1,
     unitClass: "Grunt",
-    equippedWeapons: [{ type: "unarmed", techLevel: "simple", changeType: true }],
+    equippedWeapons: [{ type: "unarmed", techLevel: "standard", changeType: true }],
     numCharacteristics: 1,
     speed: 6,
     health: 12,
