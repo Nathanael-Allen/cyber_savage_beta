@@ -4,7 +4,7 @@ const availableUnits: TUnit[] = [
   {
     level: 1,
     unitClass: "Grunt",
-    equippedWeapons: [{type: "unarmed", techLevel: "simple", changeType: true}],
+    equippedWeapons: [{ type: "unarmed", techLevel: "simple", changeType: true }],
     numCharacteristics: 1,
     speed: 6,
     health: 12,
@@ -17,7 +17,7 @@ const availableUnits: TUnit[] = [
     level: 2,
     unitClass: "Trooper",
     equippedWeapons: [{ type: "ranged", techLevel: "standard" }],
-    numCharacteristics: 1,
+    numCharacteristics: 2,
     speed: 6,
     health: 14,
     diceMelee: "d4",
@@ -29,11 +29,23 @@ const availableUnits: TUnit[] = [
     level: 2,
     unitClass: "Warrior",
     equippedWeapons: [{ type: "melee", techLevel: "standard" }],
-    numCharacteristics: 1,
+    numCharacteristics: 2,
     speed: 7,
     health: 14,
     diceMelee: "d6",
     diceRanged: "d4",
+    diceDefense: "d6",
+    diceWillpower: "d4",
+  },
+  {
+    level: 2,
+    unitClass: "Mercenary",
+    equippedWeapons: [{ type: "melee", techLevel: "simple" }, { type: "ranged", techLevel: "simple" }],
+    numCharacteristics: 2,
+    speed: 6,
+    health: 14,
+    diceMelee: "d6",
+    diceRanged: "d6",
     diceDefense: "d6",
     diceWillpower: "d4",
   },
@@ -76,18 +88,18 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 3,
-    unitClass: "Mercenary",
+    unitClass: "Raider",
     equippedWeapons: [
       { type: "melee", techLevel: "standard" },
       { type: "ranged", techLevel: "standard" },
     ],
     numCharacteristics: 2,
     speed: 6,
-    health: 14,
+    health: 16,
     diceMelee: "d8",
     diceRanged: "d8",
     diceDefense: "d8",
-    diceWillpower: "d6",    
+    diceWillpower: "d6",
   },
   {
     level: 3,
@@ -128,7 +140,7 @@ const availableUnits: TUnit[] = [
   },
   {
     level: 4,
-    unitClass: "Raider",
+    unitClass: "Reaver",
     equippedWeapons: [
       { type: "ranged", techLevel: "standard" },
       { type: "melee", techLevel: "standard" },
@@ -205,4 +217,4 @@ const availableUnits: TUnit[] = [
   },
 ];
 
-export {availableUnits};
+export { availableUnits };
