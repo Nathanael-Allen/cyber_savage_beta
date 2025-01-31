@@ -200,12 +200,6 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Rampage",
-    description: "Immediately after slaying a model with this weapon, perform a move action.",
-    weaponType: "both",
-    weaponSubtype: "all",
-  },
-  {
-    name: "Rampage",
     description: "Immediately after slaying a model with this weapon perform a move action.",
     weaponType: "both",
     weaponSubtype: "all",

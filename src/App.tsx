@@ -117,7 +117,7 @@ export default function App() {
     if (alert) {
       alertTimer.current = setTimeout(() => {
         setAlert(undefined);
-      }, 3000);
+      }, 500);
       return () => clearTimeout(alertTimer.current);
     }
   }, [alert]);
@@ -135,7 +135,7 @@ export default function App() {
         />
       )}
       {view === "force" && (
-        <div>
+        <div className="mt-12">
           <button onClick={() => setView('main')}
             className="absolute top-2 left-2 text-xl underline font-semibold hover:text-gray-800">Main Menu</button>
           <h1 className="text-center font-anta text-4xl underline mt-4">
@@ -150,7 +150,7 @@ export default function App() {
               onClick={() => setView("disciplines")}
               className="w-3/4 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
             >
-              Combat Discipline
+              COMBAT DISCIPLINES
             </button>
             <button
               onClick={() => setView("equippedUnits")}

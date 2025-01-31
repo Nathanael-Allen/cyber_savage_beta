@@ -7,7 +7,7 @@ const Disciplines: string[] = [
   'Honor-bound',
   'Bastion',
   'Battle Standard',
-  'Predetory',
+  'Predatory',
   'Cultist',
 ];
 
