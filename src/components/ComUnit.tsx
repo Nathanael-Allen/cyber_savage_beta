@@ -50,7 +50,9 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
         </button>
       </div>
       <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-2 sm:row-span-2">
-        <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2"></div>
+        <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2 flex items-center justify-center">
+          <img src={"src/public/images/" + unit.imagePath + ".png"} alt="unit icon" className="h-24"/>
+        </div>
         {unitName &&
           <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">
             {unitName}

@@ -36,6 +36,7 @@ const availableUnits: TUnit[] = [
     diceRanged: "d4",
     diceDefense: "d6",
     diceWillpower: "d4",
+    imagePath: "lvl1_melee"
   },
   {
     level: 2,
@@ -48,6 +49,7 @@ const availableUnits: TUnit[] = [
     diceRanged: "d6",
     diceDefense: "d6",
     diceWillpower: "d4",
+    imagePath: "lvl1_melee"
   },
   {
     level: 2,
@@ -85,6 +87,7 @@ const availableUnits: TUnit[] = [
     diceRanged: "d4",
     diceDefense: "d8",
     diceWillpower: "d6",
+    imagePath: "lvl2_melee"
   },
   {
     level: 3,
@@ -100,6 +103,7 @@ const availableUnits: TUnit[] = [
     diceRanged: "d8",
     diceDefense: "d8",
     diceWillpower: "d6",
+    imagePath: "lvl2_melee"
   },
   {
     level: 3,
@@ -137,6 +141,7 @@ const availableUnits: TUnit[] = [
     diceRanged: "d6",
     diceDefense: "d10",
     diceWillpower: "d8",
+    imagePath: "lvl3_melee"
   },
   {
     level: 4,
@@ -152,6 +157,7 @@ const availableUnits: TUnit[] = [
     diceRanged: "d10",
     diceDefense: "d10",
     diceWillpower: "d8",
+    imagePath: "lvl3_melee"
   },
   {
     level: 4,
@@ -189,6 +195,8 @@ const availableUnits: TUnit[] = [
     diceRanged: "d8",
     diceDefense: "d12",
     diceWillpower: "d10",
+    imagePath: "lvl4_melee"
+
   },
   {
     level: 5,
@@ -201,6 +209,7 @@ const availableUnits: TUnit[] = [
     diceRanged: "d12",
     diceDefense: "d12",
     diceWillpower: "d10",
+    imagePath: "lvl4_melee"
   },
   {
     level: 5,

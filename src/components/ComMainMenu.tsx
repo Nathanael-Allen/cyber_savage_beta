@@ -18,7 +18,7 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
   const disabledCSS =
     "bg-gray-400 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md";
   const enabledCSS =
-    "bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom";
+    "bg-black font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom";
 
   useEffect(() => {
     if (forceNameState.length > 0 && !forceNames.includes(forceNameState)) {
@@ -40,7 +40,7 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
         <div className="w-full max-w-2/3 h-80 flex flex-col justify-center items-center gap-4">
           <button
             onClick={() => setNewForceModal(true)}
-            className="w-2/3 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
+            className="w-2/3 bg-black font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
           >
             New Force
           </button>
@@ -52,7 +52,7 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
           {availableForces.length > 0 && (
             <button
               onClick={() => setLoadModal(true)}
-              className="w-2/3 bg-gray-800 font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
+              className="w-2/3 bg-black font-semibold text-lg text-white p-2 mx-auto text-center rounded-md hover:shadow-custom"
             >
               Load Force
             </button>
@@ -61,12 +61,6 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
       )}
       {newForceModal && (
         <div className="flex flex-col justify-center items-center gap-2">
-          <button
-            onClick={() => setNewForceModal(false)}
-            className="absolute right-2 top-14 font-semibold text-red-600 text-xl hover:text-red-700"
-          >
-            Cancel
-          </button>
 
           <h4 className="font-semibold text-4xl">New Force</h4>
           <input
@@ -82,20 +76,21 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
           >
             Create Force
           </button>
+          <button
+            onClick={() => setNewForceModal(false)}
+            className="font-semibold text-red-600 text-xl mt-4 hover:text-red-700"
+          >
+            Cancel
+          </button>
         </div>
       )}
       {loadModal && (
         <div className="text-center relative">
           <button
             onClick={() => setLoadModal(false)}
-            className="absolute right-2"
+            className="absolute left-4 text-xl text-red-600 font-semibold"
           >
-            <svg
-              viewBox="0 0 1024 1024"
-              className="h-11 fill-red-800 hover:fill-red-600"
-            >
-              <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z" />
-            </svg>
+            cancel
           </button>
           <h4 className="font-semibold text-4xl mb-8">Load Force</h4>
           <ul className="max-w-2/3">
@@ -103,12 +98,17 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
               return (
                 <li
                   key={index}
-                  className="items-center cursor-pointer border border-gray-800 bg-gray-700 text-white flex"
-                  onClick={() => handleLoadArmy(force)}
+                  className="items-center cursor-pointer border border-gray-800 bg-black text-white"
                 >
-                  <button className="text-left p-2 text-2xl" onClick={() => handleLoadArmy(force)}>{force.forceName}</button>
-                  <p className="p-2 text-base">Points: {getForcePointTotal(force)}</p>
-                  <p className="p-2 text-base">Discipline: {force.discipline}</p>
+                  <div
+                  onClick={() => handleLoadArmy(force)}
+                  >
+                    <button className="text-left p-2 text-2xl" onClick={() => handleLoadArmy(force)}>{force.forceName}</button>
+                    <div className="flex justify-center">
+                      <p className="p-2 text-base">Points: {getForcePointTotal(force)}</p>
+                      <p className="p-2 text-base">Discipline: {force.discipline}</p>
+                    </div>
+                  </div>
                   <button
                     className="text-red-500 ml-auto text-xl hover:text-red-600 p-2"
                     onClick={() => handleDelete(force.forceID)}

@@ -99,7 +99,7 @@ export default function App() {
   }
 
   function handleNewArmy(forceName: string) {
-    setForceState({ forceID: forceName, forceName: forceName, units: [] });
+    setForceState({ forceID: forceName, forceName: forceName, units: [], discipline: undefined });
     setEquippedUnits([]);
     setView("force");
   }
@@ -126,6 +126,10 @@ export default function App() {
     "relative text-center border border-black w-2/3 m-auto rounded-md my-5 py-2 text-2xl bg-gray-700 text-white hover:shadow-custom cursor-pointer";
 
   useEffect(() => {
+    saveArmy();
+  }, [equippedUnits]);
+
+  useEffect(() => {
     if (alert) {
       alertTimer.current = setTimeout(() => {
         setAlert(undefined);
@@ -137,9 +141,14 @@ export default function App() {
   return (
     <div className="max-w-4xl m-auto">
       {view === "main" && (
-        <header className="w-full flex text-3xl text-center bg-gray-800 text-white">
-          <p className="py-2 m-auto font-anta">CYBER SAVAGE FORCE BUILDER</p>
-        </header>
+        <img
+          src="src/public/images/cs-logo.png"
+          alt="cyber savage logo"
+          className="h-56 m-auto"
+        />
+        // <header className="w-full flex text-3xl text-center bg-gray-800 text-white">
+        //   <p className="py-2 m-auto font-anta">CYBER SAVAGE FORCE BUILDER</p>
+        // </header>
       )}
       {view === "main" && (
         <ComMainMenu
@@ -148,13 +157,20 @@ export default function App() {
         />
       )}
       {view === "force" && (
-        <div className="mt-12">
-          <button
-            onClick={() => setView("main")}
-            className="absolute top-2 left-2 text-xl underline font-semibold hover:text-gray-800"
-          >
-            Main Menu
-          </button>
+        <div className="mt-24">
+          <header className="">
+            <img
+              src="src/public/images/cs-logo.png"
+              alt="cyber savage logo"
+              className="absolute -top-3 right-0 h-20"
+            />
+            <button
+              onClick={() => setView("main")}
+              className="absolute top-2 left-2 text-xl underline font-semibold hover:text-gray-800"
+            >
+              Main Menu
+            </button>
+          </header>
           <h1 className="text-center font-anta text-4xl underline mt-4">
             {forceState?.forceName}
           </h1>
@@ -196,6 +212,7 @@ export default function App() {
               </PDFDownloadLink>
             </button>
           </div>
+          <img src="src/public/images/mage.png" alt="mage guy" className="h-68"/>
         </div>
       )}
       {view === "disciplines" && (
@@ -312,6 +329,7 @@ export default function App() {
               />
             );
           })}
+          <img src="src/public/images/char-2.jpg" alt="" className="h-56 ml-auto" />
         </div>
       )}
       {view === "editUnit" && (

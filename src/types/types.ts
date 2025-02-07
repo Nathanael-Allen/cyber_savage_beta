@@ -14,6 +14,7 @@ type TUnit = {
   readonly unitClass: string;
   equippedWeapons: TWeapon[];
   numCharacteristics: number;
+  imagePath?: string;
   unitName?: string;
   speed?: number;
   health?: number;

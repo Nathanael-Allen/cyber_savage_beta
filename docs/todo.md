@@ -3,10 +3,10 @@
 ## High Priority/Functionality
 ___
 
-- [ ] Extra Weapon trait needs to add another weapon
 - [ ] Warning messages when units are breaking rules (i.e. Too many characteristics, No weapons equipped, etc...)
 - [ ] PDF file needs to include a page of rules for equipped characteristics and remove descriptions from the character sheets
-- [x] Add flaw handling.
+- [ ] Add flaw handling.
+- [x] Extra Weapon trait needs to add another weapon
 - [x] Mystical needs to add another spell
 - [x] Save and load a list. Idea right now is to save and load from a json file.
 - [x] Save and load list from local storage.'
@@ -21,6 +21,7 @@ ___
 - [ ] Replace X button with back button for Character list
 - [ ] shorten attacks and damage to atk and dmg
 - [ ] Group equipped units by level
+- [ ] Add a "are you sure?" modal for deleting a force
 - [x] Show point total and combat disciplines when looking at saved forces.
 - [x] Fix the alert box pop ups for adding a unit. 
     - Should queue up several alerts when added and then give them each a setTimeout function
