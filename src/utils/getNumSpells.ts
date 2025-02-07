@@ -7,5 +7,6 @@ export default function getNumSpells(unit: TUnit) {
     return numSpells + 1;
   } else {
     return numSpells;
+    
   }
 }

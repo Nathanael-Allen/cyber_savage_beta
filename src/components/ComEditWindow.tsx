@@ -20,7 +20,6 @@ export default function ComEditWindow({
     unitClass,
     unitName,
     numCharacteristics,
-    numSpells,
     health,
     speed,
     equippedSpells,
@@ -38,6 +37,7 @@ export default function ComEditWindow({
       speed: stateSpeed,
       equippedSpells: stateSpells,
       equippedWeapons: stateWeapons,
+      extraSpell: stateExtraSpell,
     };
   }
 
@@ -69,7 +69,10 @@ export default function ComEditWindow({
 
   function characteristicClickHandler(char: TCharacteristics) {
     if (equippedCharNames.includes(char.name)) {
-      
+      if (char.name.toLowerCase() === "mystical") {
+        setStateExtraSpell(false);
+        setStateNumSpells(stateNumSpells - 1);
+      }
       if (char.name.toLowerCase() === "extra weapon") {
         setStateWeapons(
           stateWeapons.filter((weapon) => {
@@ -85,6 +88,10 @@ export default function ComEditWindow({
         )
       );
     } else {
+      if (char.name.toLowerCase() === "mystical") {
+        setStateExtraSpell(true);
+        setStateNumSpells(stateNumSpells + 1);
+      }
       if (char.name.toLowerCase() === "extra weapon") {
         setStateWeapons([
           ...stateWeapons,
@@ -119,6 +126,8 @@ export default function ComEditWindow({
   );
   const [stateHealth] = useState(health);
   const [stateSpeed] = useState(speed);
+  const [stateExtraSpell, setStateExtraSpell] = useState(unit.extraSpell ? unit.extraSpell : false)
+  const [stateNumSpells, setStateNumSpells] = useState(getNumSpells(unit));
   const [stateSpells, setStateSpells] = useState(
     equippedSpells ? equippedSpells : []
   );
@@ -204,7 +213,7 @@ export default function ComEditWindow({
             })}
         </div>
       </div>
-      {numSpells && (
+      {stateNumSpells > 0 && (
         <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
           <div
             onClick={() => {
@@ -213,7 +222,7 @@ export default function ComEditWindow({
             className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
           >
             <h4>
-              Spells {stateSpells.length}/{getNumSpells(unit)}
+              Spells {stateSpells.length}/{stateNumSpells}
             </h4>
             <button>
               <svg
