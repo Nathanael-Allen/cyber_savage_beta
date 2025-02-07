@@ -27,6 +27,7 @@ type TUnit = {
   equippedCharacteristics?: TCharacteristics[];
   hasFlaw?: boolean;
   equippedSpells?: TSpells[];
+  extraSpell?: boolean;
   id?: TUnitID;
 };
 
@@ -34,6 +35,7 @@ type TForce = {
   forceName: string;
   forceID: string;
   units: TUnit[];  
+  discipline?: string;
 }
 
 type TDicesType = "d4" | "d6" | "d8" | "d10" | "d12";
@@ -66,6 +68,7 @@ type TWeapon = {
   bonusDamage?: number;
   id?: number;
   changeType?: boolean;
+  extraWeapon?: boolean;
 };
 
 type TWeaponSubtype = "light" | "medium" | "heavy";

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { TForce } from "../types/types";
+import getForcePointTotal from "../utils/getForcePointTotal";
 
 type props = {
   handleNewArmy: (forceName: string) => void;
@@ -98,14 +99,18 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
           </button>
           <h4 className="font-semibold text-4xl mb-8">Load Force</h4>
           <ul className="max-w-2/3">
-            {availableForces.map((force) => {
+            {availableForces.map((force, index) => {
               return (
                 <li
-                  className="text-xl cursor-pointer border border-gray-800 bg-gray-700 text-white flex"
+                  key={index}
+                  className="items-center cursor-pointer border border-gray-800 bg-gray-700 text-white flex"
+                  onClick={() => handleLoadArmy(force)}
                 >
-                  <button className="text-left w-full p-2" onClick={() => handleLoadArmy(force)}>{force.forceName}</button>
+                  <button className="text-left p-2 text-2xl" onClick={() => handleLoadArmy(force)}>{force.forceName}</button>
+                  <p className="p-2 text-base">Points: {getForcePointTotal(force)}</p>
+                  <p className="p-2 text-base">Discipline: {force.discipline}</p>
                   <button
-                    className="text-red-500 ml-auto hover:text-red-600 p-2"
+                    className="text-red-500 ml-auto text-xl hover:text-red-600 p-2"
                     onClick={() => handleDelete(force.forceID)}
                   >
                     Delete

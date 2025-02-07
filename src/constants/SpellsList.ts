@@ -21,6 +21,7 @@ const SpellsList: TSpells[] = [
   { name: "Summon", spellocity: "d10", range: '4"' },
   { name: "Conjure Weapon", spellocity: "d8", range: "self" },
   { name: "Fireball", spellocity: "target", range: '8"' },
+  { name: "Fling", spellocity: "target", range: '6"' },
 ];
 
 export { SpellsList };

@@ -4,9 +4,18 @@ import { SpellsList } from "../constants/SpellsList";
 import ComWeapon from "./ComWeapon";
 import { CharacteristicsList } from "../constants/CharacteristicsList";
 import checkCharacteristics from "../utils/checkCharacteristics";
-type props = { unit: TUnit; saveHandler(unit: TUnit): void, cancelHandler(): void};
+import getNumSpells from "../utils/getNumSpells";
+type props = {
+  unit: TUnit;
+  saveHandler(unit: TUnit): void;
+  cancelHandler(): void;
+};
 
-export default function ComEditWindow({ unit, saveHandler, cancelHandler }: props) {
+export default function ComEditWindow({
+  unit,
+  saveHandler,
+  cancelHandler,
+}: props) {
   const {
     unitClass,
     unitName,
@@ -35,10 +44,9 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
   function saveUnit() {
     const updatedUnit = getUnit();
     const unitWithBonuses = checkCharacteristics(updatedUnit);
-    console.log(unitWithBonuses)
+    console.log(unitWithBonuses);
     saveHandler(unitWithBonuses);
   }
-  
 
   function weaponClickHandler(weapon: TWeapon) {
     const updated = stateWeapons.map((equippedWeapon) => {
@@ -61,12 +69,35 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
 
   function characteristicClickHandler(char: TCharacteristics) {
     if (equippedCharNames.includes(char.name)) {
+      
+      if (char.name.toLowerCase() === "extra weapon") {
+        setStateWeapons(
+          stateWeapons.filter((weapon) => {
+            return (
+              weapon.extraWeapon === false || weapon.extraWeapon === undefined
+            );
+          })
+        );
+      }
       setStateCharacteristics(
         stateCharacteristics?.filter(
           (equippedChar) => equippedChar.name != char.name
         )
       );
     } else {
+      if (char.name.toLowerCase() === "extra weapon") {
+        setStateWeapons([
+          ...stateWeapons,
+          {
+            type: "unarmed",
+            techLevel: "standard",
+            changeType: true,
+            numTraits: 1,
+            extraWeapon: true,
+            id: 69,
+          },
+        ]);
+      }
       setStateCharacteristics([...stateCharacteristics, char]);
     }
   }
@@ -81,10 +112,8 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
     }
   }
 
-  
-
   // State variables
-  const [unitNameState, setUnitName] = useState(unitName ? unitName : "")
+  const [unitNameState, setUnitName] = useState(unitName ? unitName : "");
   const [stateCharacteristics, setStateCharacteristics] = useState(
     equippedCharacteristics ? equippedCharacteristics : []
   );
@@ -107,10 +136,15 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
     "text-sm p-3 border border-black cursor-pointer bg-blue-200";
 
   return (
-    <div className="">
+    <div className="mt-12">
       <h2 className="mb-8 font-bold text-3xl text-center">{unitClass}</h2>
       <div className="flex justify-center items-center">
-        <input className="w-11/12 border text-xl border-black rounded-md p-1" onChange={e => setUnitName(e.target.value)} type="text" placeholder={unitName ? unitName : "Unit Name..."} />
+        <input
+          className="w-11/12 border text-xl border-black rounded-md p-1"
+          onChange={(e) => setUnitName(e.target.value)}
+          type="text"
+          placeholder={unitName ? unitName : "Unit Name..."}
+        />
       </div>
       <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
         <div
@@ -179,7 +213,7 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
             className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
           >
             <h4>
-              Spells {stateSpells.length}/{numSpells}
+              Spells {stateSpells.length}/{getNumSpells(unit)}
             </h4>
             <button>
               <svg
@@ -272,12 +306,27 @@ export default function ComEditWindow({ unit, saveHandler, cancelHandler }: prop
             );
           })}
       </div>
-      <button onClick={cancelHandler} className="absolute top-0 right-4">
-        <svg viewBox="0 0 1024 1024" className="fill-red-800 h-12 hover:fill-red-600">
-          <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z" />
-        </svg>
+      <button onClick={cancelHandler} className="absolute top-0 left-4 flex items-center font-semibold">
+      <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-12 w-12"
+            >
+              <path
+                d="M6 12h12M6 12l5-5m-5 5 5 5"
+                stroke="#000"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          Characters
       </button>
-      <button onClick={saveUnit} className="fixed bottom-6 right-6 font-semibold text-2xl bg-gray-800 text-white p-3 rounded-lg hover:shadow-custom hover:bg-gray-700">
+      <button
+        onClick={saveUnit}
+        className="fixed bottom-6 right-6 font-semibold text-2xl bg-gray-800 text-white p-3 rounded-lg hover:shadow-custom hover:bg-gray-700"
+      >
         Save
       </button>
     </div>

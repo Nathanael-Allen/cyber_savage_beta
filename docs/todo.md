@@ -21,6 +21,7 @@ ___
 - [ ] Replace X button with back button for Character list
 - [ ] shorten attacks and damage to atk and dmg
 - [ ] Group equipped units by level
+- [ ] Show point total and combat disciplines when looking at saved forces.
 - [x] Fix the alert box pop ups for adding a unit. 
     - Should queue up several alerts when added and then give them each a setTimeout function
 - [x] Update Unit and Weapon Component styling
