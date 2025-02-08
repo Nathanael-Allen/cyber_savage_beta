@@ -9,6 +9,7 @@ const Disciplines: string[] = [
   'Battle Standard',
   'Predatory',
   'Cultist',
+  'Air Support',
 ];
 
 export { Disciplines };
