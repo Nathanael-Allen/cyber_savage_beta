@@ -51,7 +51,7 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
       </div>
       <div className="grid grid-cols-4 bg-gray-700 rounded-t-md sm:col-start-1 sm:col-span-2 sm:row-start-2 sm:row-span-2">
         <div className="bg-white h-36 w-36 rounded-full col-start-1 row-span-4 m-2 flex items-center justify-center">
-          <img src={"src/public/images/" + unit.imagePath + ".png"} alt="unit icon" className="h-24"/>
+          <img src={"/" + unit.imagePath + ".png"} alt="unit icon" className="h-24"/>
         </div>
         {unitName &&
           <p className="text-white font-semibold text-2xl mt-3 col-start-3 col-span-2 text-center">
@@ -136,7 +136,7 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
               })}
             </div>
           )}
-          {unit.numSpells || unit.extraSpell && (
+          {unit.numSpells && unit.numSpells > 0 && (
             <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-6 sm:col-span-4 md:col-start-3 md:col-span-2 md:row-start-5">
               <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
                 Spells

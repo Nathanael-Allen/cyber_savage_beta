@@ -142,7 +142,7 @@ export default function App() {
     <div className="max-w-4xl m-auto">
       {view === "main" && (
         <img
-          src="src/public/images/cs-logo.png"
+          src="/cs-logo.png"
           alt="cyber savage logo"
           className="h-56 m-auto"
         />
@@ -160,7 +160,7 @@ export default function App() {
         <div className="mt-24">
           <header className="">
             <img
-              src="src/public/images/cs-logo.png"
+              src="/cs-logo.png"
               alt="cyber savage logo"
               className="absolute -top-3 right-0 h-20"
             />
@@ -212,7 +212,7 @@ export default function App() {
               </PDFDownloadLink>
             </button>
           </div>
-          <img src="src/public/images/mage.png" alt="mage guy" className="h-68"/>
+          <img src="/mage.png" alt="mage guy" className="h-68"/>
         </div>
       )}
       {view === "disciplines" && (
@@ -329,7 +329,7 @@ export default function App() {
               />
             );
           })}
-          <img src="src/public/images/char-2.jpg" alt="" className="h-56 ml-auto" />
+          <img src="/char-2.jpg" alt="" className="h-56 ml-auto" />
         </div>
       )}
       {view === "editUnit" && (

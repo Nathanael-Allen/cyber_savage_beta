@@ -18,6 +18,7 @@ ___
 
 ## Low Priority/UI Stuff
 ___
+- [ ] Alert pop up UI bug on adding a unit
 - [ ] Replace X button with back button for Character list
 - [ ] shorten attacks and damage to atk and dmg
 - [ ] Group equipped units by level

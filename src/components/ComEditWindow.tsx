@@ -38,6 +38,7 @@ export default function ComEditWindow({
       equippedSpells: stateSpells,
       equippedWeapons: stateWeapons,
       extraSpell: stateExtraSpell,
+      numSpells: stateNumSpells
     };
   }
 

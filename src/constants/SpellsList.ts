@@ -5,7 +5,6 @@ const SpellsList: TSpells[] = [
   { name: "Bless", spellocity: "d8", range: '8"' },
   { name: "Purify", spellocity: "d6", range: '8"' },
   { name: "Clairvoyance", spellocity: "d8", range: "self" },
-  { name: "Bulwark", spellocity: "d8", range: '8"' },
   { name: "Force Field", spellocity: "d8", range: "self" },
   { name: "Brain Control", spellocity: "target", range: '8"' },
   { name: "Shockwave", spellocity: "target", range: 'self AoE3"' },
