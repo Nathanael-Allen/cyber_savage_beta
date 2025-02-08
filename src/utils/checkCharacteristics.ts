@@ -14,6 +14,7 @@ export default function checkCharacteristics(unit: TUnit): TUnit {
         break
       case "hulking body":
         health += 4;
+        speed -= 1;
         break
       case "mounted":
         speed += 2;
