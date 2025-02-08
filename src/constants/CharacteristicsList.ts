@@ -190,6 +190,11 @@ const CharacteristicsList: TCharacteristics[] = [
       "When this model is in cover a model must test willpower against it to target it with a charge or ranged attack action.",
   },
   {
+    name: "Sturdy",
+    description:
+      "This model cannot be moved by spells, weapon traits, or other game effects.",
+  },
+  {
     name: "Support",
     description:
       'Spend a utility action to restore a single models reaction token within 3\"',

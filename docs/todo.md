@@ -32,7 +32,6 @@ ___
 ## Code Refactoring
 ___
 
-- [ ] Replace "views" with routes
 - [ ] Replace more complex state functions with a reducer function
 - [x] Change how units are displayed (seperate window for editing them)
 - [x] Edit window will take a unit for editing and it will return a unit after editing.

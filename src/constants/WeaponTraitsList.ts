@@ -2,6 +2,13 @@ import { TWeaponTrait } from "../types/types";
 
 const WeaponTraitsList: TWeaponTrait[] = [
   {
+    name: "Antagonizing",
+    description:
+      "(Wd8) if target fails it MUST duel if able (melee only)",
+    weaponType: "melee",
+    weaponSubtype: "all",
+  },
+  {
     name: "Assault Weapon",
     description:
       "May make a ranged combat action with this weapon after a sprint action is taken.",
