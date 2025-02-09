@@ -172,12 +172,9 @@ export default function App() {
               Main Menu
             </button>
           </header>
-          <div>
-            <h1 className="text-center font-anta text-4xl underline mt-4">
-              {forceState?.forceName}
-            </h1>
-            <button >rename force</button>
-          </div>
+          <h1 className="text-center font-anta text-4xl underline mt-4">
+            {forceState?.forceName}
+          </h1>
           <h1 className="text-center font-anta text-xl underline mt-2">
             Combat Discipline: {disciplineState}
           </h1>
