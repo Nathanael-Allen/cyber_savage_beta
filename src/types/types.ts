@@ -47,10 +47,13 @@ type TTechLevel = "simple" | "standard" | "advanced" | "prime";
 
 type TFlaw = { name: string; description: string };
 
+type Taction = "combat" | "utility" | "complex";
+
 type TSpells = {
   name: string;
   spellocity: TDicesType | "target";
   range: string;
+  actionType: Taction,
   fizzle?: string;
   weak?: string;
   adequate?: string;
