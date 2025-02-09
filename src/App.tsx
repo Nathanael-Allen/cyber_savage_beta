@@ -7,7 +7,7 @@ import ComEditWindow from "./components/ComEditWindow";
 import getNumWeaponTraits from "./utils/getNumWeaponTraits";
 import ComAlert from "./components/ComAlert";
 import ComMainMenu from "./components/ComMainMenu";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import ComPDF from "./components/ComPDF";
 import { Disciplines } from "./constants/Disciplines";
 
