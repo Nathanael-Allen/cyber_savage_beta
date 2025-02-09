@@ -19,10 +19,10 @@ ___
 ## Low Priority/UI Stuff
 ___
 - [ ] Alert pop up UI bug on adding a unit
-- [ ] Replace X button with back button for Character list
 - [ ] shorten attacks and damage to atk and dmg
 - [ ] Group equipped units by level
 - [ ] Add a "are you sure?" modal for deleting a force
+- [x] Replace X button with back button for Character list
 - [x] Show point total and combat disciplines when looking at saved forces.
 - [x] Fix the alert box pop ups for adding a unit. 
     - Should queue up several alerts when added and then give them each a setTimeout function
