@@ -141,7 +141,6 @@ export default function App() {
 
   return (
     <div className="max-w-4xl m-auto">
-      <PDFViewer children={<ComPDF unitList={equippedUnits} forceName={forceState ? forceState?.forceName : ""} discipline={disciplineState ? disciplineState : ""} />} width={800} height={500} />
       {view === "main" && (
         <img
           src="/cs-logo.png"

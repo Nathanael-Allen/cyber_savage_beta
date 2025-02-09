@@ -7,7 +7,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
   const { uniqueChars, uniqueSpells, uniqueTraits } = generateRules(unitList);
   return (
     <Document>
-      <Page size="A4" orientation="portrait" style={[{ maxWidth: 800 }]} wrap>
+      <Page size="A4" orientation="portrait" style={[{ maxWidth: 800 }]}>
         <View
           style={[
             {
@@ -65,30 +65,31 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         gap: 10,
                         margin: "auto",
                         marginTop: 10,
+                        fontSize: 12
                       },
                     ]}
                   >
-                    <View>
+                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
                       <Text>{unit.health}</Text>
                       <Text>Health</Text>
                     </View>
-                    <View>
+                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
                       <Text>{unit.speed}</Text>
                       <Text>Speed</Text>
                     </View>
-                    <View>
+                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
                       <Text>{unit.diceMelee}</Text>
                       <Text>Melee</Text>
                     </View>
-                    <View>
+                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
                       <Text>{unit.diceRanged}</Text>
                       <Text>Ranged</Text>
                     </View>
-                    <View>
+                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
                       <Text>{unit.diceDefense}</Text>
                       <Text>Defense</Text>
                     </View>
-                    <View>
+                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
                       <Text>{unit.diceWillpower}</Text>
                       <Text>Willpower</Text>
                     </View>
@@ -244,7 +245,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                               ]}
                             >
                               {weapon.equippedTraits?.map((trait) => {
-                                return <Text>{trait.name}</Text>;
+                                return <Text style={{paddingHorizontal: 2}}>{trait.name}</Text>;
                               })}
                             </View>
                           </View>
@@ -296,15 +297,21 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
             <Text style={{ fontSize: 16 }}>SPELLS</Text>
             {uniqueSpells.map((spell) => {
               return (
-                <Text
-                  style={[
-                    {
-                      padding: 2,
-                    },
-                  ]}
+                <View
+                style={[
+                  {
+                    padding: 2,
+                  },
+                ]}
                 >
-                  {spell.name}: {spell.spellocity}
-                </Text>
+                  <Text>
+                    {spell.name} | spellocity: {spell.spellocity} | range: {spell.range} | action type: {spell.actionType} 
+                  </Text>
+                  <Text>
+                    fizzle: {spell.fizzle} | weak: {spell.weak} | adequate: {spell.adequate} | exemplary: {spell.exemplary}
+                  </Text>
+
+                </View>
               );
             })}
           </View>
