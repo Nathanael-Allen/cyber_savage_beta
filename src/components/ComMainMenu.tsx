@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { TForce } from "../types/types";
 import getForcePointTotal from "../utils/getForcePointTotal";
-import renameForceModal from "./ComRenameForceModal";
 import ComRenameForceModal from "./ComRenameForceModal";
 
 type props = {

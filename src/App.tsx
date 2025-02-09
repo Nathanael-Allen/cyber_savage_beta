@@ -7,7 +7,7 @@ import ComEditWindow from "./components/ComEditWindow";
 import getNumWeaponTraits from "./utils/getNumWeaponTraits";
 import ComAlert from "./components/ComAlert";
 import ComMainMenu from "./components/ComMainMenu";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import ComPDF from "./components/ComPDF";
 import { Disciplines } from "./constants/Disciplines";
 
@@ -112,7 +112,6 @@ export default function App() {
 
   // State variables
   const [view, setView] = useState<TMainViews>("main");
-  const [showRenameModal, setShowRenameModal] = useState(false)
   const [forceState, setForceState] = useState<TForce>();
   const [equippedUnits, setEquippedUnits] = useState<TUnit[]>([]);
   const [unitToEdit, setUnitToEdit] = useState<TUnit>();
