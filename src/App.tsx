@@ -10,6 +10,7 @@ import ComMainMenu from "./components/ComMainMenu";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import ComPDF from "./components/ComPDF";
 import { Disciplines } from "./constants/Disciplines";
+import genUID from "./utils/genUID";
 
 export default function App() {
   // Click Handlers
@@ -31,7 +32,7 @@ export default function App() {
 
     const updatedUnit: TUnit = {
       ...unit,
-      id: equippedUnits.length,
+      id: genUID(),
       bonusHealth: bonusHealth,
       bonusSpeed: bonusSpeed,
       equippedWeapons: weapons,
@@ -86,7 +87,6 @@ export default function App() {
       };
       const newForces = [...updatedForces, force];
       localStorage.setItem("forces", JSON.stringify(newForces));
-      setAlert("Force Saved!");
     }
   }
 
