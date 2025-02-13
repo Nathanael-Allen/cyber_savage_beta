@@ -99,7 +99,7 @@ export default function App() {
   }
 
   function handleNewArmy(forceName: string) {
-    setForceState({ forceID: forceName, forceName: forceName, units: [], discipline: undefined });
+    setForceState({ forceID: "force-" + genUID(), forceName: forceName, units: [], discipline: undefined });
     setEquippedUnits([]);
     setView("force");
   }

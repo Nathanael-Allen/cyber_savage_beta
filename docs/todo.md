@@ -4,9 +4,10 @@
 ___
 
 - [ ] Warning messages when units are breaking rules (i.e. Too many characteristics, No weapons equipped, etc...)
-- [ ] PDF file needs to include a page of rules for equipped characteristics and remove descriptions from the character sheets
 - [ ] Add flaw handling.
+    - Button to add flaw in editwindow -> when showing num characteristics needs to add 1 if character has flaw. 
 - [x] Extra Weapon trait needs to add another weapon
+- [x] PDF file needs to include a page of rules for equipped characteristics and remove descriptions from the character sheets
 - [x] Mystical needs to add another spell
 - [x] Save and load a list. Idea right now is to save and load from a json file.
 - [x] Save and load list from local storage.'
@@ -18,12 +19,12 @@ ___
 
 ## Low Priority/UI Stuff
 ___
-- [ ] Alert pop up UI bug on adding a unit
 - [ ] shorten attacks and damage to atk and dmg
 - [ ] Group equipped units by level
 - [ ] Add a "are you sure?" modal for deleting a force
 - [x] Replace X button with back button for Character list
 - [x] Show point total and combat disciplines when looking at saved forces.
+- [x] Alert pop up UI bug on adding a unit
 - [x] Fix the alert box pop ups for adding a unit. 
     - Should queue up several alerts when added and then give them each a setTimeout function
 - [x] Update Unit and Weapon Component styling
