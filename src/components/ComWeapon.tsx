@@ -37,7 +37,6 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
       newTraits = weapon.equippedTraits.filter((equippedTrait) => {
         return equippedTrait.name != trait.name;
       })
-      console.log(newTraits)
     } else {
       newTraits = weapon.equippedTraits ? weapon.equippedTraits?.concat([trait]) : [trait]
     }

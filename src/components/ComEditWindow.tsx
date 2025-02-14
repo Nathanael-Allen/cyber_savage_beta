@@ -5,6 +5,7 @@ import ComWeapon from "./ComWeapon";
 import { CharacteristicsList } from "../constants/CharacteristicsList";
 import checkCharacteristics from "../utils/checkCharacteristics";
 import getNumSpells from "../utils/getNumSpells";
+import checkFlaw from "../utils/checkFlaw";
 type props = {
   unit: TUnit;
   saveHandler(unit: TUnit): void;
@@ -38,14 +39,14 @@ export default function ComEditWindow({
       equippedSpells: stateSpells,
       equippedWeapons: stateWeapons,
       extraSpell: stateExtraSpell,
-      numSpells: stateNumSpells
+      numSpells: stateNumSpells,
+      hasFlaw: stateFlaw,
     };
   }
 
   function saveUnit() {
     const updatedUnit = getUnit();
     const unitWithBonuses = checkCharacteristics(updatedUnit);
-    console.log(unitWithBonuses);
     saveHandler(unitWithBonuses);
   }
 
@@ -132,6 +133,7 @@ export default function ComEditWindow({
   const [stateSpells, setStateSpells] = useState(
     equippedSpells ? equippedSpells : []
   );
+  const [stateFlaw, setStateFlaw] = useState<boolean>(unit.hasFlaw ? unit.hasFlaw : false);
   const [stateWeapons, setStateWeapons] = useState(equippedWeapons);
   const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
 
@@ -156,6 +158,10 @@ export default function ComEditWindow({
           placeholder={unitName ? unitName : "Unit Name..."}
         />
       </div>
+      <div className="flex gap-1 justify-center items-center text-xl py-1">
+        <input type="checkbox" checked={stateFlaw} onClick={() => setStateFlaw(!stateFlaw)} id="flaw-checkbox" className="h-5 w-5"/>
+        <label htmlFor="flaw-checkbox">Flaw</label>
+      </div>
       <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
         <div
           onClick={() => {
@@ -164,7 +170,7 @@ export default function ComEditWindow({
           className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
         >
           <h4>
-            Characteristics {stateCharacteristics.length}/{numCharacteristics}
+            Characteristics {stateCharacteristics.length}/{checkFlaw(numCharacteristics, stateFlaw)}
           </h4>
           <button>
             <svg

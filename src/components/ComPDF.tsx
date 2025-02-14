@@ -24,6 +24,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
           </Text>
         </View>
         {unitList.map((unit, index) => {
+          const hasFlaw = unit.hasFlaw ? unit.hasFlaw : false;
           return (
             <View
               wrap={false}
@@ -55,6 +56,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                   <Text>{unit.unitName}</Text>
                   <Text>{unit.unitClass}</Text>
                   <Text>Level {unit.level}</Text>
+                  {hasFlaw === true ? <Text>(Flawed)</Text> : null}
                 </View>
                 <View>
                   <View
@@ -65,36 +67,90 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         gap: 10,
                         margin: "auto",
                         marginTop: 10,
-                        fontSize: 12
+                        fontSize: 12,
                       },
                     ]}
                   >
-                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
+                    <View
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: 1,
+                        borderRadius: 200,
+                        padding: 10,
+                      }}
+                    >
                       <Text>{unit.health}</Text>
                       <Text>Health</Text>
                     </View>
-                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
+                    <View
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: 1,
+                        borderRadius: 200,
+                        padding: 10,
+                      }}
+                    >
                       <Text>{unit.speed}</Text>
                       <Text>Speed</Text>
                     </View>
-                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
+                    <View
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: 1,
+                        borderRadius: 200,
+                        padding: 10,
+                      }}
+                    >
                       <Text>{unit.diceMelee}</Text>
                       <Text>Melee</Text>
                     </View>
-                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
+                    <View
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: 1,
+                        borderRadius: 200,
+                        padding: 10,
+                      }}
+                    >
                       <Text>{unit.diceRanged}</Text>
                       <Text>Ranged</Text>
                     </View>
-                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
+                    <View
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: 1,
+                        borderRadius: 200,
+                        padding: 10,
+                      }}
+                    >
                       <Text>{unit.diceDefense}</Text>
                       <Text>Defense</Text>
                     </View>
-                    <View style={{display: "flex", justifyContent: "center", alignItems: "center", border: 1, borderRadius: 200, padding: 10}}>
+                    <View
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: 1,
+                        borderRadius: 200,
+                        padding: 10,
+                      }}
+                    >
                       <Text>{unit.diceWillpower}</Text>
                       <Text>Willpower</Text>
                     </View>
                   </View>
-                  {unit.numCharacteristics && (
+                  {unit.numCharacteristics && unit.numCharacteristics > 0 ? (
                     <View
                       style={[
                         {
@@ -136,8 +192,8 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         )}
                       </View>
                     </View>
-                  )}
-                  {unit.numSpells && (
+                  ) : null}
+                  {unit.numSpells && unit.numSpells > 0 ? (
                     <View
                       style={[
                         {
@@ -177,7 +233,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         })}
                       </View>
                     </View>
-                  )}
+                  ) : null}
                   <View
                     style={[
                       {
@@ -244,8 +300,15 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                                 { display: "flex", flexDirection: "row" },
                               ]}
                             >
-                              {weapon.equippedTraits?.map((trait) => {
-                                return <Text style={{paddingHorizontal: 2}}>{trait.name}</Text>;
+                              {weapon.equippedTraits?.map((trait, index) => {
+                                return (
+                                  <Text
+                                    style={{ paddingHorizontal: 2 }}
+                                    key={index}
+                                  >
+                                    {trait.name}
+                                  </Text>
+                                );
                               })}
                             </View>
                           </View>
@@ -271,7 +334,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
             ]}
           >
             <Text style={{ fontSize: 16 }}>CHARACTERISTICS</Text>
-            {uniqueChars.map((char) => {
+            {uniqueChars.map((char, index) => {
               return (
                 <Text
                   style={[
@@ -279,6 +342,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                       padding: 2,
                     },
                   ]}
+                  key={index}
                 >
                   {" "}
                   {char.name}: {char.description}
@@ -295,22 +359,24 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
             ]}
           >
             <Text style={{ fontSize: 16 }}>SPELLS</Text>
-            {uniqueSpells.map((spell) => {
+            {uniqueSpells.map((spell, index) => {
               return (
                 <View
-                style={[
-                  {
-                    padding: 2,
-                  },
-                ]}
+                  style={[
+                    {
+                      padding: 2,
+                    },
+                  ]}
+                  key={index}
                 >
                   <Text>
-                    {spell.name} | spellocity: {spell.spellocity} | range: {spell.range} | action type: {spell.actionType} 
+                    {spell.name} | spellocity: {spell.spellocity} | range:{" "}
+                    {spell.range} | action type: {spell.actionType}
                   </Text>
                   <Text>
-                    fizzle: {spell.fizzle} | weak: {spell.weak} | adequate: {spell.adequate} | exemplary: {spell.exemplary}
+                    fizzle: {spell.fizzle} | weak: {spell.weak} | adequate:{" "}
+                    {spell.adequate} | exemplary: {spell.exemplary}
                   </Text>
-
                 </View>
               );
             })}
@@ -324,7 +390,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
             ]}
           >
             <Text style={{ fontSize: 16 }}>WEAPON TRAITS</Text>
-            {uniqueTraits.map((trait) => {
+            {uniqueTraits.map((trait, index) => {
               return (
                 <Text
                   style={[
@@ -332,6 +398,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                       padding: 2,
                     },
                   ]}
+                  key={index}
                 >
                   {trait.name}: {trait.description}
                 </Text>

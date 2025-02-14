@@ -64,6 +64,11 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
         <p className="text-white font-semibold text-lg mt-3 col-start-3 col-span-2 text-center">
           Level {level}
         </p>
+        {unit.hasFlaw && 
+        <p className="text-white font-semibold text-lg mt-3 col-start-3 col-span-2 text-center">
+          (Flawed)
+        </p>
+        }
       </div>
       <div className="grid grid-cols-2 bg-gray-200 rounded-md p-2 gap-2 items-center border-2 border-black max-sm:mt-4 sm:col-span-2 sm:col-start-3 sm:row-start-2 sm:row-span-2 max-sm:hidden">
         <div>

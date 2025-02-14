@@ -47,9 +47,6 @@ export default function App() {
 
   function editUnit(unit: TUnit) {
     setUnitToEdit(unit);
-    unit.equippedWeapons.forEach((weapon) =>
-      console.log("num traits" + weapon.numTraits)
-    );
     setView("editUnit");
   }
 
