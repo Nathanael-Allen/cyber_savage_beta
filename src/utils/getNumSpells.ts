@@ -5,8 +5,9 @@ export default function getNumSpells(unit: TUnit) {
   
   if (unit.extraSpell !== undefined && unit.extraSpell === true) {
     return numSpells + 1;
+  } else if (numSpells === undefined) {
+    return 0;    
   } else {
     return numSpells;
-    
   }
 }

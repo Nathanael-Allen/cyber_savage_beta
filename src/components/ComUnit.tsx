@@ -136,7 +136,7 @@ export default function ComUnit({ unit, editCallback, deleteHandler }: props) {
               })}
             </div>
           )}
-          {unit.numSpells && unit.numSpells > 0 && (
+          {unit.numSpells > 0 && (
             <div className="min-h-36 border-2 border-black rounded-md mt-4 sm:row-start-6 sm:col-span-4 md:col-start-3 md:col-span-2 md:row-start-5">
               <h4 className="font-semibold text-center border-b border-black text-xl bg-gray-700 text-white">
                 Spells

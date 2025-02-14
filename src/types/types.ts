@@ -14,6 +14,7 @@ type TUnit = {
   readonly unitClass: string;
   equippedWeapons: TWeapon[];
   numCharacteristics: number;
+  numSpells: number;
   imagePath?: string;
   unitName?: string;
   speed?: number;
@@ -24,7 +25,6 @@ type TUnit = {
   diceRanged?: TDicesType;
   diceDefense?: TDicesType;
   diceWillpower?: TDicesType;
-  numSpells?: number;
   equippedCharacteristics?: TCharacteristics[];
   hasFlaw?: boolean;
   equippedSpells?: TSpells[];
