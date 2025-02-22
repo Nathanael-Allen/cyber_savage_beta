@@ -192,7 +192,7 @@ export default function ComEditWindow({
             </svg>
           </button>
         </div>
-        <div className="max-h-96 overflow-scroll">
+        <div className="max-h-96 overflow-scroll overscroll-contain">
           {openDropdowns.includes("char") &&
             CharacteristicsList.map((char, index) => {
               return (
@@ -253,7 +253,7 @@ export default function ComEditWindow({
               </svg>
             </button>
           </div>
-          <div className="max-h-96 overflow-scroll">
+          <div className="max-h-96 overflow-scroll overscroll-contain">
             {openDropdowns.includes("spell") &&
               SpellsList.map((spell, index) => {
                 return (

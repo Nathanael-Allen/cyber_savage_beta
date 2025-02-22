@@ -307,6 +307,7 @@ export default function App() {
           <h1 className="font-anta font-semibold text-3xl text-center">
             CHARACTERS
           </h1>
+          <p className="text-center font-semibold pb-1">Points: {totalPoints}</p>
           {equippedUnits.length <= 0 && <p className="text-center">empty...</p>}
           <button
             onClick={() => {

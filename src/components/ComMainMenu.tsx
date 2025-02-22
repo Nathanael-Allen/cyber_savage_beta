@@ -107,12 +107,12 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
       )}
       {loadModal && (
         <div className="text-center relative">
-          <button
-            onClick={() => setLoadModal(false)}
-            className="absolute left-4 text-xl text-red-600 font-semibold"
-          >
-            cancel
-          </button>
+ <button
+              onClick={() => setLoadModal(false)}
+              className="text-xl underline font-semibold hover:text-gray-800"
+            >
+              Main Menu
+            </button>
           <h4 className="font-semibold text-4xl mb-8">Load Force</h4>
           <ul className="max-w-2/3">
             {availableForces.map((force, index) => {
