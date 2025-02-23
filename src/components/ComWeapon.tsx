@@ -11,6 +11,14 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
     "text-sm p-3 border border-black bg-blue-200 cursor-pointer";
   const subtypeCSS = "py-1 px-4 border border-black rounded-lg font-semibold hover:bg-gray-600 hover:text-white"
   const equippedTraitNames = weapon.equippedTraits ? weapon.equippedTraits.map((trait) => { return trait.name }) : [];
+  let numTraits: number = 0;
+
+  if (weapon.numTraits) {
+    numTraits = weapon.numTraits;
+  } 
+  if (weapon.extraTrait) {
+    numTraits += 1;
+  }
 
   function subTypeHandler(subtype: TWeaponSubtype) {
     const { numAttacks, damage } = updateSubtype(subtype);
@@ -77,11 +85,11 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
           Melee
         </button>
       </div>}
-      {weapon.numTraits! > 0 && <div className="col-span-6 border border-black rounded-md m-2">
+      {weapon.numTraits! > 0 || weapon.extraTrait ? (<div className="col-span-6 border border-black rounded-md m-2">
         <h4 className="bg-gray-700 text-white text-center p-1 rounded-t-md">
           Weapon Traits{" "}
           {weapon.equippedTraits ? weapon.equippedTraits.length : 0}/
-          {weapon.numTraits}
+          {numTraits};
         </h4>
         <div className="max-h-52 overflow-scroll">
           {WeaponTraitsList.map((trait, index) => {
@@ -108,7 +116,7 @@ export default function ComWeapon({ weapon, clickHandler }: props) {
             }
           })}
         </div>
-      </div>}
+      </div>) : null}
     </div>
   );
 }

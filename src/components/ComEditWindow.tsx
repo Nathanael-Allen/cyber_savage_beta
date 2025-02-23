@@ -84,6 +84,15 @@ export default function ComEditWindow({
           })
         );
       }
+      if (char.name.toLowerCase() === "weapons specialist") {
+        setStateWeapons(stateWeapons.map((weapon) => {
+          return {
+            ...weapon,
+            extraTrait: false,
+            equippedTraits: []
+          }
+        }))
+      }
       setStateCharacteristics(
         stateCharacteristics?.filter(
           (equippedChar) => equippedChar.name != char.name
@@ -106,6 +115,14 @@ export default function ComEditWindow({
             id: 69,
           },
         ]);
+      }
+      if (char.name.toLowerCase() === "weapons specialist") {
+        setStateWeapons(stateWeapons.map((weapon) => {
+          return {
+            ...weapon,
+            extraTrait: true,
+          }
+        }))
       }
       setStateCharacteristics([...stateCharacteristics, char]);
     }

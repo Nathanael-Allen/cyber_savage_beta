@@ -64,6 +64,7 @@ type TWeapon = {
   type: TWeaponType;
   techLevel: TTechLevel;
   numTraits?: number;
+  extraTrait?: boolean;
   subtype?: TWeaponSubtype;
   equippedTraits?: TWeaponTrait[];
   numAttack?: number;
