@@ -4,7 +4,6 @@ import { SpellsList } from "../constants/SpellsList";
 import ComWeapon from "./ComWeapon";
 import { CharacteristicsList } from "../constants/CharacteristicsList";
 import checkCharacteristics from "../utils/checkCharacteristics";
-import getNumSpells from "../utils/getNumSpells";
 import checkFlaw from "../utils/checkFlaw";
 type props = {
   unit: TUnit;
@@ -73,7 +72,6 @@ export default function ComEditWindow({
     if (equippedCharNames.includes(char.name)) {
       if (char.name.toLowerCase() === "mystical") {
         setStateExtraSpell(false);
-        setStateNumSpells(stateNumSpells - 1);
       }
       if (char.name.toLowerCase() === "extra weapon") {
         setStateWeapons(
@@ -101,7 +99,6 @@ export default function ComEditWindow({
     } else {
       if (char.name.toLowerCase() === "mystical") {
         setStateExtraSpell(true);
-        setStateNumSpells(stateNumSpells + 1);
       }
       if (char.name.toLowerCase() === "extra weapon") {
         setStateWeapons([
@@ -146,13 +143,14 @@ export default function ComEditWindow({
   const [stateHealth] = useState(health);
   const [stateSpeed] = useState(speed);
   const [stateExtraSpell, setStateExtraSpell] = useState(unit.extraSpell ? unit.extraSpell : false)
-  const [stateNumSpells, setStateNumSpells] = useState(getNumSpells(unit));
+  const [stateNumSpells] = useState(unit.numSpells ? unit.numSpells : 0);
   const [stateSpells, setStateSpells] = useState(
     equippedSpells ? equippedSpells : []
   );
   const [stateFlaw, setStateFlaw] = useState<boolean>(unit.hasFlaw ? unit.hasFlaw : false);
   const [stateWeapons, setStateWeapons] = useState(equippedWeapons);
   const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
+
 
   // Lists of equipped attributes names
   const equippedCharNames = stateCharacteristics.map((char) => char.name);
@@ -176,7 +174,7 @@ export default function ComEditWindow({
         />
       </div>
       <div className="flex gap-1 justify-center items-center text-xl py-1">
-        <input type="checkbox" checked={stateFlaw} onClick={() => setStateFlaw(!stateFlaw)} id="flaw-checkbox" className="h-5 w-5"/>
+        <input type="checkbox" checked={stateFlaw} onChange={() => setStateFlaw(!stateFlaw)} id="flaw-checkbox" className="h-5 w-5"/>
         <label htmlFor="flaw-checkbox">Flaw</label>
       </div>
       <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
@@ -237,7 +235,7 @@ export default function ComEditWindow({
             })}
         </div>
       </div>
-      {stateNumSpells > 0 && (
+      {stateNumSpells > 0 || stateExtraSpell ? (
         <div className="relative rounded-md border-2 border-black m-2 bg-gray-200">
           <div
             onClick={() => {
@@ -246,7 +244,7 @@ export default function ComEditWindow({
             className="bg-gray-700 text-white text-center p-1 rounded-t-sm sticky top-0 font-semibold text-lg cursor-pointer flex justify-center items-center"
           >
             <h4>
-              Spells {stateSpells.length}/{stateNumSpells}
+              Spells {stateSpells.length}/{stateExtraSpell ? stateNumSpells + 1 : stateNumSpells}
             </h4>
             <button>
               <svg
@@ -295,7 +293,7 @@ export default function ComEditWindow({
               })}
           </div>
         </div>
-      )}
+      ) : null}
       <div className="m-2 border-2 border-black rounded-md bg-gray-200">
         <div
           onClick={() => {
