@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TUnit } from "../types/types";
-import ComStatBubble from "./ComStatBubble";
+// import ComStatBubble from "./ComStatBubble";
 
 type props = { unit: TUnit };
 export default function ComCharacterPreview({ unit }: props) {
