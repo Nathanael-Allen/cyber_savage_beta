@@ -1,122 +1,47 @@
-import { TWeapon, TWeaponSubtype, TWeaponTrait, TWeaponType } from "../types/types";
-import { WeaponTraitsList } from "../constants/WeaponTraitsList";
-import updateSubtype from "../utils/updateSubtype";
-import checkWeaponTraits from "../utils/checkWeaponTraits";
+import { useState } from "react";
+import { TWeapon, TWeaponTrait } from "../types/types";
+import getTotalWeaponAtks from "../utils/getTotalWeaponAtks";
+import getTotalWeaponDmg from "../utils/getTotalWeaponDmg";
 
-type props = { weapon: TWeapon; clickHandler(weapon: TWeapon): void };
+type props = {weapon: TWeapon}
 
-export default function ComWeapon({ weapon, clickHandler }: props) {
-  const traitCSS = "text-sm p-3 border border-black cursor-pointer hover:bg-blue-100";
-  const equippedTraitCSS =
-    "text-sm p-3 border border-black bg-blue-200 cursor-pointer";
-  const subtypeCSS = "py-1 px-4 border border-black rounded-lg font-semibold hover:bg-gray-600 hover:text-white"
-  const equippedTraitNames = weapon.equippedTraits ? weapon.equippedTraits.map((trait) => { return trait.name }) : [];
-  let numTraits: number = 0;
-
-  if (weapon.numTraits) {
-    numTraits = weapon.numTraits;
-  } 
-  if (weapon.extraTrait) {
-    numTraits += 1;
-  }
-
-  function subTypeHandler(subtype: TWeaponSubtype) {
-    const { numAttacks, damage } = updateSubtype(subtype);
-    const newWeapon: TWeapon = {
-      ...weapon,
-      subtype: subtype,
-      damage: weapon.techLevel === 'prime' ? damage + 1 : damage,
-      numAttack: numAttacks
-    }
-    clickHandler(newWeapon)
-  }
-
-  function typeHandler(type: TWeaponType) {
-    const newWeapon: TWeapon = {
-      ...weapon,
-      type: type
-    }
-    clickHandler(newWeapon)
-  }
-
-  function traitHandler(trait: TWeaponTrait) {
-    let newTraits;
-    if (equippedTraitNames.includes(trait.name) && weapon.equippedTraits) {
-      newTraits = weapon.equippedTraits.filter((equippedTrait) => {
-        return equippedTrait.name != trait.name;
-      })
-    } else {
-      newTraits = weapon.equippedTraits ? weapon.equippedTraits?.concat([trait]) : [trait]
-    }
-    let newWeapon = {
-      ...weapon,
-      equippedTraits: newTraits
-    }
-    const { bonusAttacks, bonusDamage } = checkWeaponTraits(newWeapon);
-    newWeapon = {
-      ...newWeapon,
-      bonusAttacks: bonusAttacks,
-      bonusDamage: bonusDamage
-    }
-    clickHandler(newWeapon)
-  }
-
+export default function ComWeapon({weapon}: props) {
+  const [description, setDescription] = useState<TWeaponTrait | null>(null)
+  
   return (
-    <div className="grid grid-cols-6 items-center bg-gray-200 rounded-md border-2 border-black min-h-24 m-1">
-      <h4 className="font-semibold text-lg text-center max-md:col-span-6">
-        {weapon.techLevel.toUpperCase()} {weapon.type.toUpperCase()}
-      </h4>
-      <div className="flex col-span-6 gap-4 m-auto mt-4 mb-4">
-        <button onClick={() => { subTypeHandler("light") }} className={weapon.subtype === "light" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
-          Light
-        </button>
-        <button onClick={() => { subTypeHandler("medium") }} className={weapon.subtype === "medium" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
-          Medium
-        </button>
-        <button onClick={() => { subTypeHandler("heavy") }} className={weapon.subtype === "heavy" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
-          Heavy
-        </button>
+    <div className="flex bg-slate-600 text-white rounded-md max-w-[500px] m-auto">
+      <div className="bg-slate-900 flex flex-col justify-center items-center p-2 rounded-l-md">
+        <h2 className="font-semibold text-lg">{weapon.type}</h2>
+        <h3>{weapon.techLevel}</h3>
+        <p>{weapon.subtype}</p>
       </div>
-      {weapon.changeType && <div className="flex col-span-6 gap-4 m-auto mt-4 mb-4">
-        <button onClick={() => { typeHandler("ranged") }} className={weapon.type === "ranged" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
-          Ranged
-        </button>
-        <button onClick={() => { typeHandler("melee") }} className={weapon.type === "melee" ? subtypeCSS + " bg-gray-600 text-white" : subtypeCSS}>
-          Melee
-        </button>
-      </div>}
-      {weapon.numTraits! > 0 || weapon.extraTrait ? (<div className="col-span-6 border border-black rounded-md m-2">
-        <h4 className="bg-gray-700 text-white text-center p-1 rounded-t-md">
-          Weapon Traits{" "}
-          {weapon.equippedTraits ? weapon.equippedTraits.length : 0}/
-          {numTraits};
-        </h4>
-        <div className="max-h-52 overflow-scroll">
-          {WeaponTraitsList.map((trait, index) => {
-            // Remove melee traits from list if weapon is ranged and vice versa
-            if (trait.weaponType === weapon.type || trait.weaponType === "both") {
-              // Filter out subtype specific traits
-              if (trait.weaponSubtype === weapon.subtype || trait.weaponSubtype === "all") {
-                return (
-                  <p
-                    key={index}
-                    onClick={() => traitHandler(trait)}
-                    className={
-                      equippedTraitNames.includes(trait.name)
-                        ? equippedTraitCSS
-                        : traitCSS
-                    }
-                  >
-                    <button onClick={() => traitHandler(trait)} className={equippedTraitNames.includes(trait.name) ? "text-left" : "text-left"}>
-                      <b>{trait.name}: </b> {trait.description}
-                    </button>
-                  </p>
-                );
-              }
-            }
-          })}
+      <div className="flex flex-col justify-center items-center text-lg p-2">
+        <span className="rounded-full bg-slate-900 h-8 w-8 flex justify-center items-center font-bold">{getTotalWeaponAtks(weapon)}</span>
+        <p>atk</p>
+        <span className="rounded-full bg-slate-900 h-8 w-8 flex justify-center items-center font-bold">{getTotalWeaponDmg(weapon)}</span>
+        <p>dmg</p>
+      </div>
+      <div className="m-2 w-full">
+        <div className="">
+          <h3 className="text-center font-semibold text-lg bg-slate-900 rounded-t-md">traits</h3>
+          <ul className="bg-slate-100 text-black text-center *:border-b *:border-black max-h-24 rounded-b-md overflow-scroll">
+            {weapon.equippedTraits?.map((trait) => {
+              return (
+                <li className=""><button className="underline decoration-dashed py-1" onClick={() => setDescription(trait)}>{trait.name.toLowerCase()}</button></li>
+              )
+            })}
+          </ul>
         </div>
-      </div>) : null}
+        {description && (
+        <div className="z-0 h-full w-full fixed top-0 left-0 bg-white/30 flex justify-center items-center"  onClick={() => setDescription(null)}>
+          <div className="z-10 min-h-48 w-56 bg-slate-600 text-white flex flex-col gap-4 text-center rounded-md relative" onClick={(e) => e.stopPropagation()}>
+            <button className="absolute text-3xl font-bold -top-9 right-2 text-red-800"  onClick={() => setDescription(null)}>close</button>
+            <h2 className="text-xl font-semibold w-full bg-slate-900 p-1 rounded-t-md">{description.name}</h2>
+            <p className="">{description.description}</p>
+          </div>
+        </div>
+      )}
+     </div>
     </div>
-  );
+  )
 }

@@ -37,6 +37,7 @@ type TForce = {
   forceID: string;
   units: TUnit[];  
   discipline?: string;
+  forceVersion?: number;
 }
 
 type TDicesType = "d4" | "d6" | "d8" | "d10" | "d12";
