@@ -27,7 +27,7 @@ export default function ComWeapon({weapon}: props) {
           <ul className="bg-slate-100 text-black text-center *:border-b *:border-black max-h-24 rounded-b-md overflow-scroll">
             {weapon.equippedTraits?.map((trait) => {
               return (
-                <li className=""><button className="underline decoration-dashed py-1" onClick={() => setDescription(trait)}>{trait.name.toLowerCase()}</button></li>
+                <li className=""><button className="underline decoration-dashed py-1 w-full hover:text-sky-800" onClick={() => setDescription(trait)}>{trait.name.toLowerCase()}</button></li>
               )
             })}
           </ul>

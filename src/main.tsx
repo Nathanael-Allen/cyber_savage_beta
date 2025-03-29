@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import ComCharacterPreview from "./components/ComCharacterPreview.tsx";
 import { TUnit } from "./types/types.ts";
 import ComFullCharacter from "./components/ComFullCharacter.tsx";
+import ComEdit from "./components/EditComponents/ComEdit.tsx";
 
 const unit: TUnit = {
   unitName: "Schmooly",
@@ -56,7 +57,7 @@ const unit: TUnit = {
     },
   ],
   numCharacteristics: 2,
-  numSpells: 0,
+  numSpells: 4,
   speed: 7,
   health: 14,
   diceMelee: "d12",
@@ -112,7 +113,7 @@ const unit: TUnit = {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <div>
-      <ComFullCharacter unit={unit} />
+      <ComEdit characterToEdit={unit} />
       {/* <ComCharacterPreview unit={unit} />     */}
     </div>
   </StrictMode>

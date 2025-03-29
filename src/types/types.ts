@@ -2,6 +2,8 @@
 type TUnitID = string | number;
 
 type TMainViews = "addUnits" | "equippedUnits" | "editUnit" | "main" | "force" | "disciplines";
+type TEditViews = "main" | "characteristics" | "spells" | "weapons"
+
 
 type TDiscipline = {
   title: string,
@@ -103,6 +105,7 @@ export type {
   TFlaw,
   TWeaponSubtype,
   TMainViews,
+  TEditViews,
   TTechLevel,
   TForce,
   TDiscipline
