@@ -16,28 +16,29 @@ type TUnit = {
   readonly unitClass: string;
   equippedWeapons: TWeapon[];
   numCharacteristics: number;
+  speed: number;
+  health: number;
+  diceMelee: TDicesType;
+  diceRanged: TDicesType;
+  diceDefense: TDicesType;
+  diceWillpower: TDicesType;
   numSpells: number;
+  equippedSpells: TSpells[];
+  equippedCharacteristics: TCharacteristics[];
+  bonusHealth: number;
+  bonusSpeed: number;
+  extraWeapon: boolean;
+  extraSpell: boolean;
+  hasFlaw: boolean;
   imagePath?: string;
   unitName?: string;
-  speed?: number;
-  health?: number;
-  bonusHealth?: number;
-  bonusSpeed?: number;
-  diceMelee?: TDicesType;
-  diceRanged?: TDicesType;
-  diceDefense?: TDicesType;
-  diceWillpower?: TDicesType;
-  equippedCharacteristics?: TCharacteristics[];
-  hasFlaw?: boolean;
-  equippedSpells?: TSpells[];
-  extraSpell?: boolean;
   id?: TUnitID;
 };
 
 type TForce = {
   forceName: string;
   forceID: string;
-  units: TUnit[];  
+  units: TUnit[];
   discipline?: string;
   forceVersion?: number;
 }

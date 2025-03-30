@@ -1,16 +1,17 @@
 import { TUnit, TEditViews } from "../../types/types";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import ComEditMain from "./ComEditMain";
+import editReducer from "../../reducers/editReducer";
 
 type props = { characterToEdit: TUnit };
 
 export default function ComEdit({ characterToEdit }: props) {
   // CONSTANTS
-  const character: TUnit = { ...characterToEdit };
 
   // STATE
   const [view, setView] = useState<TEditViews>("main");
-  
+  const [character, charDispatch] = useReducer(editReducer, characterToEdit);
+
   // FUNCTIONS
   function renderSwitch() {
     switch (view) {

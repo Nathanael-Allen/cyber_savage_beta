@@ -112,7 +112,7 @@ const CharacteristicsList: TCharacteristics[] = [
       "Gain favorable attacks when attacking a model of higher level.",
   },
   {
-    name: "Honerable",
+    name: "Honorable",
     description: "Gain favorable when attacking a model of the same level.",
   },
   {
@@ -120,7 +120,7 @@ const CharacteristicsList: TCharacteristics[] = [
     description:
       "Any model targeting this model with a combat action must test willpower vs this model. If failed weaken attack for the combat action.",
   },
-  { name: "Hulking Body", description: "+4 Health" },
+  { name: "Hulking Body", description: "+4 Health, -1 speed" },
   {
     name: "Impervious",
     description: "Glancing hits do 0 damage to this model.",
