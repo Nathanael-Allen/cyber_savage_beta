@@ -1,4 +1,5 @@
 import { TUnit, TEditViews } from "../../types/types";
+import ComEditChars from "./ComEditChars";
 import { useReducer, useState } from "react";
 import ComEditMain from "./ComEditMain";
 import editReducer from "../../reducers/editReducer";
@@ -13,12 +14,12 @@ export default function ComEdit({ characterToEdit }: props) {
   const [character, charDispatch] = useReducer(editReducer, characterToEdit);
 
   // FUNCTIONS
-  function renderSwitch() {
+  function renderViews() {
     switch (view) {
       case "main":
         return (<ComEditMain character={character} handleViewChange={setView} />);
       case "characteristics":
-        return (<h1 onClick={() => setView("main")}>CHARACTERISTICS</h1>);
+        return (<ComEditChars dispatch={charDispatch} equippedChars={character.equippedCharacteristics} />);
       case "spells":
         return (<h1 onClick={() => setView("main")}>SPELLS</h1>);
       case "weapons":
@@ -28,8 +29,8 @@ export default function ComEdit({ characterToEdit }: props) {
 
   // JSX
   return (
-    <div className="min-h-dvh m-4 bg-slate-200 border border-black rounded-md max-w-2xl">
-      {renderSwitch()}
+    <div className="min-h-dvh m-4 max-w-2xl">
+      {renderViews()}
     </div>
   );
 }

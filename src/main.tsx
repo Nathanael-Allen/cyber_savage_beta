@@ -10,6 +10,11 @@ const unit: TUnit = {
   unitName: "Schmooly",
   level: 2,
   unitClass: "Warrior",
+  bonusHealth: 0,
+  bonusSpeed: 0,
+  extraSpell: false,
+  extraWeapon: false,
+  hasFlaw: false,
   equippedWeapons: [
     {
       type: "melee",
@@ -113,8 +118,9 @@ const unit: TUnit = {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <div>
-      <ComEdit characterToEdit={unit} />
-      {/* <ComCharacterPreview unit={unit} />     */}
+      {/* <ComEdit characterToEdit={unit} /> */}
+      {/* <ComFullCharacter character={unit} /> */}
+      <ComCharacterPreview character={unit} />    
     </div>
   </StrictMode>
 );

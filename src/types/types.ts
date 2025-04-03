@@ -1,7 +1,7 @@
 // Types
 type TUnitID = string | number;
 
-type TMainViews = "addUnits" | "equippedUnits" | "editUnit" | "main" | "force" | "disciplines";
+type TForceViews = "addUnits" | "equippedUnits" | "editUnit" | "force" | "disciplines";
 type TEditViews = "main" | "characteristics" | "spells" | "weapons"
 
 
@@ -38,7 +38,7 @@ type TUnit = {
 type TForce = {
   forceName: string;
   forceID: string;
-  units: TUnit[];
+  characters: TUnit[];
   discipline?: string;
   forceVersion?: number;
 }
@@ -105,7 +105,7 @@ export type {
   TWeaponType,
   TFlaw,
   TWeaponSubtype,
-  TMainViews,
+  TForceViews,
   TEditViews,
   TTechLevel,
   TForce,
