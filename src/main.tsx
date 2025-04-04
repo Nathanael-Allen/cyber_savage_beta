@@ -2,9 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import ComCharacterPreview from "./components/ComCharacterPreview.tsx";
-import { TUnit } from "./types/types.ts";
+import { TForce, TUnit } from "./types/types.ts";
 import ComFullCharacter from "./components/ComFullCharacter.tsx";
 import ComEdit from "./components/EditComponents/ComEdit.tsx";
+import ComForceMain from "./components/ComForceMain.tsx";
 
 const unit: TUnit = {
   unitName: "Schmooly",
@@ -115,12 +116,15 @@ const unit: TUnit = {
   ],
 };
 
+const myForce: TForce = {forceID: "91204", forceName: "tester", characters: [ unit ]}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <div>
       {/* <ComEdit characterToEdit={unit} /> */}
       {/* <ComFullCharacter character={unit} /> */}
-      <ComCharacterPreview character={unit} />    
+      {/* <ComCharacterPreview character={unit} />     */}
+      <ComForceMain force={myForce} />
     </div>
   </StrictMode>
 );

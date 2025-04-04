@@ -1,7 +1,7 @@
 // Types
 type TUnitID = string | number;
 
-type TForceViews = "addUnits" | "equippedUnits" | "editUnit" | "force" | "disciplines";
+type TForceViews = "addCharacters" | "equippedCharacters" | "editCharacter" | "characterDetails" | "force" | "disciplines";
 type TEditViews = "main" | "characteristics" | "spells" | "weapons"
 
 

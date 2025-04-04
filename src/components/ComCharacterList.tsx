@@ -1,13 +1,13 @@
-import { TUnit } from "../types/types";
+import { TForceViews, TUnit } from "../types/types";
 import ComCharacterPreview from "./ComCharacterPreview";
 
-type props = { characters: TUnit[] };
+type props = { characters: TUnit[], handleViewChange: (view: TForceViews, character?: TUnit) => void };
 
-export default function ComCharacterList({characters}: props) {
+export default function ComCharacterList({characters, handleViewChange}: props) {
   return (
     <div>
       {characters.map((char) => {
-        return <ComCharacterPreview character={char} />
+        return <ComCharacterPreview character={char} handleViewChange={handleViewChange} />
       })}
     </div>
   )

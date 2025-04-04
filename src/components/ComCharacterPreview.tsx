@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { TForceViews } from "../types/types";
 import { TUnit } from "../types/types";
 
-type props = { character: TUnit };
-export default function ComCharacterPreview({ character }: props) {
+type props = { character: TUnit, handleViewChange: (view: TForceViews, character?: TUnit) => void };
+export default function ComCharacterPreview({ character, handleViewChange }: props) {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
 
   function toggleMenu() {
@@ -35,7 +36,7 @@ export default function ComCharacterPreview({ character }: props) {
         </button>
       </div>
       <div className="w-full text-center font-bold text-white mt-2">
-        <button className="p-2 w-full bg-slate-800 rounded-md">
+        <button className="p-2 w-full bg-slate-800 rounded-md" onClick={() => handleViewChange("characterDetails", character)}>
           Show Full Loadout/Stats
         </button>
       </div>
