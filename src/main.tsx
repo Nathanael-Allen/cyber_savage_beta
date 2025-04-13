@@ -4,7 +4,7 @@ import App from "./App.tsx";
 import ComCharacterPreview from "./components/ComCharacterPreview.tsx";
 import { TForce, TUnit } from "./types/types.ts";
 import ComFullCharacter from "./components/ComFullCharacter.tsx";
-import ComEdit from "./components/EditComponents/ComEdit.tsx";
+import ComEdit from "./components/EditComponents/ComEditMain.tsx";
 import ComForceMain from "./components/ComForceMain.tsx";
 
 const unit: TUnit = {
@@ -20,9 +20,15 @@ const unit: TUnit = {
     {
       type: "melee",
       techLevel: "standard",
-      subtype: "light",
-      numAttack: 4,
-      damage: 2,
+      subtype: "none",
+      id: 1,
+      numAttacks: 0,
+      damage: 0,
+      bonusAttacks: 0,
+      bonusDamage: 0,
+      extraTrait: false,
+      changeType: false,
+      extraWeapon: false,
       numTraits: 1,
       equippedTraits: [
         {
@@ -44,14 +50,20 @@ const unit: TUnit = {
           weaponType: "both",
         },
       ],
-      },
+    },
     {
       type: "melee",
       techLevel: "standard",
       subtype: "light",
-      numAttack: 4,
+      id: 2,
+      numAttacks: 4,
       damage: 2,
+      bonusAttacks: 0,
+      bonusDamage: 0,
       numTraits: 1,
+      extraTrait: false,
+      changeType: false,
+      extraWeapon: false,
       equippedTraits: [
         {
           name: "Chamber",

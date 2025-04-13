@@ -67,20 +67,20 @@ type TSpells = {
 type TWeapon = {
   type: TWeaponType;
   techLevel: TTechLevel;
-  numTraits?: number;
-  extraTrait?: boolean;
-  subtype?: TWeaponSubtype;
-  equippedTraits?: TWeaponTrait[];
-  numAttack?: number;
-  damage?: number;
-  bonusAttacks?: number;
-  bonusDamage?: number;
+  numTraits: number;
+  equippedTraits: TWeaponTrait[];
+  numAttacks: number;
+  damage: number;
+  bonusAttacks: number;
+  bonusDamage: number;
+  extraTrait: boolean;
+  changeType: boolean;
+  extraWeapon: boolean;
+  subtype: TWeaponSubtype;
   id?: number;
-  changeType?: boolean;
-  extraWeapon?: boolean;
 };
 
-type TWeaponSubtype = "light" | "medium" | "heavy";
+type TWeaponSubtype = "none" | "light" | "medium" | "heavy";
 
 type TWeaponType = "melee" | "ranged" | "unarmed";
 

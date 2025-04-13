@@ -43,7 +43,7 @@ export default function ComCharacterPreview({ character, handleViewChange }: pro
       {openMenu && (
         <ul className="absolute top-1 text-center right-1 bg-slate-700 z-10 rounded-md">
           <li>
-            <button className="rounded-t-md p-2 w-full border-b border-white text-white font-semibold hover:bg-sky-900">
+            <button className="rounded-t-md p-2 w-full border-b border-white text-white font-semibold hover:bg-sky-900" onClick={() => handleViewChange("editCharacter", character)}>
               Edit Loadout
             </button>
           </li>

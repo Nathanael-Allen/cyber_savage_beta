@@ -1,31 +1,42 @@
 import { TUnit, TEditViews } from "../../types/types";
-import ComCharacterStatHeader from "../ComCharacterStatHeader";
+import ComEditChars from "./ComEditChars";
+import { useEffect, useReducer, useState } from "react";
+import ComEditMain from "./ComEditMenu";
+import editReducer from "../../reducers/editReducer";
+import ComEditSpells from "./ComEditSpells";
+import ComEditWeaponsList from "./ComEditWeaponsList";
 
-type props = {character: TUnit, handleViewChange: (view: TEditViews) => void}
+type props = { characterToEdit: TUnit };
 
-export default function ComEditMain({character, handleViewChange}: props) {
+export default function ComEdit({ characterToEdit }: props) {
+  // CONSTANTS
+
+  // STATE
+  const [view, setView] = useState<TEditViews>("main");
+  const [character, charDispatch] = useReducer(editReducer, characterToEdit);
+
+  // FUNCTIONS
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [view])
+  
+  function renderViews() {
+  switch (view) {
+      case "main":
+        return (<ComEditMain character={character} handleEditViewChange={setView} />);
+      case "characteristics":
+        return (<ComEditChars dispatch={charDispatch} equippedChars={character.equippedCharacteristics} handleEditViewChange={setView} />);
+      case "spells":
+        return <ComEditSpells dispatch={charDispatch} equippedSpells={character.equippedSpells} handleEditViewChange={setView} />
+      case "weapons":
+        return <ComEditWeaponsList equippedWeapons={character.equippedWeapons} dispatch={charDispatch} handleEditViewChange={setView} />;
+    }
+  }
+
+  // JSX
   return (
-    <>
-      <div className="grid grid-cols-2 bg-slate-900">
-      </div>
-      <ComCharacterStatHeader character={character} />
-      <div className="w-full flex flex-col gap-8 text-white text-lg font-semibold mt-12">
-        <button className="w-3/4 m-auto py-2 bg-slate-900 rounded-md hover:bg-slate-700" onClick={() => handleViewChange("characteristics")}>
-          Characteristics
-        </button>
-        {character.numSpells > 0 ? (
-          <button className="w-3/4 m-auto py-2 bg-slate-900 rounded-md hover:bg-slate-700" onClick={() => handleViewChange("spells")}>
-            Spells
-          </button>
-        ) : null}
-        <button className="w-3/4 m-auto py-2 bg-slate-900 rounded-md hover:bg-slate-700" onClick={() => handleViewChange("weapons")}>
-          Weapons
-        </button>
-      </div>
-      <div className="w-full fixed bottom-0 left-0 grid grid-cols-2">
-          <button className="py-1 w-full bg-red-900 text-white text-2xl font-semibold">cancel</button>
-          <button className="py-1 w-full bg-sky-900 text-white text-2xl font-semibold">save</button>
-      </div>
-    </>
+    <div className="m-4 max-w-2xl">
+      {renderViews()}
+    </div>
   );
 }

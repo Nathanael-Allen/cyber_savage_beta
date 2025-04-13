@@ -3,6 +3,8 @@ import { TForce, TForceViews, TUnit } from "../types/types";
 import ComForce from "./ComForce";
 import ComCharacterList from "./ComCharacterList";
 import ComFullCharacter from "./ComFullCharacter";
+import ComEditMain from "./EditComponents/ComEditMenu";
+import ComEdit from "./EditComponents/ComEditMain";
 
 type props = { force: TForce };
 
@@ -40,7 +42,7 @@ export default function ComForceMain({ force }: props) {
       case "disciplines":
         break;
       case "editCharacter":
-        break;
+        return <ComEdit characterToEdit={focusCharacter!} /> 
       case "equippedCharacters":
         return (
           <ComCharacterList
@@ -49,7 +51,7 @@ export default function ComForceMain({ force }: props) {
           />
         );
       case "characterDetails":
-        return <ComFullCharacter character={focusCharacter!} />;
+        return <ComFullCharacter character={focusCharacter!} handleViewChange={handleViewChange}/>;
       default:
         break;
     }

@@ -1,7 +1,8 @@
 import { TCharacteristics, TSpells, TUnit, TWeapon } from "../types/types";
 import Character from "../classes/Character";
+import Weapon from "../classes/Weapon";
 
-type TActionType = "removeChar" | "addChar" | "removeSpell" | "addSpell"
+type TActionType = "removeChar" | "addChar" | "removeSpell" | "addSpell" | "changeWeaponSubtype" | "addWeaponTrait" | "removeWeaponTrait" | "changeWeaponType" | "updateWeapon"
 type TAction = { type: TActionType, characteristic?: TCharacteristics, spell?: TSpells, weapon?: TWeapon }
 
 export default function editReducer(character: TUnit, action: TAction): TUnit {
@@ -20,6 +21,18 @@ export default function editReducer(character: TUnit, action: TAction): TUnit {
       break;
     case "removeSpell":
       character = {...character, equippedSpells: character.equippedSpells.filter(spell => spell.name !== action.spell!.name)};
+      break;
+    case "updateWeapon":
+      character = {
+        ...character,
+        equippedWeapons: character.equippedWeapons.map((weapon) => {
+          if (weapon.id === action.weapon!.id) {
+            return Weapon.calcWeaponStats(action.weapon!);
+          } else {
+            return weapon;
+          }
+        })
+      }
       break;
     default:
       break;

@@ -1,15 +1,15 @@
-import { TUnit } from "../types/types"
+import { TForceViews, TUnit } from "../types/types"
 import ComCharacterStatHeader from "./ComCharacterStatHeader";
 import ComEqCharacteristics from "./ComEqCharacteristics";
 import ComEqSpells from "./ComEqSpells";
 import ComWeapon from "./ComWeapon";
 
-type props = {character: TUnit};
+type props = {character: TUnit, handleViewChange: (view: TForceViews, character?: TUnit) => void};
 
-export default function ComFullCharacter({character}: props) {
+export default function ComFullCharacter({character, handleViewChange}: props) {
   return (
     <div className="min-h-dvh m-4 bg-slate-200 border border-black rounded-md max-w-2xl">
-      <button className="w-full text-sky-700 px-3 pt-1 text-lg font-bold text-center hover:text-sky-600">EDIT LOADOUT</button>
+      <button className="w-full text-sky-700 px-3 pt-1 text-lg font-bold text-center hover:text-sky-600" onClick={() => handleViewChange("editCharacter", character)}>EDIT LOADOUT</button>
       <ComCharacterStatHeader character={character} />
       <div className="grid grid-cols-2 gap-4 m-1">
         <div>
@@ -20,9 +20,9 @@ export default function ComFullCharacter({character}: props) {
         </div>
       </div>
       <div className="m-1">
-        {character.equippedWeapons.map((weapon) => {
+        {character.equippedWeapons.map((weapon, index) => {
           return (
-            <div className="my-4">
+            <div key={index} className="my-4">
               <ComWeapon weapon={weapon} />
             </div>
           )

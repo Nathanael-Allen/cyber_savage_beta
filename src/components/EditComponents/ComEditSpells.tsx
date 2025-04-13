@@ -1,35 +1,36 @@
 import React, { MouseEvent, useState } from "react";
 import { CharacteristicsList } from "../../constants/CharacteristicsList";
 import { TAction } from "../../reducers/editReducer";
-import { TCharacteristics, TEditViews } from "../../types/types";
-import ComCharacteristicModal from "../UtilityComponents/ComCharacteristicModal";
+import { TCharacteristics, TEditViews, TSpells } from "../../types/types";
+import { SpellsList } from "../../constants/SpellsList";
+import ComSpellModal from "../UtilityComponents/ComSpellModal";
 
 type props = {
-  equippedChars: TCharacteristics[];
+  equippedSpells: TSpells[];
   dispatch: React.Dispatch<TAction>;
   handleEditViewChange: (view: TEditViews) => void;
 };
 
-export default function ComEditChars({
-  equippedChars,
+export default function ComEditSpells({
+  equippedSpells,
   dispatch,
   handleEditViewChange,
 }: props) {
-  const equippedCharsNames = equippedChars.map((char) => char.name);
-  const [description, setDescription] = useState<TCharacteristics | null>(null)
-
-  function removeChar(char: TCharacteristics, e: MouseEvent) {
-    e.stopPropagation();
-    dispatch({ type: "removeChar", characteristic: char });
-  }
-
-  function openModal(e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, characteristic: TCharacteristics) {
-    e.stopPropagation();
-    setDescription(characteristic);
-  }
+  const equippedSpellsNames = equippedSpells.map((char) => char.name);
+  const [description, setDescription] = useState<TSpells | null>(null)
 
   function closeModal() {
     setDescription(null)
+  }
+
+  function openModal(e: React.MouseEvent, spell: TSpells) {
+    e.stopPropagation();
+    setDescription(spell);
+  }
+
+  function removeSpell(spell: TSpells, e: MouseEvent) {
+    e.stopPropagation();
+    dispatch({ type: "removeSpell", spell: spell });
   }
 
   return (
@@ -39,12 +40,12 @@ export default function ComEditChars({
           Equipped
         </h2>
         <div className="bg-white border border-black flex gap-1 flex-wrap text-sm p-2 h-36 overflow-scroll">
-          {equippedChars.map((char, index) => {
+          {equippedSpells.map((spell, index) => {
             return (
               <button
                 key={index}
                 className="h-min p-2 bg-slate-500 border border-slate-500 rounded-md text-white flex items-center gap-1 hover:border-red-400"
-                onClick={(e) => removeChar(char, e)}
+                onClick={(e) => removeSpell(spell, e)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +60,7 @@ export default function ComEditChars({
                   />
                 </svg>
 
-                {char.name}
+                {spell.name}
               </button>
             );
           })}
@@ -67,17 +68,17 @@ export default function ComEditChars({
       </div>
       <div className="bg-slate-200 border border-black rounded-md">
         <h2 className="bg-slate-800 text-white text-xl p-1 font-semibold text-center">
-          Characteristics
+          Spells
         </h2>
-        <ul className="max-h-48 overflow-scroll">
-          {CharacteristicsList.map((char, index) => {
-            if (equippedCharsNames.indexOf(char.name) === -1) {
+        <ul className="max-h-48 overflow-scroll overscroll-contain">
+          {SpellsList.map((spell, index) => {
+            if (equippedSpellsNames.indexOf(spell.name) === -1) {
               return (
                 <li
                   key={index}
                   className="flex items-center  bg-slate-600 text-white border border-slate-600 border-b-white"
                   onClick={() =>
-                    dispatch({ type: "addChar", characteristic: char })
+                    dispatch({ type: "addChar", spell: spell})
                   }
                 >
                   <button className="flex gap-1 w-4/5 py-2 px-1 group">
@@ -97,9 +98,9 @@ export default function ComEditChars({
                       />
                     </svg>
 
-                    {char.name}
+                    {spell.name}
                   </button>
-                  <button className="text-sky-400 w-1/5 py-2 px-1" onClick={(e) => openModal(e, char)}>info</button>
+                  <button className="text-sky-400 w-1/5 py-2 px-1" onClick={(e) => openModal(e, spell)}>info</button>
                 </li>
               );
             }
@@ -112,9 +113,7 @@ export default function ComEditChars({
       >
         Done
       </button>
-      {description && (
-        <ComCharacteristicModal characteristic={description} closeModal={closeModal} />
-      )}
+      {description && <ComSpellModal spell={description} closeModal={closeModal} />}
     </>
   );
 }
