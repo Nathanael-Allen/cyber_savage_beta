@@ -30,9 +30,9 @@ type TUnit = {
   extraWeapon: boolean;
   extraSpell: boolean;
   hasFlaw: boolean;
+  id: TUnitID;
   imagePath?: string;
   unitName?: string;
-  id?: TUnitID;
 };
 
 type TForce = {

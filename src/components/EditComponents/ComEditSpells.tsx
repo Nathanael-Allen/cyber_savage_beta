@@ -1,7 +1,6 @@
 import React, { MouseEvent, useState } from "react";
-import { CharacteristicsList } from "../../constants/CharacteristicsList";
 import { TAction } from "../../reducers/editReducer";
-import { TCharacteristics, TEditViews, TSpells } from "../../types/types";
+import { TEditViews, TSpells } from "../../types/types";
 import { SpellsList } from "../../constants/SpellsList";
 import ComSpellModal from "../UtilityComponents/ComSpellModal";
 
@@ -78,7 +77,7 @@ export default function ComEditSpells({
                   key={index}
                   className="flex items-center  bg-slate-600 text-white border border-slate-600 border-b-white"
                   onClick={() =>
-                    dispatch({ type: "addChar", spell: spell})
+                    dispatch({ type: "addSpell", spell: spell})
                   }
                 >
                   <button className="flex gap-1 w-4/5 py-2 px-1 group">

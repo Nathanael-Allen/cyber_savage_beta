@@ -15,6 +15,10 @@ export default function ComEdit({ characterToEdit }: props) {
   const [view, setView] = useState<TEditViews>("main");
   const [character, charDispatch] = useReducer(editReducer, characterToEdit);
 
+  useEffect(() => {
+    
+  }, [character])
+
   // FUNCTIONS
   useEffect(() => {
     window.scrollTo(0,0)

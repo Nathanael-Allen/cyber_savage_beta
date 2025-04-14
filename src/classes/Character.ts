@@ -1,8 +1,13 @@
-import { TCharacteristics } from "../types/types";
+import { TCharacteristics, TUnit } from "../types/types";
+import genUID from "../utils/genUID";
 
 
 export default class Character {
 
+  static addCharacter(character: TUnit): TUnit {
+    return {...character, id: genUID()}
+  }
+  
   static calcBonusStat(chars: TCharacteristics[]): { bonusHealth: number, bonusSpeed: number, extraSpell: boolean, extraWeapon: boolean } {
     let bonusHealth = 0;
     let bonusSpeed = 0;
