@@ -16,12 +16,6 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
-    name: "Adaptive",
-    description: "This weapon cannot be disordered (ranged only).",
-    weaponType: "ranged",
-    weaponSubtype: "all",
-  },
-  {
     name: "Advanced Optics",
     description: "Ignore cover.",
     weaponType: "ranged",
@@ -62,6 +56,12 @@ const WeaponTraitsList: TWeaponTrait[] = [
     name: "Cryo",
     description: "If a target takes damage from this weapon -3 Speed.",
     weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
+    name: "CQC",
+    description: "This character may spend a reaction to shootout when target of a charge. Compare shooting dice to melee dice (ranged only)",
+    weaponType: "ranged",
     weaponSubtype: "all",
   },
   {
@@ -194,20 +194,8 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
-    name: "Punishing",
-    description: "If a target takes damage from this weapon, target is disordered (ranged only)",
-    weaponType: "ranged",
-    weaponSubtype: "all",
-  },
-  {
     name: "Quick Draw",
     description: "Gain priority when reacting with this weapon.",
-    weaponType: "both",
-    weaponSubtype: "all",
-  },
-  {
-    name: "Rampage",
-    description: "Immediately after slaying a model with this weapon perform a move action.",
     weaponType: "both",
     weaponSubtype: "all",
   },
@@ -232,6 +220,12 @@ const WeaponTraitsList: TWeaponTrait[] = [
   {
     name: "Suppress",
     description: "If target takes damage from this weapon (Wd8) -1 action until end of next activation.",
+    weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
+    name: "Unstable",
+    description: "+1 damage, for each successful hit take 1 damage. (Doesn't stack with life drain)",
     weaponType: "both",
     weaponSubtype: "all",
   },

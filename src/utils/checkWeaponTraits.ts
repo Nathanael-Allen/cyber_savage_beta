@@ -18,6 +18,9 @@ export default function checkWeaponTraits(weapon: TWeapon) {
       case "unwieldy":
         bonusAttacks += 1;
         break;
+      case "Unstable":
+        bonusDamage += 1;
+        break;
     }
   })
   return {

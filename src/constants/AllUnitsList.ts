@@ -8,7 +8,7 @@ const availableUnits: TUnit[] = [
     numCharacteristics: 1,
     numSpells: 0,
     speed: 6,
-    health: 12,
+    health: 10,
     diceMelee: "d4",
     diceRanged: "d4",
     diceDefense: "d4",

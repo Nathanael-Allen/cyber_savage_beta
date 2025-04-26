@@ -58,6 +58,47 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                   <Text>Level {unit.level}</Text>
                   {hasFlaw === true ? <Text>(Flawed)</Text> : null}
                 </View>
+                <View
+                  style={[
+                    {
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: 10,
+                      margin: "auto",
+                      marginTop: 10,
+                      fontSize: 12,
+                    },
+                  ]}
+                >
+                  <View
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "48px",
+                      width: "48px",
+                      border: 1,
+                      borderRadius: 200,
+                      fontSize: "8px",
+                    }}
+                  >
+                    <Text>reacted</Text>
+                  </View>
+                  <View
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "48px",
+                      width: "48px",
+                      border: 1,
+                      borderRadius: 200,
+                      fontSize: "8px",
+                    }}
+                  >
+                    <Text>activated</Text>
+                  </View>
+                </View>
                 <View>
                   <View
                     style={[
@@ -79,10 +120,12 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         border: 1,
                         borderRadius: 200,
                         padding: 10,
+                        height: "48px",
+                        width: "48px",
                       }}
                     >
                       <Text>{unit.health}</Text>
-                      <Text>Health</Text>
+                      <Text>HP</Text>
                     </View>
                     <View
                       style={{
@@ -92,10 +135,12 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         border: 1,
                         borderRadius: 200,
                         padding: 10,
+                        height: "48px",
+                        width: "48px",
                       }}
                     >
                       <Text>{unit.speed}</Text>
-                      <Text>Speed</Text>
+                      <Text>SPD</Text>
                     </View>
                     <View
                       style={{
@@ -105,10 +150,12 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         border: 1,
                         borderRadius: 200,
                         padding: 10,
+                        height: "48px",
+                        width: "48px",
                       }}
                     >
                       <Text>{unit.diceMelee}</Text>
-                      <Text>Melee</Text>
+                      <Text>MEL</Text>
                     </View>
                     <View
                       style={{
@@ -118,10 +165,12 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         border: 1,
                         borderRadius: 200,
                         padding: 10,
+                        height: "48px",
+                        width: "48px",
                       }}
                     >
                       <Text>{unit.diceRanged}</Text>
-                      <Text>Ranged</Text>
+                      <Text>RNG</Text>
                     </View>
                     <View
                       style={{
@@ -131,10 +180,12 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         border: 1,
                         borderRadius: 200,
                         padding: 10,
+                        height: "48px",
+                        width: "48px",
                       }}
                     >
                       <Text>{unit.diceDefense}</Text>
-                      <Text>Defense</Text>
+                      <Text>DEF</Text>
                     </View>
                     <View
                       style={{
@@ -144,10 +195,12 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         border: 1,
                         borderRadius: 200,
                         padding: 10,
+                        height: "48px",
+                        width: "48px",
                       }}
                     >
                       <Text>{unit.diceWillpower}</Text>
-                      <Text>Willpower</Text>
+                      <Text>WP</Text>
                     </View>
                   </View>
                   {unit.numCharacteristics && unit.numCharacteristics > 0 ? (

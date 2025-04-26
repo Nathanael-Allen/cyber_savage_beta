@@ -12,7 +12,7 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Agile",
-    description: "Ignore climbing, area terrain, and obstacles"
+    description: "This character treats area terrain and obstacles as open ground"
   },
   {
     name: "Avenger",
@@ -40,16 +40,16 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Cruel",
     description: "Favorable when attacking a lower level character.",
-  },
+  },  
   {
-    name: "CQC",
+    name: "Demented",
     description:
-      "This model may spend a reaction to shootout when target of charge. Comparing shooting dice to melee dice.",
+      'Strengthen attack stats when targeting character that controls an objective.',
   },
   {
     name: "Determinded",
     description:
-      'Strengthen defense stats while within 1" of a controlled objective.',
+      'Strengthen defense stats while base-to-base of an objective.',
   },
   {
     name: "Devious",
@@ -82,8 +82,8 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   { name: "Fast", description: "+3 speed" },
   {
-    name: "Fly",
-    description: "Spend complex action, ignore terrain and move up to 20\"",
+    name: "Flying",
+    description: "This character ignores vertical distance, obstacles, area terrain, and cannot take fall damage. Never benefits from cover.",
   },
   {
     name: "Formidable",
@@ -112,18 +112,22 @@ const CharacteristicsList: TCharacteristics[] = [
       "Gain favorable attacks when attacking a model of higher level.",
   },
   {
-    name: "Honerable",
-    description: "Gain favorable when attacking a model of the same level.",
+    name: "Honorable",
+    description: "Gain favorable when attacking or defending against a model of the same level.",
   },
   {
     name: "Horrifying",
     description:
-      "Any model targeting this model with a combat action must test willpower vs this model. If failed weaken attack for the combat action.",
+      "Any model targeting this model with a melee combat action must test willpower vs this model. If failed weaken attack for the combat action.",
   },
-  { name: "Hulking Body", description: "+4 Health" },
+  { name: "Hulking Body", description: "+4 Health, -1 speed" },
   {
     name: "Impervious",
     description: "Glancing hits do 0 damage to this model.",
+  },
+  {
+    name: "invincible",
+    description: "The first time this character dies in a match, do not remove it from play. Instead leave it standing with a single HP.",
   },
   {
     name: "Indomitable",
@@ -135,9 +139,14 @@ const CharacteristicsList: TCharacteristics[] = [
       "If this model dies it may make a ranged combat action or a 6\" charge",
   },
   {
+    name: "Malicious",
+    description:
+      "Strengthen stats when attacking a character that has a negative status effect.",
+  },
+  {
     name: "Medic",
     description:
-      "Spend a utility action; roll 4 dice (willpower d6) heal 2hp per success.",
+      "Spend a utility action; heal self or base-to-base ally d6 HP",
   },
   { name: "Mounted", description: "+2 speed, +2 health" },
   { name: "Mystical", description: "Gain a spell" },
@@ -169,6 +178,16 @@ const CharacteristicsList: TCharacteristics[] = [
     name: "Rage",
     description:
       "When this model is below half it's starting health strengthen all stats.",
+  },
+  {
+    name: "Rampage",
+    description:
+      "Immediately after slaying a model this character may perform a move action",
+  },
+  {
+    name: "Relentless",
+    description:
+      "If this character does 0 damage during combat action, duel or shootout immediately make 1 additional single attack.",
   },
   { name: "Regeneration", description: "At the start of each activation heal 2." },
   {
