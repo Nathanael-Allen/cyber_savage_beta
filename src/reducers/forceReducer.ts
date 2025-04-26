@@ -1,10 +1,10 @@
 import Character from "../classes/Character";
 import { TForce, TUnit } from "../types/types";
 
-type TActionType = "deleteCharacter" | "updateCharacter" | "addCharacter" | "duplicateCharacter";
-type TActions = {type: TActionType, character?: TUnit}
+type TForceActionType = "deleteCharacter" | "updateCharacter" | "addCharacter" | "duplicateCharacter";
+type TForceAction = {type: TForceActionType, character?: TUnit}
 
-export default function forceReducer(force: TForce, action: TActions): TForce {
+export default function forceReducer(force: TForce, action: TForceAction): TForce {
   switch (action.type) {
     case "deleteCharacter":
       return {...force, characters: force.characters.filter((char) => char.id !== action.character!.id)}
@@ -23,3 +23,5 @@ export default function forceReducer(force: TForce, action: TActions): TForce {
       return force;
   }
 }
+
+export type { TForceActionType, TForceAction }

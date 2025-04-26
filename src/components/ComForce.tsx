@@ -1,11 +1,16 @@
 import { TForce, TForceViews } from "../types/types";
 import Force from "../classes/Force";
+import React from "react";
+import { TForceAction } from "../reducers/forceReducer";
 
-type props = { force: TForce; forceDispatch: () => void, viewHandler: (view: TForceViews) => void };
+
+type props = {
+  force: TForce;
+  forceDispatch: React.Dispatch<TForceAction>;
+  viewHandler: (view: TForceViews) => void;
+};
 
 export default function ComForce({ force, viewHandler }: props) {
-
-  
   return (
     <div className="m-8">
       <div className="text-center">
@@ -18,19 +23,54 @@ export default function ComForce({ force, viewHandler }: props) {
       <div>
         <ul className="*:my-4">
           <li>
-            <button className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline" onClick={() => {viewHandler("equippedCharacters")}}>Characters</button>
+            <button
+              className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline"
+              onClick={() => {
+                viewHandler("equippedCharacters");
+              }}
+            >
+              Characters
+            </button>
           </li>
           <li>
-          <button className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline" onClick={() => {viewHandler("equippedCharacters")}}>Add Characters</button>
+            <button
+              className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline"
+              onClick={() => {
+                viewHandler("addCharacters");
+              }}
+            >
+              Add Characters
+            </button>
           </li>
           <li>
-          <button className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline" onClick={() => {viewHandler("equippedCharacters")}}>Combat Disciplines</button>
+            <button
+              className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline"
+              onClick={() => {
+                viewHandler("equippedCharacters");
+              }}
+            >
+              Combat Disciplines
+            </button>
           </li>
           <li>
-          <button className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline" onClick={() => {viewHandler("equippedCharacters")}}>Print Force</button>
+            <button
+              className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline"
+              onClick={() => {
+                viewHandler("equippedCharacters");
+              }}
+            >
+              Print Force
+            </button>
           </li>
           <li>
-          <button className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline" onClick={() => {viewHandler("equippedCharacters")}}>Save Force</button>
+            <button
+              className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline"
+              onClick={() => {
+                viewHandler("equippedCharacters");
+              }}
+            >
+              Save Force
+            </button>
           </li>
         </ul>
       </div>

@@ -10,6 +10,7 @@ import ComForceMain from "./components/ComForceMain.tsx";
 const unit: TUnit = {
   unitName: "Schmooly",
   level: 2,
+  id: 1,
   unitClass: "Warrior",
   bonusHealth: 0,
   bonusSpeed: 0,
@@ -136,7 +137,7 @@ createRoot(document.getElementById("root")!).render(
       {/* <ComEdit characterToEdit={unit} /> */}
       {/* <ComFullCharacter character={unit} /> */}
       {/* <ComCharacterPreview character={unit} />     */}
-      <ComForceMain force={myForce} />
+      <ComForceMain forceInit={myForce} />
     </div>
   </StrictMode>
 );

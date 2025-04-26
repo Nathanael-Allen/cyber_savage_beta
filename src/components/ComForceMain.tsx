@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { TForce, TForceViews, TUnit } from "../types/types";
 import ComForce from "./ComForce";
 import ComCharacterList from "./ComCharacterList";
 import ComFullCharacter from "./ComFullCharacter";
-import ComEditMain from "./EditComponents/ComEditMenu";
 import ComEdit from "./EditComponents/ComEditMain";
+import ComAddCharacters from "./ComAddCharacters";
+import { availableUnits } from "../constants/AllUnitsList";
+import forceReducer from "../reducers/forceReducer";
+import ComEditMain from "./EditComponents/ComEditMain";
 
-type props = { force: TForce };
+type props = { forceInit: TForce };
 
-export default function ComForceMain({ force }: props) {
-  // const [force, forceDispatch] = useReducer()
+export default function ComForceMain({ forceInit }: props) {
+  const [force, forceDispatch] = useReducer(forceReducer, forceInit)
   const [forceView, setForceView] = useState<TForceViews>("force");
   const [focusCharacter, setFocusCharacter] = useState<TUnit | null>(null);
 
@@ -23,9 +26,12 @@ export default function ComForceMain({ force }: props) {
     }
   }
 
-  function dispatch() {
-    return;
+  function handleSaveCharacter(character: TUnit) {
+    forceDispatch({type: "updateCharacter", character: character})
+    setFocusCharacter(null);
+    setForceView("force")
   }
+
 
   function renderViews() {
     switch (forceView) {
@@ -33,16 +39,19 @@ export default function ComForceMain({ force }: props) {
         return (
           <ComForce
             force={force}
-            forceDispatch={dispatch}
+            forceDispatch={forceDispatch}
             viewHandler={handleViewChange}
           />
         );
       case "addCharacters":
+        return (
+          <ComAddCharacters characters={availableUnits} dispatch={forceDispatch} />
+        )
         break;
       case "disciplines":
         break;
       case "editCharacter":
-        return <ComEdit characterToEdit={focusCharacter!} /> 
+        return <ComEditMain characterToEdit={focusCharacter!} handleSaveCharacter={handleSaveCharacter} /> 
       case "equippedCharacters":
         return (
           <ComCharacterList

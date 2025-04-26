@@ -1,14 +1,15 @@
 import { TUnit, TEditViews } from "../../types/types";
 import ComEditChars from "./ComEditChars";
 import { useEffect, useReducer, useState } from "react";
-import ComEditMain from "./ComEditMenu";
 import editReducer from "../../reducers/editReducer";
 import ComEditSpells from "./ComEditSpells";
 import ComEditWeaponsList from "./ComEditWeaponsList";
+import { TForceAction } from "../../reducers/forceReducer";
+import ComEditMenu from "./ComEditMenu";
 
-type props = { characterToEdit: TUnit };
+type props = { characterToEdit: TUnit, handleSaveCharacter: (character: TUnit) => void };
 
-export default function ComEdit({ characterToEdit }: props) {
+export default function ComEditMain({ characterToEdit, handleSaveCharacter }: props) {
   // CONSTANTS
 
   // STATE
@@ -27,7 +28,7 @@ export default function ComEdit({ characterToEdit }: props) {
   function renderViews() {
   switch (view) {
       case "main":
-        return (<ComEditMain character={character} handleEditViewChange={setView} />);
+        return (<ComEditMenu character={character} handleEditViewChange={setView} handleSaveCharacter={handleSaveCharacter} />);
       case "characteristics":
         return (<ComEditChars dispatch={charDispatch} equippedChars={character.equippedCharacteristics} handleEditViewChange={setView} />);
       case "spells":

@@ -1,9 +1,9 @@
 import { TUnit, TEditViews } from "../../types/types";
 import ComCharacterStatHeader from "../ComCharacterStatHeader";
 
-type props = {character: TUnit, handleEditViewChange: (view: TEditViews) => void}
+type props = {character: TUnit, handleEditViewChange: (view: TEditViews) => void, handleSaveCharacter: (character: TUnit) => void}
 
-export default function ComEditMain({character, handleEditViewChange}: props) {
+export default function ComEditMenu({character, handleEditViewChange, handleSaveCharacter}: props) {
   return (
     <>
       <div className="grid grid-cols-2 bg-slate-900">
@@ -21,7 +21,7 @@ export default function ComEditMain({character, handleEditViewChange}: props) {
         <button className="w-full m-auto py-2 bg-slate-900 rounded-md hover:bg-slate-700" onClick={() => handleEditViewChange("weapons")}>
           Edit Weapons
         </button>
-        <button className="w-full m-auto py-2 bg-slate-900 rounded-md hover:bg-slate-700" onClick={() => handleEditViewChange("weapons")}>
+        <button className="w-full m-auto py-2 bg-slate-900 rounded-md hover:bg-slate-700" onClick={() => handleSaveCharacter(character)}>
           Done
         </button>
       </div>

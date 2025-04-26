@@ -15,7 +15,7 @@ export default function ComEditSpells({
   dispatch,
   handleEditViewChange,
 }: props) {
-  const equippedSpellsNames = equippedSpells.map((char) => char.name);
+  const equippedSpellsNames = equippedSpells.map((spell) => spell.name);
   const [description, setDescription] = useState<TSpells | null>(null)
 
   function closeModal() {
