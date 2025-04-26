@@ -158,7 +158,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Overshield",
     description:
-      "Start each round with one overshield token. Spend this token after taking damage gaining invincible (-1 incoming damage).",
+      "The first single attack that would deal damage to this character deals zero damage instead. The shield is removed until the start of this models next activation.",
   },
   {
     name: "Overwatch",
@@ -166,9 +166,9 @@ const CharacteristicsList: TCharacteristics[] = [
       "Spend a combat action. If an enemy activates in LoS, this model may make a ranged combat action against the enemy during any point of the enemies activation.",
   },
   {
-    name: "Psychic Dominance",
+    name: "Psychic Ward",
     description:
-      'Enemy spellcasters within 12\" replace their Spellocity with this models willpower value.',
+      'Any spells targeting this character or any characters within 2" is cast with only TWO dice.',
   },
   {
     name: "Savage",
@@ -231,10 +231,6 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Ward",
     description: "Gain priority even when targeted by enemy spells",
-  },
-  {
-    name: "Weapons Specialist",
-    description: "All weapons have an extra trait.",
   },
   {
     name: "Wicked",
