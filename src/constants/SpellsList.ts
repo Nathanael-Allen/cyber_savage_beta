@@ -3,7 +3,6 @@ import { TSpells } from "../types/types";
 const SpellsList: TSpells[] = [
   { name: "Heal", spellocity: "d6", actionType: "combat", range: '6"', fizzle: "Target takes 2dmg", weak: "Restore 2hp", adequate: "Restore 2hp", exemplary: "Restore 6hp"},
   { name: "Bless", spellocity: "d8", actionType: "utility", range: '8"', fizzle: "Target weaken stats", weak: "Favorable all stats", adequate: "Strengthen all stats", exemplary: "Strengthen and favorable all stats"},
-  { name: "Purify", spellocity: "d6", actionType: "utility", range: '6" AOE around self', fizzle: "Target doesn't clear negative status effect at the end of next activation", weak: "Clear negative status effect", adequate: "Clear negative status effect and ignore flaw until end of next activation", exemplary: "Clear negative status effect and ignore flaw, gain Protection (cannot be debuffed until end of next activation)"},
   { name: "Barrier", spellocity: "d6", actionType: "utility", range: "6\"", fizzle: 'Caster stun', weak: 'Place 1x3" obstacle', adequate: 'Place 2x3" obstacle', exemplary: 'Place 3x3" obstacle'},
   { name: "Magic Mortar", spellocity: "target", actionType: "combat", range: '7"-15"', fizzle: "Caster takes 2dmg", weak: "4dmg indirect", adequate: "5dmg indirect", exemplary: "6dmg indirect"},
   { name: "Fling", spellocity: "target", actionType: "combat", range: '6"', fizzle: "Caster move d\"8 scatter", weak: "1dmg target knockback 2\"", adequate: "2dmg target knockback 4\"", exemplary: "3dmg target knockback 6\""},
@@ -21,6 +20,8 @@ const SpellsList: TSpells[] = [
   { name: "Summon", spellocity: "d10", actionType: "utility", range: '4"', fizzle: "Enemy has control of summon", weak: "lvl 1 lasts 1 turn Choose weapon. Only characteristic 'stupid'", adequate: "lvl 1 lasts 2 turn Choose weapon. Only characteristic 'stupid'", exemplary: "lvl 1 lasts 3 turn Choose weapon. Only characteristic 'stupid'"},
   { name: "Discombobulate", spellocity: "target", actionType: "utility", range: '6"', fizzle: "Caster stunned", weak: "AoE 3\" stun", adequate: "AoE 3\" stun and exhaust", exemplary: "AoE 3\" stun, exhaust, -2 speed"},
   { name: "Fireball", spellocity: "target", actionType: "utility", range: '8"', fizzle: "Caster takes 2dmg", weak: "4dmg Explosive", adequate: "5dmg Explosive", exemplary: "5dmg Explosive"},
+  { name: "Ethereal Weapon", spellocity: "d8", actionType: "complex", range: '4"', fizzle: "daze self", weak: "Skill d6 weapon construct*", adequate: "Skill d8 weapon construct", exemplary: "Skill d10 weapon construct"},
+  { name: "Zeta Beams", spellocity: "target", actionType: "combat", range: '6"', fizzle: "Caster takes 2 dmg", weak: "3dmg (up to 4 targets)", adequate: "4dmg (up to 4 targets)", exemplary: "5dmg (up to 4 targets)"},
 ];
 
 export { SpellsList };
