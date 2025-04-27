@@ -48,10 +48,10 @@ function ComLevelDropdown({ level, characters, dispatch }: LevelDropdownProps) {
       </button>
       {open && (
         <ul className="bg-white">
-          {characters.map((char) => {
+          {characters.map((char, index) => {
             if (char.level === level) {
               return (
-                <li className="bg-slate-600 text-white border-b flex items-center">
+                <li key={index} className="bg-slate-600 text-white border-b flex items-center">
                   <button className="px-1 py-2 flex gap-1 group w-4/5" onClick={() => dispatch({type: "addCharacter", character: char})}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

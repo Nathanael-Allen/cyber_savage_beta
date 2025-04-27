@@ -1,15 +1,14 @@
-import { TForceViews, TUnit } from "../types/types"
+import { TUnit } from "../types/types"
 import ComCharacterStatHeader from "./ComCharacterStatHeader";
 import ComEqCharacteristics from "./ComEqCharacteristics";
 import ComEqSpells from "./ComEqSpells";
 import ComWeapon from "./ComWeapon";
 
-type props = {character: TUnit, handleViewChange: (view: TForceViews, character?: TUnit) => void};
+type props = {character: TUnit};
 
-export default function ComFullCharacter({character, handleViewChange}: props) {
+export default function ComFullCharacter({character}: props) {
   return (
-    <div className="min-h-dvh m-4 bg-slate-200 border border-black rounded-md max-w-2xl">
-      <button className="w-full text-sky-700 px-3 pt-1 text-lg font-bold text-center hover:text-sky-600" onClick={() => handleViewChange("editCharacter", character)}>EDIT LOADOUT</button>
+    <div className="">
       <ComCharacterStatHeader character={character} />
       <div className="grid grid-cols-2 gap-4 m-1">
         <div>

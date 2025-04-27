@@ -1,4 +1,4 @@
-import { TCharacteristics, TUnit } from "../types/types";
+import { TCharacteristics, TUnit, TUnitID } from "../types/types";
 import genUID from "../utils/genUID";
 
 

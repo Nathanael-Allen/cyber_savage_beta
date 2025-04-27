@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { TForceViews } from "../types/types";
+import { TForceViews, TUnitID } from "../types/types";
 import { TUnit } from "../types/types";
+import ComFullCharacter from "./ComFullCharacter";
 
-type props = { character: TUnit, handleViewChange: (view: TForceViews, character?: TUnit) => void };
+type props = { character: TUnit, handleViewChange: (view: TForceViews, characterId?: TUnitID) => void };
 export default function ComCharacterPreview({ character, handleViewChange }: props) {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [openDetails, setOpenDetails] = useState<boolean>(false);
 
   function toggleMenu() {
     setOpenMenu(!openMenu);
@@ -36,14 +38,15 @@ export default function ComCharacterPreview({ character, handleViewChange }: pro
         </button>
       </div>
       <div className="w-full text-center font-bold text-white mt-2">
-        <button className="p-2 w-full bg-slate-800 rounded-md" onClick={() => handleViewChange("characterDetails", character)}>
-          Show Full Loadout/Stats
+        <button className="p-2 w-full bg-slate-800 rounded-md" onClick={() => setOpenDetails(!openDetails)}>
+          Show Details
         </button>
       </div>
+      {openDetails && <ComFullCharacter character={character} handleViewChange={handleViewChange} />}
       {openMenu && (
-        <ul className="absolute top-1 text-center right-1 bg-slate-700 z-10 rounded-md">
+        <ul className="absolute top-1 text-center right-1 bg-slate-700 z-20 rounded-md">
           <li>
-            <button className="rounded-t-md p-2 w-full border-b border-white text-white font-semibold hover:bg-sky-900" onClick={() => handleViewChange("editCharacter", character)}>
+            <button className="rounded-t-md p-2 w-full border-b border-white text-white font-semibold hover:bg-sky-900" onClick={() => handleViewChange("editCharacter", character.id)}>
               Edit Loadout
             </button>
           </li>
@@ -61,7 +64,7 @@ export default function ComCharacterPreview({ character, handleViewChange }: pro
       )}
       {openMenu && (
         <div
-          className="h-dvh w-dvw fixed top-0 left-0 bg-white/0"
+          className="z-10 h-dvh w-dvw fixed top-0 left-0 bg-white/0"
           onClick={toggleMenu}
         ></div>
       )}

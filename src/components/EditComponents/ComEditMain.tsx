@@ -6,12 +6,13 @@ import ComEditSpells from "./ComEditSpells";
 import ComEditWeaponsList from "./ComEditWeaponsList";
 import { TForceAction } from "../../reducers/forceReducer";
 import ComEditMenu from "./ComEditMenu";
+import Force from "../../classes/Force";
 
 type props = { characterToEdit: TUnit, handleSaveCharacter: (character: TUnit) => void };
 
 export default function ComEditMain({ characterToEdit, handleSaveCharacter }: props) {
   // CONSTANTS
-
+  
   // STATE
   const [view, setView] = useState<TEditViews>("main");
   const [character, charDispatch] = useReducer(editReducer, characterToEdit);

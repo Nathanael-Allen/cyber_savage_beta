@@ -1,35 +1,35 @@
 import { useState, useReducer } from "react";
-import { TForce, TForceViews, TUnit } from "../types/types";
+import { TForce, TForceViews, TUnit, TUnitID } from "../types/types";
 import ComForce from "./ComForce";
 import ComCharacterList from "./ComCharacterList";
 import ComFullCharacter from "./ComFullCharacter";
-import ComEdit from "./EditComponents/ComEditMain";
 import ComAddCharacters from "./ComAddCharacters";
 import { availableUnits } from "../constants/AllUnitsList";
 import forceReducer from "../reducers/forceReducer";
 import ComEditMain from "./EditComponents/ComEditMain";
+import Force from "../classes/Force";
 
 type props = { forceInit: TForce };
 
 export default function ComForceMain({ forceInit }: props) {
   const [force, forceDispatch] = useReducer(forceReducer, forceInit)
   const [forceView, setForceView] = useState<TForceViews>("force");
-  const [focusCharacter, setFocusCharacter] = useState<TUnit | null>(null);
+  const [focusCharacterId, setFocusCharacterId] = useState<TUnitID | null>(null);
 
-  function handleViewChange(view: TForceViews, character?: TUnit) {
-    if (character) {
-      setFocusCharacter(character);
+  function handleViewChange(view: TForceViews, characterId?: TUnitID) {
+    if (characterId) {
+      setFocusCharacterId(characterId);
+      console.log(Force.getCharacterById(characterId, force));
       setForceView(view);
     } else {
-      setFocusCharacter(null)
+      setFocusCharacterId(null)
       setForceView(view);
     }
   }
 
   function handleSaveCharacter(character: TUnit) {
     forceDispatch({type: "updateCharacter", character: character})
-    setFocusCharacter(null);
-    setForceView("force")
+    setForceView("equippedCharacters")
   }
 
 
@@ -51,7 +51,7 @@ export default function ComForceMain({ forceInit }: props) {
       case "disciplines":
         break;
       case "editCharacter":
-        return <ComEditMain characterToEdit={focusCharacter!} handleSaveCharacter={handleSaveCharacter} /> 
+        return <ComEditMain characterToEdit={Force.getCharacterById(focusCharacterId!, force)!} handleSaveCharacter={handleSaveCharacter} /> 
       case "equippedCharacters":
         return (
           <ComCharacterList
@@ -60,7 +60,7 @@ export default function ComForceMain({ forceInit }: props) {
           />
         );
       case "characterDetails":
-        return <ComFullCharacter character={focusCharacter!} handleViewChange={handleViewChange}/>;
+        return <ComFullCharacter character={Force.getCharacterById(focusCharacterId!, force)!} handleViewChange={handleViewChange}/>;
       default:
         break;
     }
