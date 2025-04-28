@@ -48,7 +48,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Concussive",
-    description: 'Knockback 1" per 2 points of damage.',
+    description: 'Knockback 1" per 1 point of damage.',
     weaponType: "both",
     weaponSubtype: "all",
   },
