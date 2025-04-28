@@ -44,12 +44,12 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Demented",
     description:
-      'Strengthen attack stats when targeting character that controls an objective.',
+      'Favorable when attacking a character that is base-to-base with an objective or holding a token.',
   },
   {
     name: "Determinded",
     description:
-      'Strengthen defense stats while base-to-base of an objective.',
+      'Strengthen defense stats while base-to-base with an objective or holding a token.',
   },
   {
     name: "Devious",
@@ -141,7 +141,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Malicious",
     description:
-      "Strengthen stats when attacking a character that has a negative status effect.",
+      "Favorable attacking a character that has a negative status effect.",
   },
   {
     name: "Medic",
@@ -227,10 +227,6 @@ const CharacteristicsList: TCharacteristics[] = [
     name: "Volatile",
     description:
       "If this model takes 1 or more damage from a melee attack, deal 1 damage to the attacking model.",
-  },
-  {
-    name: "Ward",
-    description: "Gain priority even when targeted by enemy spells",
   },
   {
     name: "Wicked",

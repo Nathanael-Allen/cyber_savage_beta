@@ -3,7 +3,6 @@ import { TSpells } from "../types/types";
 const SpellsList: TSpells[] = [
   { name: "Heal", spellocity: "d6", actionType: "combat", range: '6"', fizzle: "Target takes 2dmg", weak: "Restore 2hp", adequate: "Restore 2hp", exemplary: "Restore 6hp"},
   { name: "Bless", spellocity: "d8", actionType: "utility", range: '8"', fizzle: "Target weaken stats", weak: "Favorable all stats", adequate: "Strengthen all stats", exemplary: "Strengthen and favorable all stats"},
-  { name: "Barrier", spellocity: "d6", actionType: "utility", range: "6\"", fizzle: 'Caster stun', weak: 'Place 1x3" obstacle', adequate: 'Place 2x3" obstacle', exemplary: 'Place 3x3" obstacle'},
   { name: "Magic Mortar", spellocity: "target", actionType: "combat", range: '7"-15"', fizzle: "Caster takes 2dmg", weak: "4dmg indirect", adequate: "5dmg indirect", exemplary: "6dmg indirect"},
   { name: "Fling", spellocity: "target", actionType: "combat", range: '6"', fizzle: "Caster move d\"8 scatter", weak: "1dmg target knockback 2\"", adequate: "2dmg target knockback 4\"", exemplary: "3dmg target knockback 6\""},
   { name: "Force Field", spellocity: "d6", actionType: "utility", range: "self", fizzle: "Stun self and allies within 1\"", weak: "Self and all models within 1\" strengthen defense vs ranged", adequate: "Self and all models within 3\" strengthen defense vs ranged", exemplary: "Self and all models within 5\" strengthen defense vs ranged"},
@@ -22,6 +21,8 @@ const SpellsList: TSpells[] = [
   { name: "Fireball", spellocity: "target", actionType: "utility", range: '8"', fizzle: "Caster takes 2dmg", weak: "4dmg Explosive", adequate: "5dmg Explosive", exemplary: "5dmg Explosive"},
   { name: "Ethereal Weapon", spellocity: "d8", actionType: "complex", range: '4"', fizzle: "daze self", weak: "Skill d6 weapon construct*", adequate: "Skill d8 weapon construct", exemplary: "Skill d10 weapon construct"},
   { name: "Zeta Beams", spellocity: "target", actionType: "combat", range: '6"', fizzle: "Caster takes 2 dmg", weak: "3dmg (up to 4 targets)", adequate: "4dmg (up to 4 targets)", exemplary: "5dmg (up to 4 targets)"},
+  { name: "Haste", spellocity: "d6", actionType: "utility", range: 'self 2"AoE', fizzle: "self 2\" cryo", weak: "+1 speed", adequate: "+2 speed", exemplary: "+3 speed"},
+  { name: "Gravity Well", spellocity: "target", actionType: "utility", range: '8"', fizzle: "No effect", weak: "Knock-back 2\" towards well", adequate: "Knock-back 4\" towards well", exemplary: "Knock-back 6\" towards well"},
 ];
 
 export { SpellsList };

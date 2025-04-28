@@ -25,7 +25,7 @@ const availableUnits: TUnit[] = [
     diceMelee: "d4",
     diceRanged: "d6",
     diceDefense: "d6",
-    diceWillpower: "d4",
+    diceWillpower: "d6",
   },
   {
     level: 2,
@@ -38,7 +38,7 @@ const availableUnits: TUnit[] = [
     diceMelee: "d6",
     diceRanged: "d4",
     diceDefense: "d6",
-    diceWillpower: "d4",
+    diceWillpower: "d6",
     imagePath: "lvl1_melee"
   },
   {
@@ -52,7 +52,7 @@ const availableUnits: TUnit[] = [
     diceMelee: "d6",
     diceRanged: "d6",
     diceDefense: "d6",
-    diceWillpower: "d4",
+    diceWillpower: "d6",
     imagePath: "lvl1_melee"
   },
   {
