@@ -37,12 +37,12 @@ export default function ComCharacterPreview({ character, handleViewChange }: pro
           </svg>
         </button>
       </div>
+      {openDetails && <ComFullCharacter character={character} />}
       <div className="w-full text-center font-bold text-white mt-2">
         <button className="p-2 w-full bg-slate-800 rounded-md" onClick={() => setOpenDetails(!openDetails)}>
-          Show Details
+          {openDetails ? "Hide Details" : "Show Details"}
         </button>
       </div>
-      {openDetails && <ComFullCharacter character={character} handleViewChange={handleViewChange} />}
       {openMenu && (
         <ul className="absolute top-1 text-center right-1 bg-slate-700 z-20 rounded-md">
           <li>

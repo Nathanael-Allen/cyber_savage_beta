@@ -12,7 +12,7 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Agile",
-    description: "Ignore climbing, area terrain, and obstacles"
+    description: "This character treats area terrain and obstacles as open ground"
   },
   {
     name: "Avenger",
@@ -40,16 +40,16 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Cruel",
     description: "Favorable when attacking a lower level character.",
-  },
+  },  
   {
-    name: "CQC",
+    name: "Demented",
     description:
-      "This model may spend a reaction to shootout when target of charge. Comparing shooting dice to melee dice.",
+      'Favorable when attacking a character that is base-to-base with an objective or holding a token.',
   },
   {
     name: "Determinded",
     description:
-      'Strengthen defense stats while within 1" of a controlled objective.',
+      'Strengthen defense stats while base-to-base with an objective or holding a token.',
   },
   {
     name: "Devious",
@@ -82,8 +82,8 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   { name: "Fast", description: "+3 speed" },
   {
-    name: "Fly",
-    description: "Spend complex action, ignore terrain and move up to 20\"",
+    name: "Flying",
+    description: "This character ignores vertical distance, obstacles, area terrain, and cannot take fall damage. Never benefits from cover.",
   },
   {
     name: "Formidable",
@@ -113,17 +113,21 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Honorable",
-    description: "Gain favorable when attacking a model of the same level.",
+    description: "Gain favorable when attacking or defending against a model of the same level.",
   },
   {
     name: "Horrifying",
     description:
-      "Any model targeting this model with a combat action must test willpower vs this model. If failed weaken attack for the combat action.",
+      "Any model targeting this model with a melee combat action must test willpower vs this model. If failed weaken attack for the combat action.",
   },
   { name: "Hulking Body", description: "+4 Health, -1 speed" },
   {
     name: "Impervious",
     description: "Glancing hits do 0 damage to this model.",
+  },
+  {
+    name: "invincible",
+    description: "The first time this character dies in a match, do not remove it from play. Instead leave it standing with a single HP.",
   },
   {
     name: "Indomitable",
@@ -135,9 +139,14 @@ const CharacteristicsList: TCharacteristics[] = [
       "If this model dies it may make a ranged combat action or a 6\" charge",
   },
   {
+    name: "Malicious",
+    description:
+      "Favorable attacking a character that has a negative status effect.",
+  },
+  {
     name: "Medic",
     description:
-      "Spend a utility action; roll 4 dice (willpower d6) heal 2hp per success.",
+      "Spend a utility action; heal self or base-to-base ally d6 HP",
   },
   { name: "Mounted", description: "+2 speed, +2 health" },
   { name: "Mystical", description: "Gain a spell" },
@@ -149,7 +158,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Overshield",
     description:
-      "Start each round with one overshield token. Spend this token after taking damage gaining invincible (-1 incoming damage).",
+      "The first single attack that would deal damage to this character deals zero damage instead. The shield is removed until the start of this models next activation.",
   },
   {
     name: "Overwatch",
@@ -157,9 +166,9 @@ const CharacteristicsList: TCharacteristics[] = [
       "Spend a combat action. If an enemy activates in LoS, this model may make a ranged combat action against the enemy during any point of the enemies activation.",
   },
   {
-    name: "Psychic Dominance",
+    name: "Psychic Ward",
     description:
-      'Enemy spellcasters within 12\" replace their Spellocity with this models willpower value.',
+      'Any spells targeting this character or any characters within 2" is cast with only TWO dice.',
   },
   {
     name: "Savage",
@@ -169,6 +178,16 @@ const CharacteristicsList: TCharacteristics[] = [
     name: "Rage",
     description:
       "When this model is below half it's starting health strengthen all stats.",
+  },
+  {
+    name: "Rampage",
+    description:
+      "Immediately after slaying a model this character may perform a move action",
+  },
+  {
+    name: "Relentless",
+    description:
+      "If this character does 0 damage during combat action, duel or shootout immediately make 1 additional single attack.",
   },
   { name: "Regeneration", description: "At the start of each activation heal 2." },
   {
@@ -208,14 +227,6 @@ const CharacteristicsList: TCharacteristics[] = [
     name: "Volatile",
     description:
       "If this model takes 1 or more damage from a melee attack, deal 1 damage to the attacking model.",
-  },
-  {
-    name: "Ward",
-    description: "Gain priority even when targeted by enemy spells",
-  },
-  {
-    name: "Weapons Specialist",
-    description: "All weapons have an extra trait.",
   },
   {
     name: "Wicked",

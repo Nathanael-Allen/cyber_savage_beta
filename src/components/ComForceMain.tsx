@@ -15,6 +15,7 @@ export default function ComForceMain({ forceInit }: props) {
   const [force, forceDispatch] = useReducer(forceReducer, forceInit)
   const [forceView, setForceView] = useState<TForceViews>("force");
   const [focusCharacterId, setFocusCharacterId] = useState<TUnitID | null>(null);
+  
 
   function handleViewChange(view: TForceViews, characterId?: TUnitID) {
     if (characterId) {
@@ -60,7 +61,7 @@ export default function ComForceMain({ forceInit }: props) {
           />
         );
       case "characterDetails":
-        return <ComFullCharacter character={Force.getCharacterById(focusCharacterId!, force)!} handleViewChange={handleViewChange}/>;
+        return <ComFullCharacter character={Force.getCharacterById(focusCharacterId!, force)!}/>;
       default:
         break;
     }

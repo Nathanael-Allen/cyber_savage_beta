@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TUnit } from "../types/types";
 import ComCharacterDetailModal from "./UtilityComponents/ComCharacterDetailModal";
 import { TForceAction } from "../reducers/forceReducer";
+import ComAlert from "./ComAlert";
 
 type props = { characters: TUnit[], dispatch: React.Dispatch<TForceAction> };
 
@@ -22,6 +23,23 @@ type LevelDropdownProps = { level: number; characters: TUnit[], dispatch: React.
 function ComLevelDropdown({ level, characters, dispatch }: LevelDropdownProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [openInfo, setOpenInfo] = useState<TUnit | null>(null);
+  const [alert, setAlert] = useState<string | null>(null);
+  const alertTimer = useRef<number>();
+  
+  useEffect(() => {
+    if (alert) {
+      alertTimer.current = setTimeout(() => {
+        setAlert(null);
+      }, 20000);
+      return () => clearTimeout(alertTimer.current);
+    }
+  }, [alert]);
+
+  function handleAddChar(character: TUnit) {
+    dispatch({type: "addCharacter", character: character});
+    setAlert(character.unitClass + " added to force!");
+    
+  }
 
   return (
     <div>
@@ -52,7 +70,7 @@ function ComLevelDropdown({ level, characters, dispatch }: LevelDropdownProps) {
             if (char.level === level) {
               return (
                 <li key={index} className="bg-slate-600 text-white border-b flex items-center">
-                  <button className="px-1 py-2 flex gap-1 group w-4/5" onClick={() => dispatch({type: "addCharacter", character: char})}>
+                  <button className="px-1 py-2 flex gap-1 group w-4/5" onClick={() => handleAddChar(char)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="800"
@@ -88,6 +106,7 @@ function ComLevelDropdown({ level, characters, dispatch }: LevelDropdownProps) {
           closeModal={() => setOpenInfo(null)}
         />
       )}
+      {alert && <ComAlert message={alert!} />}
     </div>
   );
 }

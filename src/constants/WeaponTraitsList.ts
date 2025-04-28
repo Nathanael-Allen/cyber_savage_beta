@@ -16,16 +16,16 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
-    name: "Adaptive",
-    description: "This weapon cannot be disordered (ranged only).",
-    weaponType: "ranged",
-    weaponSubtype: "all",
-  },
-  {
     name: "Advanced Optics",
     description: "Ignore cover.",
     weaponType: "ranged",
     weaponSubtype: "all",
+  },
+  {
+    name: "Arcane",
+    description: "May shootout vs spells (medium ranged only)",
+    weaponType: "ranged",
+    weaponSubtype: "medium",
   },
   {
     name: "Blind",
@@ -62,6 +62,12 @@ const WeaponTraitsList: TWeaponTrait[] = [
     name: "Cryo",
     description: "If a target takes damage from this weapon -3 Speed.",
     weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
+    name: "CQC",
+    description: "This character may spend a reaction to shootout when target of a charge. Compare shooting dice to melee dice (ranged only)",
+    weaponType: "ranged",
     weaponSubtype: "all",
   },
   {
@@ -167,6 +173,12 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
+    name: "Merciless",
+    description: "Favorable when attacking a model that doesn't have a reaction token.",
+    weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
     name: "Parry",
     description:
       "When defending or dueling in melee, attacker counts as having no weapon traits.",
@@ -194,20 +206,8 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
-    name: "Punishing",
-    description: "If a target takes damage from this weapon, target is disordered (ranged only)",
-    weaponType: "ranged",
-    weaponSubtype: "all",
-  },
-  {
     name: "Quick Draw",
     description: "Gain priority when reacting with this weapon.",
-    weaponType: "both",
-    weaponSubtype: "all",
-  },
-  {
-    name: "Rampage",
-    description: "Immediately after slaying a model with this weapon perform a move action.",
     weaponType: "both",
     weaponSubtype: "all",
   },
@@ -225,13 +225,19 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Stun",
-    description: "If target takes damage from this weapon, remove targets reaction token.",
+    description: "If a target takes damage from this weapon they may not perform reactions.",
     weaponType: "both",
     weaponSubtype: "all",
   },
   {
     name: "Suppress",
     description: "If target takes damage from this weapon (Wd8) -1 action until end of next activation.",
+    weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
+    name: "Unstable",
+    description: "+1 damage, for each successful hit take 1 damage. (Doesn't stack with life drain)",
     weaponType: "both",
     weaponSubtype: "all",
   },
@@ -243,7 +249,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Vengful",
-    description: "Strengthen attacks made with this weapon after the equipped model has performed a reaction. Lasts until the end of the models next activation.",
+    description: "Gain favorable attacks with this weapon after the equipped model has performed a reaction. Lasts until the end of the models next activation.",
     weaponType: "both",
     weaponSubtype: "all",
   },
