@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useRef, useEffect } from "react";
 import { TForce, TForceViews, TUnit, TUnitID } from "../types/types";
 import ComForce from "./ComForce";
 import ComCharacterList from "./ComCharacterList";
@@ -8,13 +8,25 @@ import { availableUnits } from "../constants/AllUnitsList";
 import forceReducer from "../reducers/forceReducer";
 import ComEditMain from "./EditComponents/ComEditMain";
 import Force from "../classes/Force";
+import ComAlert from "./ComAlert";
 
-type props = { forceInit: TForce };
+type props = { forceInit: TForce, handleMainViewChange: () => void };
 
-export default function ComForceMain({ forceInit }: props) {
+export default function ComForceMain({ forceInit, handleMainViewChange }: props) {
   const [force, forceDispatch] = useReducer(forceReducer, forceInit)
   const [forceView, setForceView] = useState<TForceViews>("force");
   const [focusCharacterId, setFocusCharacterId] = useState<TUnitID | null>(null);
+  const [forceSaveAlert, setForceSaveAlert] = useState<string | null>(null);
+  const forceAlertTimer = useRef<number>();
+  
+  useEffect(() => {
+    if (forceSaveAlert) {
+      forceAlertTimer.current = setTimeout(() => {
+        setForceSaveAlert(null);
+      }, 1000);
+      return () => clearTimeout(forceAlertTimer.current);
+    }
+  }, [forceSaveAlert]);
   
 
   function handleViewChange(view: TForceViews, characterId?: TUnitID) {
@@ -33,6 +45,20 @@ export default function ComForceMain({ forceInit }: props) {
     setForceView("equippedCharacters")
   }
 
+  function handleSaveForce() {
+    const allForcesJson = localStorage.getItem("forces");
+    const allForces: TForce[] = allForcesJson
+      ? JSON.parse(allForcesJson)
+      : [];
+    const updatedForces: TForce[] = allForces.filter(
+        (oldForce) => oldForce.forceID !== force.forceID
+      );
+    
+      localStorage.setItem("forces", JSON.stringify([force, ...updatedForces]));
+    setForceSaveAlert("Force Saved!")
+    // handleMainViewChange();
+  }
+
 
   function renderViews() {
     switch (forceView) {
@@ -42,6 +68,7 @@ export default function ComForceMain({ forceInit }: props) {
             force={force}
             forceDispatch={forceDispatch}
             viewHandler={handleViewChange}
+            handleSaveForce={handleSaveForce}
           />
         );
       case "addCharacters":
@@ -78,6 +105,7 @@ export default function ComForceMain({ forceInit }: props) {
         </button>
       </div>
       {renderViews()}
+      {forceSaveAlert && <ComAlert message={forceSaveAlert} />}
     </div>
   );
 }

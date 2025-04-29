@@ -8,8 +8,10 @@ const myForce: TForce = {forceID: "91204", forceName: "tester", characters: []}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <div>
-      <ComForceMain forceInit={myForce} />
-    </div>
+    <App></App>
+    {/* <div> */}
+
+      {/* <ComForceMain forceInit={myForce} /> */}
+    {/* </div> */}
   </StrictMode>
 );

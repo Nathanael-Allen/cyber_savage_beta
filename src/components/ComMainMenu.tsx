@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { TForce } from "../types/types";
 import getForcePointTotal from "../utils/getForcePointTotal";
 import ComRenameForceModal from "./ComRenameForceModal";
+import Force from "../classes/Force";
 
 type props = {
-  handleNewArmy: (forceName: string) => void;
-  handleLoadArmy: (force: TForce) => void;
+  handleNewForce: (forceName: string) => void;
+  handleLoadForce: (force: TForce) => void;
 };
 
-export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
+export default function ComMainMenu({ handleNewForce, handleLoadForce }: props) {
   const [newForceModal, setNewForceModal] = useState(false);
   const [loadModal, setLoadModal] = useState(false);
   const [forceNameState, setForceNameState] = useState("");
@@ -91,7 +92,7 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
             placeholder="Name..."
           />
           <button
-            onClick={() => handleNewArmy(forceNameState)}
+            onClick={() => handleNewForce(forceNameState)}
             disabled={!validName}
             className={validName ? enabledCSS : disabledCSS}
           >
@@ -129,7 +130,7 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
                     </h4>
                     <div className="flex justify-center">
                       <p className="p-2 text-base">
-                        Points: {getForcePointTotal(force)}
+                        Points: {Force.getTotalPoints(force)}
                       </p>
                       <p className="p-2 text-base">
                         Discipline: {force.discipline}
@@ -149,7 +150,7 @@ export default function ComMainMenu({ handleNewArmy, handleLoadArmy }: props) {
                       Rename Force
                     </button>
                     <button
-                      onClick={() => handleLoadArmy(force)}
+                      onClick={() => handleLoadForce(force)}
                       className="text-lg text-sky-800 p-2 m-2 bg-gray-300 rounded-md hover:bg-gray-700 hover:text-sky-400"
                     >
                       Load Force

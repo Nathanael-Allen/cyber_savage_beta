@@ -30,7 +30,7 @@ function ComLevelDropdown({ level, characters, dispatch }: LevelDropdownProps) {
     if (alert) {
       alertTimer.current = setTimeout(() => {
         setAlert(null);
-      }, 20000);
+      }, 500);
       return () => clearTimeout(alertTimer.current);
     }
   }, [alert]);

@@ -8,9 +8,10 @@ type props = {
   force: TForce;
   forceDispatch: React.Dispatch<TForceAction>;
   viewHandler: (view: TForceViews) => void;
+  handleSaveForce: () => void;
 };
 
-export default function ComForce({ force, viewHandler }: props) {
+export default function ComForce({ force, viewHandler, handleSaveForce }: props) {  
   return (
     <div className="m-8">
       <div className="text-center">
@@ -65,9 +66,7 @@ export default function ComForce({ force, viewHandler }: props) {
           <li>
             <button
               className="w-full py-2 text-xl bg-slate-900 text-white rounded-md font-anta hover:shadow-custom hover:underline"
-              onClick={() => {
-                viewHandler("equippedCharacters");
-              }}
+              onClick={handleSaveForce}
             >
               Save Force
             </button>
