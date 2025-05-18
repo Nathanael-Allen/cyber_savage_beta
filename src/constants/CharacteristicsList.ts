@@ -6,17 +6,12 @@ const CharacteristicsList: TCharacteristics[] = [
     description: 'Always count as in cover unless within 3" of an enemy model',
   },
   {
-    name: "Ambush",
-    description:
-      "Combat action, go on ambush. When an enemy within 6\" and LoS activate this model may make a charge against that model at the end or beginning of any of it\'s actions.",
-  },
-  {
     name: "Agile",
     description: "This character treats area terrain and obstacles as open ground"
   },
   {
     name: "Avenger",
-    description: "When an ally dies withing 8\" strengthen all stats.",
+    description: "When an ally dies strengthen all stats until end of next activation.",
   },
   {
     name: "Berserk",
@@ -26,7 +21,11 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Bloodlust",
     description:
-      "When targeting a model with below half of it\'s starting health stat favorable ranged + melee.",
+      "When targeting a model with below half of it\'s starting health, gain favorable ranged + melee.",
+  },
+  {
+    name: "Bodyguard",
+    description: "When a friendly model within 3\" of this model is the target of a ranged or melee combat action, this model may spend a reaction to swap places with the target model. This model is now the target of the attack and may only defend."
   },
   {
     name: "Command",
@@ -44,7 +43,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Demented",
     description:
-      'Favorable when attacking a character that is base-to-base with an objective or holding a token.',
+      'Favorable attack when targeting a character that is base-to-base with an objective or holding a token.',
   },
   {
     name: "Determinded",
@@ -54,7 +53,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Devious",
     description:
-      "Spend a reaction at any point when a model makes a move or charge action while base to base with this model; make a close combat action against this target.",
+      "If this character is base-to-base with an enemy character, if the enemy character moves, this character may make an immediate melee combat action against the enemy character.",
   },
   {
     name: "Dodge",
@@ -64,7 +63,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Duelist",
     description:
-      "The first time this model reacts with \"duel\" in a turn does not spend a reacion token.",
+      "The first time this model reacts with \"duel\" in a turn, it does not spend a reaction token.",
   },
   {
     name: "Enhanced Vision",
@@ -159,11 +158,6 @@ const CharacteristicsList: TCharacteristics[] = [
     name: "Overshield",
     description:
       "The first single attack that would deal damage to this character deals zero damage instead. The shield is removed until the start of this models next activation.",
-  },
-  {
-    name: "Overwatch",
-    description:
-      "Spend a combat action. If an enemy activates in LoS, this model may make a ranged combat action against the enemy during any point of the enemies activation.",
   },
   {
     name: "Psychic Ward",

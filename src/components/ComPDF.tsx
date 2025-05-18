@@ -25,6 +25,9 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
         </View>
         {unitList.map((unit, index) => {
           const hasFlaw = unit.hasFlaw ? unit.hasFlaw : false;
+          const bonusHealth = unit.bonusHealth ? unit.bonusHealth : 0;
+          const bonusSpeed = unit.bonusSpeed ? unit.bonusSpeed : 0;
+          
           return (
             <View
               wrap={false}
@@ -124,7 +127,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         width: "48px",
                       }}
                     >
-                      <Text>{unit.health}</Text>
+                      <Text>{unit.health! + bonusHealth}</Text>
                       <Text>HP</Text>
                     </View>
                     <View
@@ -139,7 +142,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
                         width: "48px",
                       }}
                     >
-                      <Text>{unit.speed}</Text>
+                      <Text>{unit.speed! + bonusSpeed}</Text>
                       <Text>SPD</Text>
                     </View>
                     <View
