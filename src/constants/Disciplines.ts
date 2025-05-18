@@ -1,15 +1,16 @@
 const Disciplines: string[] = [
   'Tactical',
   'Barbaric',
-  'Gambler',
-  'Ancient Machine',
-  'War-beast',
+  'Gamblers',
+  'Technicians',
+  'Beast Tamers',
   'Honor-bound',
-  'Bastion',
-  'Battle Standard',
+  'Reinforced',
+  'Standard Bearers',
   'Predatory',
   'Cultist',
   'Air Support',
+  'Judicial',
 ];
 
 export { Disciplines };

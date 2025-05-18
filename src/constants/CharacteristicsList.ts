@@ -112,7 +112,7 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Honorable",
-    description: "Gain favorable when attacking or defending against a model of the same level.",
+    description: "Gain favorable and strengthen stats when attacking or defending against a model of the same level.",
   },
   {
     name: "Horrifying",
@@ -140,7 +140,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Malicious",
     description:
-      "Favorable attacking a character that has a negative status effect.",
+      "Favorable attack stats when targeting a character that has a negative status effect.",
   },
   {
     name: "Medic",
@@ -162,7 +162,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Psychic Ward",
     description:
-      'Any spells targeting this character or any characters within 2" is cast with only TWO dice.',
+      'Any spells, targeting this character or any characters within 2" of this character, are cast with only TWO dice.',
   },
   {
     name: "Savage",
@@ -210,7 +210,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Support",
     description:
-      'Spend a utility action to restore a single models reaction token within 3\"',
+      'Friendly characters within 3" may spend this models reaction token as if it were their own.',
   },
   {
     name: "Unyielding",

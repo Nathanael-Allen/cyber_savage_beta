@@ -236,6 +236,12 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
+    name: "Toxic",
+    description: "If a target takes dmg from this weapon it cannot heal, become favorable, or strengthened, until the end of it's next activation.",
+    weaponType: "both",
+    weaponSubtype: "all",
+  },
+  {
     name: "Unstable",
     description: "+1 damage, for each successful hit take 1 damage. (Doesn't stack with life drain)",
     weaponType: "both",
