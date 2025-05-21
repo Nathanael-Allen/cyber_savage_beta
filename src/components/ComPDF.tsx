@@ -1,6 +1,8 @@
 import { Document, View, Text, Page } from "@react-pdf/renderer";
 import { TUnit } from "../types/types";
 import generateRules from "../utils/generateRules";
+import ComTacticalPDF from "./DisciplinePDFComponents/ComTacticalPDF";
+import renderDisciplinePage from "../utils/renderDisciplinePage";
 type props = { unitList: TUnit[]; forceName: string; discipline: string };
 
 export default function ComPDF({ unitList, forceName, discipline }: props) {
@@ -378,7 +380,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
           );
         })}
       </Page>
-      <Page>
+      <Page  style={[{paddingHorizontal: "12px", paddingVertical: "8px"}]}>
         <View>
           <Text style={{ textAlign: "center" }}>RULES SHEET</Text>
           <View
@@ -463,6 +465,7 @@ export default function ComPDF({ unitList, forceName, discipline }: props) {
           </View>
         </View>
       </Page>
+      {renderDisciplinePage(discipline)}
     </Document>
   );
 }
