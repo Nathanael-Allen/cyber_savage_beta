@@ -1,7 +1,6 @@
 import { Document, View, Text, Page } from "@react-pdf/renderer";
 import { TUnit } from "../types/types";
 import generateRules from "../utils/generateRules";
-import ComTacticalPDF from "./DisciplinePDFComponents/ComTacticalPDF";
 import renderDisciplinePage from "../utils/renderDisciplinePage";
 type props = { unitList: TUnit[]; forceName: string; discipline: string };
 

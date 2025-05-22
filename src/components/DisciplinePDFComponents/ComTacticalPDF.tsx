@@ -38,7 +38,7 @@ export default function ComTacticalPDF() {
       </View>
       <View style={[{marginBottom: "16px"}]}>
         <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 3) Early Extraction:</Text>
-        <Text style={[{fontSize: "10px"}]}>End the game at the end of turn 4.</Text>
+        <Text style={[{fontSize: "10px"}]}>End the game at the end of round 4.</Text>
       </View>
       <Image src={"/bottom_image_smaller.png"} style={{position: "absolute", bottom: 0, left: 0, width: "100%"}}></Image>
     </Page>
