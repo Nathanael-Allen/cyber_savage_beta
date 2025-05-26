@@ -21,7 +21,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Bloodlust",
     description:
-      "When targeting a model with below half of it\'s starting health, gain favorable ranged + melee.",
+      "When targeting a character at or below half of it\'s starting health, gain favorable ranged + melee.",
   },
   {
     name: "Bodyguard",
@@ -171,7 +171,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Rage",
     description:
-      "When this model is below half it's starting health strengthen all stats.",
+      "When this character is at or below half it's starting health strengthen all stats.",
   },
   {
     name: "Rampage",
