@@ -1,19 +1,22 @@
 import ComTacticalPDF from "../components/DisciplinePDFComponents/ComTacticalPDF";
-import ComBarbaric from "../components/DisciplinePDFComponents/ComBarbaricPDF";
 import ComGamblersPDF from "../components/DisciplinePDFComponents/ComGamblersPDF";
 import ComTechniciansPDF from "../components/DisciplinePDFComponents/ComTechniciansPDF";
 import ComBeastTamersPDF from "../components/DisciplinePDFComponents/ComBeastTamersPDF";
 import ComHonorBoundPDF from "../components/DisciplinePDFComponents/ComHonorBoundPDF";
 import ComReinforcedPDF from "../components/DisciplinePDFComponents/ComReinforcedPDF";
-import ComStandardBearers from "../components/DisciplinePDFComponents/ComStandardBearersPDF";
 import ComPredatoryPDF from "../components/DisciplinePDFComponents/ComPredatoryPDF";
+import ComCultistsPDF from "../components/DisciplinePDFComponents/ComCultistsPDF";
+import ComBarbaricPDF from "../components/DisciplinePDFComponents/ComBarbaricPDF";
+import ComStandardBearersPDF from "../components/DisciplinePDFComponents/ComStandardBearersPDF";
+import ComAirSupportPDF from "../components/DisciplinePDFComponents/ComAirSupportPDF";
+import ComJudicialPDF from "../components/DisciplinePDFComponents/ComJudicialPDF";
 
 export default function renderDisciplinePage(discipline: string): JSX.Element | null {
   switch (discipline.toLowerCase()) {
     case ("tactical"):
       return ComTacticalPDF();
     case ("barbaric"):
-      return ComBarbaric();
+      return ComBarbaricPDF();
     case ("gamblers"):
       return ComGamblersPDF();
     case("technicians"):
@@ -25,9 +28,15 @@ export default function renderDisciplinePage(discipline: string): JSX.Element | 
     case ("reinforced"):
       return ComReinforcedPDF();
     case ("standard bearers"):
-      return ComStandardBearers();
+      return ComStandardBearersPDF();
     case ("predatory"):
       return ComPredatoryPDF();
+    case ("cultists"):
+      return ComCultistsPDF();
+    case ("air support"):
+      return ComAirSupportPDF();
+    case ("judicial"):
+      return ComJudicialPDF();
     default:
       return null;
   }

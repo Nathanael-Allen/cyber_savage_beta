@@ -8,7 +8,7 @@ const Disciplines: string[] = [
   'Reinforced',
   'Standard Bearers',
   'Predatory',
-  'Cultist',
+  'Cultists',
   'Air Support',
   'Judicial',
 ];

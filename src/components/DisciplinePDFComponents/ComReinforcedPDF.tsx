@@ -27,7 +27,7 @@ export default function ComReinforcedPDF() {
         <Text style={[{fontSize: "10px"}]}>Target character +2 level when checking objective control.</Text>
       </View>
       <View style={[{marginBottom: "16px"}]}>
-        <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 1) Revitalize:</Text>
+        <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 2) Revitalize:</Text>
         <Text style={[{fontSize: "10px"}]}>Target model remove all negative status effects.</Text>
       </View>
       <View style={[{marginBottom: "16px"}]}>

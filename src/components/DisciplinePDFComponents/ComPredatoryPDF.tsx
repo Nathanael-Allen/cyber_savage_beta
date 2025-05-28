@@ -23,8 +23,8 @@ export default function ComPredatoryPDF() {
         <Text style={[{fontSize: "10px"}]}>Gain 1 instinct when a Prey is activated.</Text>
       </View>
       <View style={[{marginBottom: "16px",}]}>
-        <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 0) Adapt to Survive:</Text>
-        <Text style={[{fontSize: "10px"}]}>When a friendly character is slain, mark the character that killed them as Prey.</Text>
+        <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 1) Adapt to Survive:</Text>
+        <Text style={[{fontSize: "10px"}]}>When a friendly character is damaged by an attack, restore the characters reaction token.</Text>
       </View>
       <View style={[{marginBottom: "16px"}]}>
         <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 1) Close In:</Text>
@@ -40,13 +40,13 @@ export default function ComPredatoryPDF() {
       </View>
       <View style={[{marginBottom: "16px"}]}>
         <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 3) Hunt Down:</Text>
-        <Text style={[{fontSize: "10px"}]}>Target Prey; the next time this character activates, any friendly character may spend a reaction to perform either a 6” charge or a ranged combat action against it. Only a single character may choose to react this way. Prey may not react to this.</Text>
+        <Text style={[{fontSize: "10px"}]}>Target Prey; the next time this character activates, any friendly character may spend a reaction to perform either a 8” charge or a ranged combat action against it. Only a single character may choose to react this way. Prey may not react to this.</Text>
       </View>
       <View style={[{marginBottom: "16px"}]}>
         <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 4) Primal Terror:</Text>
         <Text style={[{fontSize: "10px"}]}>All remaining Prey must immediately test for suppress (wd8), -1 action.</Text>
       </View>
-      <Image src={"/bottom_image_smaller.png"} style={{position: "absolute", bottom: 0, left: 0, width: "100%"}}></Image>
+      <Image src={"/bottom_image_even_smaller.png"} style={{position: "absolute", bottom: 0, left: 0, width: "100%"}}></Image>
     </Page>
   )
 }

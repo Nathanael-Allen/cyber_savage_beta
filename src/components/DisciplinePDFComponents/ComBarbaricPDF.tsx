@@ -1,6 +1,6 @@
 import { View, Text, Page, Image } from "@react-pdf/renderer";
 
-export default function ComBarbaric() {
+export default function ComBarbaricPDF() {
   return (
     <Page size="A4" orientation="portrait" style={[{paddingHorizontal: "12px", paddingVertical: "8px"}]}>
       <View

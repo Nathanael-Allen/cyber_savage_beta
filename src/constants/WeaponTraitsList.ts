@@ -117,7 +117,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
   },
   {
     name: "Explosive",
-    description: 'Make 1 attack with 0 traits to all models within 2" of the target. A model may only be affected by this once during a single combat action (ranged only)',
+    description: 'Make 1 attack to all models within 2" of the target. A model may only be affected by this once during a single combat action (ranged only)',
     weaponType: "ranged",
     weaponSubtype: "all",
   },
@@ -200,7 +200,7 @@ const WeaponTraitsList: TWeaponTrait[] = [
     weaponSubtype: "all",
   },
   {
-    name: "Psychotronic",
+    name: "Psychoactive",
     description: "If a target takes damage from this weapon (Wd8) move d8 in a scatter dice direction. If this model hits a wall take 1 damage.",
     weaponType: "both",
     weaponSubtype: "all",

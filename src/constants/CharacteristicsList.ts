@@ -7,11 +7,13 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Agile",
-    description: "This character treats area terrain and obstacles as open ground"
+    description:
+      "This character treats area terrain and obstacles as open ground",
   },
   {
     name: "Avenger",
-    description: "When an ally dies strengthen all stats until end of next activation.",
+    description:
+      "When an ally dies strengthen all stats until end of next activation.",
   },
   {
     name: "Berserk",
@@ -21,11 +23,12 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Bloodlust",
     description:
-      "When targeting a character at or below half of it\'s starting health, gain favorable ranged + melee.",
+      "When targeting a character at or below half of it's starting health, gain favorable ranged + melee.",
   },
   {
     name: "Bodyguard",
-    description: "When a friendly model within 3\" of this model is the target of a ranged or melee combat action, this model may spend a reaction to swap places with the target model. This model is now the target of the attack and may only defend."
+    description:
+      'When a friendly model within 3" of this model is the target of a ranged or melee combat action, this model may spend a reaction to swap places with the target model. This model is now the target of the attack and may only defend.',
   },
   {
     name: "Command",
@@ -34,21 +37,22 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Companion",
-    description: "Once per round gain favorable on any comparison but only roll a d4."
+    description:
+      "Once per round gain favorable on any comparison but only roll a d4.",
   },
   {
     name: "Cruel",
     description: "Favorable when attacking a lower level character.",
-  },  
+  },
   {
     name: "Demented",
     description:
-      'Favorable attack when targeting a character that is base-to-base with an objective or holding a token.',
+      "Favorable attack when targeting a character that is base-to-base with an objective or holding a token.",
   },
   {
     name: "Determinded",
     description:
-      'Strengthen defense stats while base-to-base with an objective or holding a token.',
+      "Strengthen defense stats while base-to-base with an objective or holding a token.",
   },
   {
     name: "Devious",
@@ -63,12 +67,11 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Duelist",
     description:
-      "The first time this model reacts with \"duel\" in a turn, it does not spend a reaction token.",
+      'The first time this model reacts with "duel" in a turn, it does not spend a reaction token.',
   },
   {
     name: "Enhanced Vision",
-    description:
-      "Ignore stealthy, invisible and count all charges as visible.",
+    description: "Ignore stealthy, invisible and count all charges as visible.",
   },
   {
     name: "Evade",
@@ -82,12 +85,12 @@ const CharacteristicsList: TCharacteristics[] = [
   { name: "Fast", description: "+3 speed" },
   {
     name: "Flying",
-    description: "This character ignores vertical distance, obstacles, area terrain, and cannot take fall damage. Never benefits from cover.",
+    description:
+      "This character ignores vertical distance, obstacles, area terrain, and cannot take fall damage. Never benefits from cover.",
   },
   {
     name: "Formidable",
-    description:
-      "When this model compares it\'s level add 1.",
+    description: "When this model compares it's level add 1.",
   },
   {
     name: "Good Luck",
@@ -97,7 +100,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Grenadier",
     description:
-      'Single use ranged action, (range 8\", d10 damage, 6 explosive) take a single weapon trait.',
+      'Single use ranged action, (range 8", d8 damage, explosive, cannot be reacted to) take a single weapon trait.',
   },
   {
     name: "Gunfighter",
@@ -112,7 +115,8 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Honorable",
-    description: "Gain favorable and strengthen stats when attacking or defending against a model of the same level.",
+    description:
+      "Gain favorable and strengthen stats when attacking or defending against a model of the same level.",
   },
   {
     name: "Horrifying",
@@ -125,8 +129,9 @@ const CharacteristicsList: TCharacteristics[] = [
     description: "Glancing hits do 0 damage to this model.",
   },
   {
-    name: "invincible",
-    description: "The first time this character dies in a match, do not remove it from play. Instead leave it standing with a single HP.",
+    name: "Invincible",
+    description:
+      "The first time this character reaches 0HP it is not slain, do not remove it from play. Instead leave it standing with a single HP.",
   },
   {
     name: "Indomitable",
@@ -135,7 +140,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Last Stand",
     description:
-      "If this model dies it may make a ranged combat action or a 6\" charge",
+      'If this model dies it may make a ranged combat action or a 8" charge',
   },
   {
     name: "Malicious",
@@ -144,15 +149,14 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Medic",
-    description:
-      "Spend a utility action; heal self or base-to-base ally d6 HP",
+    description: "Spend a utility action; heal self or base-to-base ally d6 HP",
   },
   { name: "Mounted", description: "+2 speed, +2 health" },
   { name: "Mystical", description: "Gain a spell" },
   {
     name: "Opportunist",
     description:
-      'After taking damage from an attack this model may move up to 3\"',
+      'After taking damage from an attack this model may move up to 3"',
   },
   {
     name: "Overshield",
@@ -163,10 +167,6 @@ const CharacteristicsList: TCharacteristics[] = [
     name: "Psychic Ward",
     description:
       'Any spells, targeting this character or any characters within 2" of this character, are cast with only TWO dice.',
-  },
-  {
-    name: "Savage",
-    description: "Gain favorable after performing a charge action.",
   },
   {
     name: "Rage",
@@ -183,7 +183,14 @@ const CharacteristicsList: TCharacteristics[] = [
     description:
       "If this character does 0 damage during combat action, duel or shootout immediately make 1 additional single attack.",
   },
-  { name: "Regeneration", description: "At the start of each activation heal 2." },
+  {
+    name: "Regeneration",
+    description: "At the start of each activation heal 2.",
+  },
+  {
+    name: "Savage",
+    description: "Gain favorable after performing a charge action.",
+  },
   {
     name: "Scout",
     description:
@@ -191,7 +198,8 @@ const CharacteristicsList: TCharacteristics[] = [
   },
   {
     name: "Self Destruct",
-    description: 'Complex action or on death, make a single d10 attack (deals 6 damage to all models within 3")',
+    description:
+      'Complex action or on death, make a single d10 attack (deals 6 damage to all models within 3")',
   },
   {
     name: "Small",
@@ -200,7 +208,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Stealthy",
     description:
-      "When this model is in cover a model must test willpower against it to target it with a charge or ranged attack action.",
+      "When this character is in cover, enemy characters must pass a willpower test against them to target them.",
   },
   {
     name: "Sturdy",
@@ -215,7 +223,7 @@ const CharacteristicsList: TCharacteristics[] = [
   {
     name: "Unyielding",
     description:
-      'Favorable all stats if this model has more enemies than friendly models (includes self) within 3\"',
+      'Favorable all stats if this model has more enemies than friendly models (includes self) within 3"',
   },
   {
     name: "Volatile",

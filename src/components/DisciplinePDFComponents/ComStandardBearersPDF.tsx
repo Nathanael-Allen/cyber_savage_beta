@@ -1,6 +1,6 @@
 import { View, Text, Page, Image } from "@react-pdf/renderer";
 
-export default function ComStandardBearers() {
+export default function ComStandardBearersPDF() {
   return (
     <Page size="A4" orientation="portrait" style={[{paddingHorizontal: "12px", paddingVertical: "8px"}]}>
       <View
@@ -49,7 +49,7 @@ export default function ComStandardBearers() {
         <Text style={[{fontWeight: "bold", fontSize: "12px"}]}>(Cost 3) Unbreakable:</Text>
         <Text style={[{fontSize: "10px"}]}>Entire team takes -1dmg per attack, until the end of their next activation.</Text>
       </View>
-      <Image src={"/bottom_image_smaller.png"} style={{position: "absolute", bottom: 0, left: 0, width: "100%"}}></Image>
+      <Image src={"/bottom_image_even_smaller.png"} style={{position: "absolute", bottom: 0, left: 0, width: "100%"}}></Image>
     </Page>
   )
 }
